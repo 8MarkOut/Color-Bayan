@@ -1,0 +1,24 @@
+{
+  "name": "color-bayan",
+  "version": "1.0.0",
+  "description": "A web page of bayan",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/8MarkOut/Color-Bayan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/8MarkOut/Color-Bayan/issues"
+  },
+  "homepage": "https://github.com/8MarkOut/Color-Bayan#readme",
+  "devDependencies": {
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^2.1.2",
+    "vinyl-buffer": "^1.0.0"
+  }
+}

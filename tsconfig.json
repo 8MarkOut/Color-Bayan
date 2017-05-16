@@ -1,0 +1,11 @@
+{
+    "files": [
+        "src/ts/bayan_key.ts",
+        "src/ts/bayan.ts",
+        "src/ts/init.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es5"
+    }
+}
