@@ -9,8 +9,8 @@ window.onload = function() {
 }
 
 function init(): void {
-    for (let i: number = 1; i < 5; i++) {
-        let temp: any = document.getElementById("key" + i.toString);
+    for (let i: number = 0; i < 4; i++) {
+        let temp: any = document.getElementById("key" + i.toString());
         for (let j: number = 0; j < keyCol[i].length; j++) {
             let tempDiv: any = document.createElement("div");
             let tempSpan: any = document.createElement("span");
@@ -26,23 +26,23 @@ function init(): void {
     }
 }
 
-function keyUp(event) {
-    var keycode = event.keyCode;
-    var realkey = getkeyValue(keycode);
-    var tempDiv = bayanBody.getkey(realkey).init();
+function keyUp(event: any): void {
+    let keycode: number = event.keyCode;
+    let realkey: string = getkeyValue(keycode);
+    let tempDiv: any = bayanBody.getkey(realkey).init();
 }
 
-function keyDown(event) {
-    var keycode = event.keyCode;
-    var realkey = getkeyValue(keycode);
-    var tempDiv = bayanBody.getkey(realkey).changeColor();
+function keyDown(event: any): void {
+    let keycode: number = event.keyCode;
+    let realkey: string = getkeyValue(keycode);
+    let tempDiv: any = bayanBody.getkey(realkey).changeColor();
 }
 
 document.onkeydown = keyDown;
 document.onkeyup = keyUp;
 
-function getkeyValue(keycode) {
-    var realkey;
+function getkeyValue(keycode: number): string {
+    let realkey: string;
     switch(keycode) {
         case 189: realkey = "-"; break;
         case 219: realkey = "["; break;
