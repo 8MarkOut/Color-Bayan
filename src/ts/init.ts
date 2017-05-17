@@ -1,9 +1,9 @@
-import { bayan_key } from "./bayan_key";
-import { bayan } from "./bayan";
+import { BayanKey } from "./BayanKey";
+import { Bayan } from "./Bayan";
 import acoustic_grand_piano from "../lib/acoustic_grand_piano-mp3";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
-let bayanBody: bayan = new bayan();
+let bayanBody: Bayan = new Bayan();
 
 window.onload = function() {
     init();
@@ -18,7 +18,7 @@ function init(): void {
             let tempSpan: any = document.createElement("span");
             temp.appendChild(tempDiv);
             let snd: any = new Audio(acoustic_grand_piano.A0);
-            let tempKey: bayan_key = new bayan_key(keyCol[i][j], tempDiv, snd);
+            let tempKey: BayanKey = new BayanKey(keyCol[i][j], tempDiv, snd);
             tempDiv.appendChild(tempSpan);
             tempSpan.innerHTML = keyCol[i][j];
             tempSpan.setAttribute("class", "keyNum");

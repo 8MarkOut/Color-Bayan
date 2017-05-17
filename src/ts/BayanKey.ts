@@ -1,4 +1,4 @@
-class bayan_key {
+class BayanKey {
     private keyChar: string;
     private keyElement: any;
     private sound: any;
@@ -33,4 +33,4 @@ class bayan_key {
     public playSound(): void { this.sound.play(); }
 }
 
-export { bayan_key };
+export { BayanKey };
