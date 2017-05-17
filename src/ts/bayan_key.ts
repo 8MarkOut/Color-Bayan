@@ -1,10 +1,12 @@
 class bayan_key {
     private keyChar: string;
     private keyElement: any;
+    private sound: any;
     private black_key: string = "48WEYUP[AFGKLCM";
-    constructor(keyChar: string, keyElement: any) {
+    constructor(keyChar: string, keyElement: any, sound: any) {
         this.keyChar = keyChar;
         this.keyElement = keyElement;
+        this.sound = sound;
         this.init();
     }
     public getKeyChar(): string {
@@ -28,7 +30,7 @@ class bayan_key {
                 this.keyElement.setAttribute("class", "key gray");
         }
     }
-    public playSound(): void {}
+    public playSound(): void { this.sound.play(); }
 }
 
 export { bayan_key };
