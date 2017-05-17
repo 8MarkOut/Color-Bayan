@@ -2,7 +2,7 @@ import { bayan_key } from "./bayan_key";
 import { bayan } from "./bayan";
 import acoustic_grand_piano from "../lib/acoustic_grand_piano-mp3";
 
-let keyCol: Array<string> = ["234567890-", "QWERTYUIOP[", "ASDFGHJKL;'", "ZXCVBNM,./"];
+let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
 let bayanBody: bayan = new bayan();
 
 window.onload = function() {
@@ -47,15 +47,17 @@ document.onkeyup = keyUp;
 function getkeyValue(keycode: number): string {
     let realkey: string;
     switch(keycode) {
-        case 189: realkey = "-"; break;
-        case 219: realkey = "["; break;
         case 186: realkey = ";"; break;
-        case 222: realkey = "'"; break;
+        case 187: realkey = "="; break;
         case 188: realkey = ","; break;
+        case 189: realkey = "-"; break;
         case 190: realkey = "."; break;
         case 191: realkey = "/"; break;
+        case 219: realkey = "["; break;
+        // case 220: realkey = "\\" break;
+        case 221: realkey = "]"; break;
+        case 222: realkey = "'"; break;
         default: realkey = String.fromCharCode(keycode);
     }
     return realkey;
 }
-

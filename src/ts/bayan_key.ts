@@ -2,7 +2,7 @@ class bayan_key {
     private keyChar: string;
     private keyElement: any;
     private sound: any;
-    private black_key: string = "48WEYUP[AFGKLCM";
+    private black_key: string = "48WEYUP[AFGKLCM=";
     constructor(keyChar: string, keyElement: any, sound: any) {
         this.keyChar = keyChar;
         this.keyElement = keyElement;
