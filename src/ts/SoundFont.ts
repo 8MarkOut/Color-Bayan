@@ -66,7 +66,6 @@ class SoundFont {
         for (let i = 0; i < 88; i++) {
             this.audio[i] = new Audio(this.getSoundJson(this.instrument)[this.key2note(i)]);
             this.audio[i].loop = this.loop;
-            console.log("loop:"+this.loop);
         }
     }
 }
