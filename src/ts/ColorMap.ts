@@ -284,10 +284,10 @@ class ColorMap {
     public getColor(key: number): string {
         let select = this.data[this.scheme];
         if (select.format == "HSL") {
-            key = (key + 9) % 12;
+            key %= 12;
             return "hsl(" + select[key][0] + "," + select[key][1] + "%," + select[key][2]+"%)";
         } else if (select.format == "RGB") {
-            key = (key + 9) % 12;
+            key %= 12;
             return "rgb(" + select[key][0] + "," + select[key][1] + "," + select[key][2] + ")";
         } else if (select.format == "HEX") {
             return select.data[key];
