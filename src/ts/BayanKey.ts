@@ -44,7 +44,7 @@ class BayanKey {
         this.keyElement = keyElement;
         this.soundFont = sf;
         this.keybdMap = keyboardMap3;
-        this.shift = 35; // 12 * 3 - 1
+        this.shift = 38; // 12 * 3 - 1 + 3
         this.playing = false;
     }
 
@@ -117,7 +117,7 @@ class BayanKey {
             false, true, false, true, false,
             true, false
         ];
-        return blackkey[this.getSoundKey() % 12];
+        return blackkey[(this.getSoundKey() + 9) % 12];
     }
 }
 
