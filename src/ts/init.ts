@@ -4,7 +4,7 @@ import { SoundFont } from "./SoundFont";
 import acoustic_grand_piano from "../lib/acoustic_grand_piano-mp3";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
-let bayanBody: Bayan = Bayan.GetInstance();
+let bayanBody: Bayan = Bayan.getInstance();
 
 window.onload = function() {
     init();
