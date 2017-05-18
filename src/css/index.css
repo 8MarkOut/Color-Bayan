@@ -19,22 +19,27 @@
     height: 6vw;
     margin-left: 0;
     margin-right: 0.7vw;
+    position: relative;
     border-radius: 0.5vw;
         -moz-border-radius: 1vw; /* Old Firefox */
 }
 
 .keyNum {
     color: white;
+    position: absolute;
     font-size: 1.7vw;
     margin-left: 0.5vw;
 }
 
 .display {
-    color: black;
-    position:relative;
-    left:0;
-    top:0;
-    font-size: 50%;
+    color: white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 2vw;
+    font-weight: bold;
+    text-align: center;
+    line-height: 6vw;
 }
 
 .box {

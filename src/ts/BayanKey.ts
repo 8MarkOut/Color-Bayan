@@ -88,15 +88,16 @@ class BayanKey {
             this.playSound();
             // let display = this.keyElement.getElementsByClassName("display");
             // console.log(display);
-            this.keyElement.getElementsByClassName("display").innerHTML =
+            this.keyElement.getElementsByClassName("display")[0].innerHTML =
                 SoundFont.key2note(this.getSoundKey());
         }
     }
 
     public keyUp(): void {
+        this.playing = false;
         this.changeBackColor();
         this.stopSound();
-        this.playing = false;
+        this.keyElement.getElementsByClassName("display")[0].innerHTML = "";
     }
 
     private playSound(): void {
