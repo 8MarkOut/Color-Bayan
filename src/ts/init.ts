@@ -1,7 +1,6 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
-import acoustic_grand_piano from "../lib/acoustic_grand_piano-mp3";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
 let bayanBody: Bayan = Bayan.getInstance();
@@ -18,10 +17,12 @@ function init(): void {
         for (let j: number = 0; j < keyCol[i].length; j++) {
             let tempDiv: any = document.createElement("div");
             let tempSpan: any = document.createElement("span");
+            let tempDisplay: any = document.createElement("span");
             temp.appendChild(tempDiv);
             let tempKey: BayanKey = new BayanKey(keyCol[i][j], tempDiv, soundfont);
             tempKey.initColor();
             tempDiv.appendChild(tempSpan);
+            tempDiv.appendChild(tempDisplay);
 
             // 这样写有蜜汁错误
             // tempDiv.onmousedown = tempKey.keyDown();
@@ -34,6 +35,7 @@ function init(): void {
             tempDiv.setAttribute("name", keyCol[i][j]);
             tempSpan.innerHTML = keyCol[i][j];
             tempSpan.setAttribute("class", "keyNum");
+            tempDisplay.setAttribute("class", "display");
             bayanBody.add(tempKey);
         }
     }

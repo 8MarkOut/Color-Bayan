@@ -23,13 +23,13 @@ class SoundFont {
                 return acoustic_grand_piano;
         }
     }
-    public key2note(key: number): string {
+    public static key2note(key: number): string {
         if (key < 0 || key >= 88) return "A0";
         key += 9;
         let number2key: Array<string> = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
         return number2key[key % 12] + Math.floor(key / 12);
     }
-    public note2key(note: string): number {
+    public static note2key(note: string): number {
         let note1: string = note.substring(0, note.length - 1);
         let group: number = parseInt(note[note.length - 1]);
         let scale: number;
@@ -64,7 +64,7 @@ class SoundFont {
                 this.loop = false;
         }
         for (let i = 0; i < 88; i++) {
-            this.audio[i] = new Audio(this.getSoundJson(this.instrument)[this.key2note(i)]);
+            this.audio[i] = new Audio(this.getSoundJson(this.instrument)[SoundFont.key2note(i)]);
             this.audio[i].loop = this.loop;
         }
     }

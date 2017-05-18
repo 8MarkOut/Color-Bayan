@@ -83,9 +83,13 @@ class BayanKey {
 
     public keyDown(): void {
         if (this.playing === false) {
+            this.playing = true;
             this.changeColor();
             this.playSound();
-            this.playing = true;
+            // let display = this.keyElement.getElementsByClassName("display");
+            // console.log(display);
+            this.keyElement.getElementsByClassName("display").innerHTML =
+                SoundFont.key2note(this.getSoundKey());
         }
     }
 

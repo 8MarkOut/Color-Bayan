@@ -29,6 +29,14 @@
     margin-left: 0.5vw;
 }
 
+.display {
+    color: black;
+    position:relative;
+    left:0;
+    top:0;
+    font-size: 50%;
+}
+
 .box {
   display: flex;
   margin: 1vw 1vw 1vw 1vw;
