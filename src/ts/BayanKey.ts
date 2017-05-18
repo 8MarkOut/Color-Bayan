@@ -1,4 +1,5 @@
 import { SoundFont } from "./SoundFont";
+import { ColorMap } from "./ColorMap";
 
 let keyboardMap3: any =  { // shift = -1, 1 = B
     "1" : 0,  "Q" : 1,  "A" : 2,  "Z" : 3,
@@ -43,8 +44,11 @@ class BayanKey {
         this.keyElement = keyElement;
         this.soundFont = sf;
         this.keybdMap = keyboardMap3;
-        this.shift = 3*12-1;
+        this.shift = 35; // 12 * 3 - 1
         this.playing = false;
+    }
+
+    public initColor(): void {
         if (this.keyElement !== undefined) {
             if (this.isBlackKey()) {
                 this.keyElement.setAttribute("class", "key deep-gray");
@@ -65,11 +69,12 @@ class BayanKey {
     }
 
     private changeColor(): void {
-        
+        let cm = ColorMap.getInstance();
+        this.keyElement.style.backgroundColor = cm.getColor(this.getSoundKey());
     }
 
     private changeBackColor(): void {
-        
+        this.keyElement.style.cssText = "";
     }
 
     private getSoundKey(): number {
@@ -77,28 +82,28 @@ class BayanKey {
     }
 
     public keyDown(): void {
-        this.changeColor();
-        this.playSound();
+        if (this.playing === false) {
+            this.changeColor();
+            this.playSound();
+            this.playing = true;
+        }
     }
 
     public keyUp(): void {
         this.changeBackColor();
         this.stopSound();
+        this.playing = false;
     }
 
     private playSound(): void {
-        if (this.playing === false) {
-            this.soundFont.audio[this.getSoundKey()].play();
-            this.playing = true;
-        }
+        this.soundFont.audio[this.getSoundKey()].play();
     }
 
     private stopSound(): void {
         // delay
         let audio: any = this.soundFont.audio[this.getSoundKey()];
-        if (audio.played == true) audio.pause();
+        audio.pause();
         audio.currentTime = 0;
-        this.playing = false;
     }
 
     private isBlackKey(): boolean {

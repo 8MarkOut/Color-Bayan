@@ -20,8 +20,8 @@ function init(): void {
             let tempSpan: any = document.createElement("span");
             temp.appendChild(tempDiv);
             let tempKey: BayanKey = new BayanKey(keyCol[i][j], tempDiv, soundfont);
+            tempKey.initColor();
             tempDiv.appendChild(tempSpan);
-            tempDiv.setAttribute("class", "key");
             tempDiv.setAttribute("name", keyCol[i][j]);
             tempSpan.innerHTML = keyCol[i][j];
             tempSpan.setAttribute("class", "keyNum");
