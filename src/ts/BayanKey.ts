@@ -15,7 +15,7 @@ let keyboardMap3: any =  { // shift = -1, 1 = B
     "=" : 33, "]" : 34
 }
 
-let KeyboardMap4: any = { // shift = 0, 1 = C
+let keyboardMap4: any = { // shift = 0, 1 = C
     "1" : 0,  "Q" : 1,  "A" : 2,  "Z" : 3,
     "2" : 4,  "W" : 5,  "S" : 6,  "X" : 7,
     "3" : 8,  "E" : 9,  "D" : 10, "C" : 11,
@@ -36,6 +36,7 @@ class BayanKey {
     private keyElement: any;
     private soundFont: SoundFont;
     private keybdMap: any;
+    private playing: boolean;
     public shift: number;
     constructor(keyName: string, keyElement: any, sf: SoundFont) {
         this.keyName = keyName;
@@ -43,6 +44,7 @@ class BayanKey {
         this.soundFont = sf;
         this.keybdMap = keyboardMap3;
         this.shift = 3*12-1;
+        this.playing = false;
         this.init();
     }
     public getKeyChar(): string {
@@ -71,13 +73,18 @@ class BayanKey {
         return this.keybdMap[this.keyName] + this.shift;
     }
     public playSound(): void {
-        this.soundFont.audio[this.getSoundKey()].play();
+        if (this.playing === false) {
+            this.soundFont.audio[this.getSoundKey()].play();
+            this.playing = true;
+        }
     }
+            
     public stopSound(): void {
         // delay
         let audio: any = this.soundFont.audio[this.getSoundKey()];
         audio.pause(); 
         audio.currentTime = 0;
+        this.playing = false;
     }
     private isBlackKey(): boolean {
         let blackkey = [
