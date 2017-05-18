@@ -2,14 +2,15 @@ import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
 import acoustic_grand_piano from "../lib/acoustic_grand_piano-mp3";
+import * as $ from 'jquery';
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
 let bayanBody: Bayan = Bayan.getInstance();
 
-window.onload = function() {
+$(document).ready(function() {
     init();
-}
-
+    // $(".dropdown-button").dropdown();
+});
 
 function init(): void {
     let soundfont: SoundFont = new SoundFont("acoustic_grand_piano");

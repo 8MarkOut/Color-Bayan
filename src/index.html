@@ -1,14 +1,66 @@
 <html>
     <head>
+        <title>Color Bayan</title>
         <link rel=stylesheet type="text/css" href="css/index.css">
+
+        <!--一个material design的库-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <script src="bundle.js"></script>
     </head>
     <body>
-        <div id="Bayan">
+        <!--页眉-->
+        <ul id="selectMusic" class="dropdown-content">
+            <li><a href="#!">one</a></li>
+                <li class="divider"></li>
+            <li><a href="#!">two</a></li>
+                <li class="divider"></li>
+            <li><a href="#!">three</a></li>
+        </ul>
+        <ul id="selectInstrument" class="dropdown-content">
+            <li><a href="#!">one</a></li>
+                <li class="divider"></li>
+            <li><a href="#!">two</a></li>
+                <li class="divider"></li>
+            <li><a href="#!">three</a></li>
+        </ul>
+        <nav>
+            <div class="nav-wrapper blue">
+                <a class="brand-logo center">Color Bayan</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a class="dropdown-button" data-activates="selectInstrument">选择歌曲<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button" data-activates="selectInstrument">切换乐器<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!--主体部分-->
+        <div id="Bayan" class="parallax-container">
             <div id="key0" class="box"></div>
             <div id="key1" class="box"></div>
             <div id="key2" class="box"></div>
             <div id="key3" class="box"></div>
         </div>
+
+        <!--页脚-->
+        <footer class="page-footer blue">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2017 Color Bayan
+            <a class="grey-text text-lighten-4 right" href="https://github.com/8MarkOut/Color-Bayan.git">Github地址</a>
+            </div>
+          </div>
+        </footer>
     </body>
 </html>

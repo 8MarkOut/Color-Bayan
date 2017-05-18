@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/8MarkOut/Color-Bayan#readme",
   "devDependencies": {
+    "@types/node": "^7.0.18",
     "browserify": "^14.3.0",
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^2.6.0",
@@ -26,5 +27,8 @@
     "typescript": "^2.3.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "@types/jquery": "^2.0.45"
   }
 }
