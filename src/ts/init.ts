@@ -1,14 +1,14 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
+import * as $ from 'jquery';
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
 let bayanBody: Bayan = Bayan.getInstance();
 
-window.onload = function() {
+$(document).ready(function() {
     init();
-}
-
+});
 
 function init(): void {
     let soundfont: SoundFont = new SoundFont("acoustic_grand_piano");
@@ -25,9 +25,9 @@ function init(): void {
             tempDiv.appendChild(tempDisplay);
 
             // 这样写有蜜汁错误
-            // tempDiv.onmousedown = tempKey.keyDown();
-            // tempDiv.onmouseup = tempKey.keyUp();
-            // tempDiv.onmouseout = tempKey.keyUp();
+            // tempDiv.onmousedown = tempKey.keyDown;
+            // tempDiv.onmouseup = tempKey.keyUp;
+            // tempDiv.onmouseout = tempKey.keyUp;
             tempDiv.onmousedown = function() { tempKey.keyDown(); }
             tempDiv.onmouseup = function() { tempKey.keyUp(); }
             tempDiv.onmouseout = function() { tempKey.keyUp(); }
