@@ -1,6 +1,13 @@
 import { BayanKey } from "./BayanKey";
 
 class Bayan {
+    public static GetInstance() : Bayan {
+        if (Bayan._instance == null){
+            Bayan._instance = new Bayan();
+        }
+        return Bayan._instance;
+    }
+    private static _instance: Bayan = null;
     private keys = new Array<BayanKey>();
     public add(key: BayanKey): void {
         this.keys.push(key);
