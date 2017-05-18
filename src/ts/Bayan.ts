@@ -1,7 +1,7 @@
 import { BayanKey } from "./BayanKey";
 
 class Bayan {
-    public static GetInstance() : Bayan {
+    public static getInstance() : Bayan {
         if (Bayan._instance == null){
             Bayan._instance = new Bayan();
         }

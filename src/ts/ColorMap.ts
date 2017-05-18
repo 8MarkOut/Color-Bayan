@@ -270,10 +270,10 @@ class ColorMap {
     private scheme: string;
     private static _instance: ColorMap = null;
     public static getInstance(): ColorMap {
-        if (this._instance == null) {
-            this._instance = new ColorMap();
+        if (ColorMap._instance == null) {
+            ColorMap._instance = new ColorMap();
         }
-        return this._instance;
+        return ColorMap._instance;
     }
     private constructor() {
        this.scheme = 'D. D. Jameson (1844)';
