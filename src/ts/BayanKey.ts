@@ -45,8 +45,15 @@ class BayanKey {
         this.keybdMap = keyboardMap3;
         this.shift = 3*12-1;
         this.playing = false;
-        this.init();
+        if (this.keyElement !== undefined) {
+            if (this.isBlackKey()) {
+                this.keyElement.setAttribute("class", "key deep-gray");
+            } else {
+                this.keyElement.setAttribute("class", "key gray");
+            }
+        }
     }
+
     public getKeyChar(): string {
         return this.keyName;
     }
@@ -56,36 +63,44 @@ class BayanKey {
     public identify(keyName: string): boolean {
         return this.keyName === keyName;
     }
-    public changeColor(): void {
-        if (this.keyElement !== undefined)
-            this.keyElement.setAttribute("class", "key green");
+
+    private changeColor(): void {
+        
     }
-    public init(): void {
-        if (this.keyElement !== undefined) {
-            if (this.isBlackKey()) {
-                this.keyElement.setAttribute("class", "key deep-gray");
-            } else {
-                this.keyElement.setAttribute("class", "key gray");
-            }
-        }
+
+    private changeBackColor(): void {
+        
     }
+
     private getSoundKey(): number {
         return this.keybdMap[this.keyName] + this.shift;
     }
-    public playSound(): void {
+
+    public keyDown(): void {
+        this.changeColor();
+        this.playSound();
+    }
+
+    public keyUp(): void {
+        this.changeBackColor();
+        this.stopSound();
+    }
+
+    private playSound(): void {
         if (this.playing === false) {
             this.soundFont.audio[this.getSoundKey()].play();
             this.playing = true;
         }
     }
-            
-    public stopSound(): void {
+
+    private stopSound(): void {
         // delay
         let audio: any = this.soundFont.audio[this.getSoundKey()];
-        audio.pause(); 
+        if (audio.played == true) audio.pause();
         audio.currentTime = 0;
         this.playing = false;
     }
+
     private isBlackKey(): boolean {
         let blackkey = [
             false, true, false, true, false,

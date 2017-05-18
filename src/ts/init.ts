@@ -25,29 +25,22 @@ function init(): void {
             tempDiv.setAttribute("name", keyCol[i][j]);
             tempSpan.innerHTML = keyCol[i][j];
             tempSpan.setAttribute("class", "keyNum");
-            tempKey.init();
             bayanBody.add(tempKey);
         }
     }
 }
 
 function keyUp(event: any): void {
-    let keycode: number = event.keyCode;
-    let realkey: string = getkeyValue(keycode);
-    let tempDiv: any = bayanBody.getkey(realkey);
+    let tempDiv: any = getTempDiv(event.keyCode);
     if (tempDiv !== undefined) {
-        tempDiv.init();
-        tempDiv.stopSound();
+        tempDiv.keyUp();
     }
 }
 
 function keyDown(event: any): void {
-    let keycode: number = event.keyCode;
-    let realkey: string = getkeyValue(keycode);
-    let tempDiv: any = bayanBody.getkey(realkey);
+    let tempDiv: any = getTempDiv(event.keyCode);
     if (tempDiv !== undefined) {
-        tempDiv.changeColor();
-        tempDiv.playSound();
+        tempDiv.keyDown();
     }
 }
 
@@ -70,4 +63,9 @@ function getkeyValue(keycode: number): string {
         default: realkey = String.fromCharCode(keycode);
     }
     return realkey;
+}
+
+function getTempDiv(keycode: number): any {
+    let realkey: string = getkeyValue(keycode);
+    return bayanBody.getkey(realkey);
 }
