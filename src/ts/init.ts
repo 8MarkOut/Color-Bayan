@@ -34,15 +34,21 @@ function init(): void {
 function keyUp(event: any): void {
     let keycode: number = event.keyCode;
     let realkey: string = getkeyValue(keycode);
-    let tempDiv: any = bayanBody.getkey(realkey).init();
-    bayanBody.getkey(realkey).stopSound();
+    let tempDiv: any = bayanBody.getkey(realkey);
+    if (tempDiv !== undefined) {
+        tempDiv.init();
+        tempDiv.stopSound();
+    }
 }
 
 function keyDown(event: any): void {
     let keycode: number = event.keyCode;
     let realkey: string = getkeyValue(keycode);
-    let tempDiv: any = bayanBody.getkey(realkey).changeColor();
-    bayanBody.getkey(realkey).playSound();
+    let tempDiv: any = bayanBody.getkey(realkey);
+    if (tempDiv !== undefined) {
+        tempDiv.changeColor();
+        tempDiv.playSound();
+    }
 }
 
 document.onkeydown = keyDown;
