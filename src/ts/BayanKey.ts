@@ -1,7 +1,7 @@
 import { SoundFont } from "./SoundFont";
 import { ColorMap } from "./ColorMap";
 
-let keyboardMap3: any =  { // shift = -1, 1 = B
+let keyboardMap3: any =  { // shift = -1 + 3, 1 = B
     "1" : 0,  "Q" : 1,  "A" : 2,  "Z" : 3,
     "2" : 3,  "W" : 4,  "S" : 5,  "X" : 6,
     "3" : 6,  "E" : 7,  "D" : 8,  "C" : 9,
@@ -16,7 +16,7 @@ let keyboardMap3: any =  { // shift = -1, 1 = B
     "=" : 33, "]" : 34
 }
 
-let keyboardMap4: any = { // shift = 0, 1 = C
+let keyboardMap4: any = { // shift = 0 + 3, 1 = C
     "1" : 0,  "Q" : 1,  "A" : 2,  "Z" : 3,
     "2" : 4,  "W" : 5,  "S" : 6,  "X" : 7,
     "3" : 8,  "E" : 9,  "D" : 10, "C" : 11,
@@ -86,8 +86,6 @@ class BayanKey {
             this.playing = true;
             this.changeColor();
             this.playSound();
-            // let display = this.keyElement.getElementsByClassName("display");
-            // console.log(display);
             this.keyElement.getElementsByClassName("display")[0].innerHTML =
                 SoundFont.key2note(this.getSoundKey());
         }
