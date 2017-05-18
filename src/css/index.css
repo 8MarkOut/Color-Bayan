@@ -7,13 +7,16 @@
 #key3 { margin: 0 6vw 1vw 8vw; }
 
 #Bayan {
+    display: flex;
+    flex-direction: column;
+}
+
+.contain {
+    margin: 0 auto;
     width: 80vw;
     height: 28vw;
-    margin: 0 auto;
-    display: flex;
-    margin-top: 5vw;
-    margin-bottom: 5vw;
-    flex-direction: column;
+    margin-top: 4.2vw;
+    margin-bottom: 4.1vw;
 }
 
 .key {
