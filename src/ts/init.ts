@@ -9,7 +9,6 @@ let bayanBody: Bayan = Bayan.getInstance();
 
 $(document).ready(function() {
     init();
-    // $(".dropdown-button").dropdown();
 });
 
 function init(): void {
@@ -25,9 +24,9 @@ function init(): void {
             tempDiv.appendChild(tempSpan);
 
             // 这样写有蜜汁错误
-            // tempDiv.onmousedown = tempKey.keyDown();
-            // tempDiv.onmouseup = tempKey.keyUp();
-            // tempDiv.onmouseout = tempKey.keyUp();
+            // tempDiv.onmousedown = tempKey.keyDown;
+            // tempDiv.onmouseup = tempKey.keyUp;
+            // tempDiv.onmouseout = tempKey.keyUp;
             tempDiv.onmousedown = function() { tempKey.keyDown(); }
             tempDiv.onmouseup = function() { tempKey.keyUp(); }
             tempDiv.onmouseout = function() { tempKey.keyUp(); }
