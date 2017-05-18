@@ -297,5 +297,4 @@ class ColorMap {
     }
 }
 
-
 export { ColorMap };

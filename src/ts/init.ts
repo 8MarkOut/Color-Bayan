@@ -22,6 +22,15 @@ function init(): void {
             let tempKey: BayanKey = new BayanKey(keyCol[i][j], tempDiv, soundfont);
             tempKey.initColor();
             tempDiv.appendChild(tempSpan);
+
+            // 这样写有蜜汁错误
+            // tempDiv.onmousedown = tempKey.keyDown();
+            // tempDiv.onmouseup = tempKey.keyUp();
+            // tempDiv.onmouseout = tempKey.keyUp();
+            tempDiv.onmousedown = function() { tempKey.keyDown(); }
+            tempDiv.onmouseup = function() { tempKey.keyUp(); }
+            tempDiv.onmouseout = function() { tempKey.keyUp(); }
+
             tempDiv.setAttribute("name", keyCol[i][j]);
             tempSpan.innerHTML = keyCol[i][j];
             tempSpan.setAttribute("class", "keyNum");
