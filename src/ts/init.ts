@@ -1,5 +1,6 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
+import { SoundFont } from "./SoundFont";
 import acoustic_grand_piano from "../lib/acoustic_grand_piano-mp3";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
@@ -11,18 +12,19 @@ window.onload = function() {
 
 
 function init(): void {
+    let soundfont: SoundFont = new SoundFont("acoustic_grand_piano");
     for (let i: number = 0; i < 4; i++) {
         let temp: any = document.getElementById("key" + i.toString());
         for (let j: number = 0; j < keyCol[i].length; j++) {
             let tempDiv: any = document.createElement("div");
             let tempSpan: any = document.createElement("span");
             temp.appendChild(tempDiv);
-            let snd: any = new Audio(acoustic_grand_piano.A0);
-            let tempKey: BayanKey = new BayanKey(keyCol[i][j], tempDiv, snd);
+            let tempKey: BayanKey = new BayanKey(keyCol[i][j], tempDiv, soundfont);
             tempDiv.appendChild(tempSpan);
+            tempDiv.setAttribute("class", "key");
+            tempDiv.setAttribute("name", keyCol[i][j]);
             tempSpan.innerHTML = keyCol[i][j];
             tempSpan.setAttribute("class", "keyNum");
-            tempDiv.setAttribute("class", "key");
             tempKey.init();
             bayanBody.add(tempKey);
         }
@@ -33,12 +35,14 @@ function keyUp(event: any): void {
     let keycode: number = event.keyCode;
     let realkey: string = getkeyValue(keycode);
     let tempDiv: any = bayanBody.getkey(realkey).init();
+    bayanBody.getkey(realkey).stopSound();
 }
 
 function keyDown(event: any): void {
     let keycode: number = event.keyCode;
     let realkey: string = getkeyValue(keycode);
     let tempDiv: any = bayanBody.getkey(realkey).changeColor();
+    bayanBody.getkey(realkey).playSound();
 }
 
 document.onkeydown = keyDown;
