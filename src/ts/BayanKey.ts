@@ -44,7 +44,7 @@ class BayanKey {
         this.keyElement = keyElement;
         this.soundFont = sf;
         this.keybdMap = keyboardMap3;
-        this.shift = 38; // 12 * 3 - 1 + 3
+        this.shift = 26; // 12 * 2 - 1 + 3
         this.playing = false;
     }
 
