@@ -1,4 +1,5 @@
 import acoustic_grand_piano from "../lib/acoustic_grand_piano-mp3";
+import synth_drum from "../lib/synth_drum-mp3.js";
 
 // class SoundField {
 //     public low: number;
@@ -19,6 +20,8 @@ class SoundFont {
         switch (instrument) {
             case "acoustic_grand_piano":
                 return acoustic_grand_piano;
+            case "synth_drum":
+                return synth_drum;
             default:
                 return acoustic_grand_piano;
         }
