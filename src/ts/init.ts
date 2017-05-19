@@ -1,14 +1,13 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
-import * as $ from 'jquery';
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
 let bayanBody: Bayan = Bayan.getInstance();
 
-$(document).ready(function() {
+window.onload = function(){
     init();
-});
+}
 
 function init(): void {
     let soundfont: SoundFont = new SoundFont("acoustic_grand_piano");
