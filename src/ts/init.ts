@@ -3,7 +3,6 @@ import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
-let bayanBody: Bayan = Bayan.getInstance();
 
 window.onload = function(){
     init();
@@ -11,6 +10,7 @@ window.onload = function(){
 
 function init(): void {
     let soundfont: SoundFont = new SoundFont("acoustic_grand_piano");
+    Bayan.getInstance().soundFont = soundfont;
     for (let i: number = 0; i < 4; i++) {
         let temp: any = document.getElementById("key" + i.toString());
         for (let j: number = 0; j < keyCol[i].length; j++) {
@@ -35,7 +35,7 @@ function init(): void {
             tempSpan.innerHTML = keyCol[i][j];
             tempSpan.setAttribute("class", "keyNum");
             tempDisplay.setAttribute("class", "display");
-            bayanBody.add(tempKey);
+            Bayan.getInstance().add(tempKey);
         }
     }
 }
@@ -70,6 +70,16 @@ function getkeyValue(keycode: number): string {
         // case 220: realkey = "\\" break;
         case 221: realkey = "]"; break;
         case 222: realkey = "'"; break;
+        case 13: // enter
+            Bayan.getInstance().shift += 12;
+            realkey = null;
+            console.log("8va");
+            break;
+        case 16: // shift
+            Bayan.getInstance().shift -= 12;
+            realkey = null;
+            console.log("8vb");
+            break;
         default: realkey = String.fromCharCode(keycode);
     }
     return realkey;
@@ -77,5 +87,5 @@ function getkeyValue(keycode: number): string {
 
 function getTempDiv(keycode: number): any {
     let realkey: string = getkeyValue(keycode);
-    return bayanBody.getkey(realkey);
+    return Bayan.getInstance().getkey(realkey);
 }
