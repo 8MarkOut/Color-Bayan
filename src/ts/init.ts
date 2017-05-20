@@ -3,7 +3,6 @@ import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
-let bayanBody: Bayan = Bayan.getInstance();
 
 window.onload = function(){
     init();
@@ -11,6 +10,7 @@ window.onload = function(){
 
 function init(): void {
     let soundfont: SoundFont = new SoundFont("acoustic_grand_piano");
+    Bayan.getInstance().soundFont = soundfont;
     for (let i: number = 0; i < 4; i++) {
         let temp: any = document.getElementById("key" + i.toString());
         for (let j: number = 0; j < keyCol[i].length; j++) {
@@ -35,20 +35,32 @@ function init(): void {
             tempSpan.innerHTML = keyCol[i][j];
             tempSpan.setAttribute("class", "keyNum");
             tempDisplay.setAttribute("class", "display");
-            bayanBody.add(tempKey);
+            Bayan.getInstance().add(tempKey);
         }
     }
 }
 
 function keyUp(event: any): void {
-    let tempDiv: any = getTempDiv(event.keyCode);
+    let realkey = getkeyValue(event.keyCode);
+    switch(realkey) {
+        case "enter":
+            Bayan.getInstance().shift += 12;
+            console.log("8va");
+            break;
+        case "shift":
+            Bayan.getInstance().shift -= 12;
+            console.log("8va");
+            break;
+    }
+    let tempDiv: any = getTempDiv(realkey);
     if (tempDiv !== undefined) {
         tempDiv.keyUp();
     }
 }
 
 function keyDown(event: any): void {
-    let tempDiv: any = getTempDiv(event.keyCode);
+    let realkey = getkeyValue(event.keyCode);
+    let tempDiv: any = getTempDiv(realkey);
     if (tempDiv !== undefined) {
         tempDiv.keyDown();
     }
@@ -70,12 +82,13 @@ function getkeyValue(keycode: number): string {
         // case 220: realkey = "\\" break;
         case 221: realkey = "]"; break;
         case 222: realkey = "'"; break;
+        case 13: realkey = "enter"; break;
+        case 16: realkey = "shift"; break;
         default: realkey = String.fromCharCode(keycode);
     }
     return realkey;
 }
 
-function getTempDiv(keycode: number): any {
-    let realkey: string = getkeyValue(keycode);
-    return bayanBody.getkey(realkey);
+function getTempDiv(realkey: string): any {
+    return Bayan.getInstance().getkey(realkey);
 }
