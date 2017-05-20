@@ -1,16 +1,10 @@
 import acoustic_grand_piano from "../lib/acoustic_grand_piano-mp3";
 import synth_drum from "../lib/synth_drum-mp3.js";
 
-// class SoundField {
-//     public low: number;
-//     public high: number;
-// }
-
 class SoundFont {
     private instrument: string;
     private note: Array<number>;
     private loop: boolean;
-    // private field: SoundField;
     public audio : any;
     constructor(instrument: string) {
         this.audio = new Array<any>();
@@ -26,15 +20,24 @@ class SoundFont {
                 return acoustic_grand_piano;
         }
     }
+    public static normalizeKey(key: number): number {
+        if (key < 0) key = 0;
+        if (key > 87) key = 87;
+        return key;
+    }
     public static key2note(key: number): string {
-        if (key < 0 || key >= 88) return "A0";
+        key = SoundFont.normalizeKey(key);
         key += 9;
         let number2key: Array<string> = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
         return number2key[key % 12] + Math.floor(key / 12);
     }
     public static note2key(note: string): number {
-        let note1: string = note.substring(0, note.length - 1);
-        let group: number = parseInt(note[note.length - 1]);
+        let re = /[A-G](\0|b)/;
+        re.exec(note);
+        let result = re.exec(note);
+        let note1 = result.pop();
+        let note2 = note.substring(note1.length, note.length);
+        let group: number = parseInt(note2);
         let scale: number;
         switch(note1) {
             case "C":  scale = 0; break;
@@ -51,12 +54,8 @@ class SoundFont {
             case "B":  scale = 11; break;
             default:   scale = 0;
         }
-        return group * 12 + scale - 9;
+        return SoundFont.normalizeKey(group * 12 + scale - 9);
     }
-    // public setSoundField(low: number, high: number) {
-    //     this.field.low = low;
-    //     this.field.high = high;
-    // }
     public changeInstrument(instrument: string): void {
         this.instrument = instrument;
         switch(instrument) {

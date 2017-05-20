@@ -41,14 +41,26 @@ function init(): void {
 }
 
 function keyUp(event: any): void {
-    let tempDiv: any = getTempDiv(event.keyCode);
+    let realkey = getkeyValue(event.keyCode);
+    switch(realkey) {
+        case "enter":
+            Bayan.getInstance().shift += 12;
+            console.log("8va");
+            break;
+        case "shift":
+            Bayan.getInstance().shift -= 12;
+            console.log("8va");
+            break;
+    }
+    let tempDiv: any = getTempDiv(realkey);
     if (tempDiv !== undefined) {
         tempDiv.keyUp();
     }
 }
 
 function keyDown(event: any): void {
-    let tempDiv: any = getTempDiv(event.keyCode);
+    let realkey = getkeyValue(event.keyCode);
+    let tempDiv: any = getTempDiv(realkey);
     if (tempDiv !== undefined) {
         tempDiv.keyDown();
     }
@@ -70,22 +82,13 @@ function getkeyValue(keycode: number): string {
         // case 220: realkey = "\\" break;
         case 221: realkey = "]"; break;
         case 222: realkey = "'"; break;
-        case 13: // enter
-            Bayan.getInstance().shift += 12;
-            realkey = null;
-            console.log("8va");
-            break;
-        case 16: // shift
-            Bayan.getInstance().shift -= 12;
-            realkey = null;
-            console.log("8vb");
-            break;
+        case 13: realkey = "enter"; break;
+        case 16: realkey = "shift"; break;
         default: realkey = String.fromCharCode(keycode);
     }
     return realkey;
 }
 
-function getTempDiv(keycode: number): any {
-    let realkey: string = getkeyValue(keycode);
+function getTempDiv(realkey: string): any {
     return Bayan.getInstance().getkey(realkey);
 }

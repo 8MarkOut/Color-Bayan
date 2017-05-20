@@ -44,7 +44,8 @@ class BayanKey {
 
     private getSoundKey(): number {
         let bayan = Bayan.getInstance();
-        return bayan.keybdMap[this.keyName] + bayan.shift;
+        let rVal: number = bayan.keybdMap[this.keyName] + bayan.shift;
+        return SoundFont.normalizeKey(rVal);
     }
 
     public keyDown(): void {
