@@ -16,6 +16,13 @@
     <body>
         <!--页眉-->
         <header>
+        <ul id="setkeybd" class="dropdown-content">
+            <li><a href="#!">one</a></li>
+                <li class="divider"></li>
+            <li><a href="#!">two</a></li>
+                <li class="divider"></li> 
+            <li><a href="#!">three</a></li>
+        </ul>
         <ul id="selectMusic" class="dropdown-content">
             <li><a href="#!">1</a></li>
                 <li class="divider"></li>
@@ -32,6 +39,16 @@
         </ul>
         <ul id="mobile" class="side-nav">
             <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">track_changes</i>切换键盘</div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="#!">1</a></li>
+                            <li><a href="#!">2</a></li>
+                            <li><a href="#!">3</a></li>
+                        </ul>
+                    </div>
+                </li>
                 <li>
                     <div class="collapsible-header"><i class="material-icons">queue_music</i>选择歌曲</div>
                     <div class="collapsible-body">
@@ -59,6 +76,7 @@
                 <a data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                 <a class="brand-logo center">Color Bayan</a>
                 <ul class="right hide-on-med-and-down">
+                     <li><a class="dropdown-button" data-activates="setkeybd">切换键盘<i class="material-icons right">arrow_drop_down</i></a></li>
                     <li><a class="dropdown-button" data-activates="selectMusic">选择歌曲<i class="material-icons right">arrow_drop_down</i></a></li>
                     <li><a class="dropdown-button" data-activates="selectInstrument">切换乐器<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>

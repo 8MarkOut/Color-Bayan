@@ -1,6 +1,7 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
+import { ColorMap } from "./ColorMap";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
 

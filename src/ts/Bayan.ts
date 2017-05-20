@@ -57,6 +57,13 @@ class Bayan {
                 return this.keys[i];
         }
     }
+    public setKeybd(keybdMap: string) {
+        switch(keybdMap) {
+            case "keyboardMap3": this.keybdMap = keyboardMap3; break;
+            case "keyboardMap3": this.keybdMap = keyboardMap4; break;
+            default: this.keybdMap = keyboardMap3;
+        }
+    }
 }
 
 export { Bayan };

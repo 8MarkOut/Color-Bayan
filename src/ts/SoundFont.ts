@@ -34,7 +34,7 @@ class SoundFont {
     public static note2key(note: string): number {
         let re = /[A-G](b?)/;
         let result = re.exec(note);
-        let note1 = re.exec(note).[0];
+        let note1 = re.exec(note)[0];
         let note2 = note.substring(note1.length, note.length);
         let group: number = parseInt(note2);
         let scale: number;
