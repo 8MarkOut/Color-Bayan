@@ -11,12 +11,15 @@
     flex-direction: column;
 }
 
-.contain {
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+    flex: 1 0 auto;
     margin: 0 auto;
-    width: 80vw;
-    height: 28vw;
-    margin-top: 4.2vw;
-    margin-bottom: 4.1vw;
 }
 
 .key {
