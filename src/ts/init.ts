@@ -91,15 +91,26 @@ function init(): void {
 
 function keyUp(event: any): void {
     let realkey = getkeyValue(event.keyCode);
+    let bayan = Bayan.getInstance();
     switch(realkey) {
         case "enter":
-            Bayan.getInstance().shift += 12;
+            if (bayan.shift + 12 <= bayan.keybdMap.upperBound)
+                bayan.shift += 12;
             // console.log("8va");
             break;
         case "shift":
-            Bayan.getInstance().shift -= 12;
+            if(bayan.shift - 12 >= bayan.keybdMap.lowerBound) 
+            bayan.shift -= 12;
             // console.log("8vb");
             break;
+        case "add":
+            if (bayan.shift + 1 <= bayan.keybdMap.upperBound)
+                bayan.shift ++;
+                break;
+        case "sub":
+            if (bayan.shift - 1 >= bayan.keybdMap.lowerBound)
+                bayan.shift --;
+                break;
     }
     let tempDiv: any = getTempDiv(realkey);
     if (tempDiv !== undefined) {
@@ -133,6 +144,8 @@ function getkeyValue(keycode: number): string {
         case 222: realkey = "'"; break;
         case 13: realkey = "enter"; break;
         case 16: realkey = "shift"; break;
+        case 107: realkey = "add"; break;
+        case 109: realkey = "sub"; break;
         default: realkey = String.fromCharCode(keycode);
     }
     return realkey;

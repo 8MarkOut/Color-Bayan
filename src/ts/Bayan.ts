@@ -1,7 +1,9 @@
 import { BayanKey } from "./BayanKey";
 import { SoundFont } from "./SoundFont";
 
-let keyboardMap3: any =  { // shift = -1 + 3, 1 = B
+// shift = -1 + 3, 1 = B
+// valid while shift in [0, 53]
+let keyboardMap3: any =  {
     "1" : 0,  "Q" : 1,  "A" : 2,  "Z" : 3,
     "2" : 3,  "W" : 4,  "S" : 5,  "X" : 6,
     "3" : 6,  "E" : 7,  "D" : 8,  "C" : 9,
@@ -13,10 +15,13 @@ let keyboardMap3: any =  { // shift = -1 + 3, 1 = B
     "9" : 24, "O" : 25, "L" : 26, "." : 27,
     "0" : 27, "P" : 28, ";" : 29, "/" : 30,
     "-" : 30, "[" : 31, "'" : 32,
-    "=" : 33, "]" : 34
+    "=" : 33, "]" : 34,
+    lowerBound: 0, upperBound: 53
 }
 
-let keyboardMap4: any = { // shift = 0 + 3, 1 = C
+// shift = 0 + 3, 1 = C
+// valid while shift in [0, 42]
+let keyboardMap4: any = {
     "1" : 0,  "Q" : 1,  "A" : 2,  "Z" : 3,
     "2" : 4,  "W" : 5,  "S" : 6,  "X" : 7,
     "3" : 8,  "E" : 9,  "D" : 10, "C" : 11,
@@ -28,7 +33,8 @@ let keyboardMap4: any = { // shift = 0 + 3, 1 = C
     "9" : 32, "O" : 33, "L" : 34, "." : 35,
     "0" : 36, "P" : 37, ";" : 38, "/" : 39,
     "-" : 40, "[" : 41, "'" : 42,
-    "=" : 44, "]" : 45
+    "=" : 44, "]" : 45,
+    lowerBOund: 0, upperBound: 42
 }
 
 class Bayan {
