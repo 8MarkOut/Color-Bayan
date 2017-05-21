@@ -8,6 +8,7 @@ let keyBd: Array<string> = ["keyboardMap3", "keyboardMap4"]
 window.onload = function(){
     init();
     initDropdownMenu();
+    initMoblie();
 }
 
 function initDropdownMenu(): void {
@@ -25,7 +26,23 @@ function initDropdownMenu(): void {
             setKeybd.appendChild(temp);
         }
     }
-}  
+}
+
+function initMoblie(): void {
+    let setMoblie: any = document.getElementsByClassName("collapsible-body");
+
+    let tempUl: any = document.createElement("ul");
+    setMoblie[0].appendChild(tempUl);
+    for (let i: number = 0; i < keyBd.length; i++) {
+        let tempLi: any = document.createElement("li");
+        let tempA: any = document.createElement("a");
+        tempUl.appendChild(tempLi);
+        tempLi.appendChild(tempA);
+        tempA.innerHTML = keyBd[i];
+        tempA.setAttribute("class", "waves-effect");
+        tempLi.onclick = function() { Bayan.getInstance().setKeybd(keyBd[i]); }
+    }
+}
 
 function init(): void {
     let soundfont: SoundFont = new SoundFont("acoustic_grand_piano");
