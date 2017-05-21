@@ -123,10 +123,12 @@ function keyUp(event: any): void {
         case "add":
             if (bayan.shift + 1 <= bayan.keybdMap.upperBound)
                 bayan.shift ++;
+            bayan.initColor();
                 break;
         case "sub":
             if (bayan.shift - 1 >= bayan.keybdMap.lowerBound)
                 bayan.shift --;
+            bayan.initColor();
                 break;
     }
     let tempDiv: any = getTempDiv(realkey);
