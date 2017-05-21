@@ -94,11 +94,11 @@ function keyUp(event: any): void {
     switch(realkey) {
         case "enter":
             Bayan.getInstance().shift += 12;
-            console.log("8va");
+            // console.log("8va");
             break;
         case "shift":
             Bayan.getInstance().shift -= 12;
-            console.log("8va");
+            // console.log("8vb");
             break;
     }
     let tempDiv: any = getTempDiv(realkey);
