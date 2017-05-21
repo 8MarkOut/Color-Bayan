@@ -60,7 +60,7 @@ class Bayan {
     public setKeybd(keybdMap: string) {
         switch(keybdMap) {
             case "keyboardMap3": this.keybdMap = keyboardMap3; break;
-            case "keyboardMap3": this.keybdMap = keyboardMap4; break;
+            case "keyboardMap4": this.keybdMap = keyboardMap4; break;
             default: this.keybdMap = keyboardMap3;
         }
     }

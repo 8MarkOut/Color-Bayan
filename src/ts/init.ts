@@ -1,13 +1,31 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
-import { ColorMap } from "./ColorMap";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
+let keyBd: Array<string> = ["keyboardMap3", "keyboardMap4"]
 
 window.onload = function(){
     init();
+    initDropdownMenu();
 }
+
+function initDropdownMenu(): void {
+    let setKeybd: any = document.getElementById("setkeybd");
+    for (let i: number = 0; i < keyBd.length; i++) {
+        let tempLi: any = document.createElement("li");
+        let tempA: any = document.createElement("a");
+        setKeybd.appendChild(tempLi);
+        tempLi.appendChild(tempA);
+        tempA.innerHTML = keyBd[i];
+        tempLi.onclick = function() { Bayan.getInstance().setKeybd(keyBd[i]); }
+        if (i !== keyBd.length - 1) {
+            let temp: any = document.createElement("li");
+            temp.setAttribute("class", "divider");
+            setKeybd.appendChild(temp);
+        }
+    }
+}  
 
 function init(): void {
     let soundfont: SoundFont = new SoundFont("acoustic_grand_piano");
