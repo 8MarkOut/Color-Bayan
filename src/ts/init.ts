@@ -3,7 +3,10 @@ import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
-let keyBd: Array<string> = ["keyboardMap3", "keyboardMap4"]
+let keyBd: Array<string> = ["keyboardMap3", "keyboardMap4"];
+let Music: Array<string> = ["1", "2", "3"];
+let Instrument: Array<string> = ["One", "Two", "Three"];
+let Mobile: Array<Array<string>> = [keyBd, Music, Instrument];
 
 window.onload = function(){
     init();
@@ -12,43 +15,52 @@ window.onload = function(){
 }
 
 function initDropdownMenu(): void {
-    let setKeybd: any = document.getElementById("setkeybd");
-    for (let i: number = 0; i < keyBd.length; i++) {
-        let tempLi: any = document.createElement("li");
-        let tempA: any = document.createElement("a");
-        setKeybd.appendChild(tempLi);
-        tempLi.appendChild(tempA);
-        tempA.innerHTML = keyBd[i];
-        tempLi.onclick = function() { Bayan.getInstance().setKeybd(keyBd[i]); }
-        if (i !== keyBd.length - 1) {
-            let temp: any = document.createElement("li");
-            temp.setAttribute("class", "divider");
-            setKeybd.appendChild(temp);
+    let dropdown_content: any = document.getElementsByClassName("dropdown-content");
+    for (let i: number = 0; i < Mobile.length; i++) {
+        let tempElement: any = dropdown_content[i];
+        for (let j: number = 0; j < Mobile[i].length; j++) {
+            let tempLi: any = document.createElement("li");
+            let tempA: any = document.createElement("a");
+            tempElement.appendChild(tempLi);
+            tempLi.appendChild(tempA);
+            tempA.innerHTML = Mobile[i][j];
+            if (i === 0) tempLi.onclick = function() { Bayan.getInstance().setKeybd(keyBd[j]); }
+            if (j !== Mobile[i].length - 1) {
+                let temp: any = document.createElement("li");
+                temp.setAttribute("class", "divider");
+                tempElement.appendChild(temp);
+            }
         }
-    }
+    }    
 }
 
 function initMoblie(): void {
     let setMoblie: any = document.getElementsByClassName("collapsible-body");
 
-    let tempUl: any = document.createElement("ul");
-    setMoblie[0].appendChild(tempUl);
-    for (let i: number = 0; i < keyBd.length; i++) {
-        let tempLi: any = document.createElement("li");
-        let tempA: any = document.createElement("a");
-        tempUl.appendChild(tempLi);
-        tempLi.appendChild(tempA);
-        tempA.innerHTML = keyBd[i];
-        tempA.setAttribute("class", "waves-effect");
-        tempLi.onclick = function() { Bayan.getInstance().setKeybd(keyBd[i]); }
-    }
+    for (let i: number = 0; i < Mobile.length; i++) {{
+        let tempUl: any = document.createElement("ul");
+        setMoblie[i].appendChild(tempUl);
+        for (let j: number = 0; j < Mobile[i].length; j++) {
+            let tempLi: any = document.createElement("li");
+            let tempA: any = document.createElement("a");
+            tempUl.appendChild(tempLi);
+            tempLi.appendChild(tempA);
+            tempA.innerHTML = Mobile[i][j];
+            tempA.setAttribute("class", "waves-effect");
+            if (i === 0) tempLi.onclick = function() { Bayan.getInstance().setKeybd(keyBd[j]); }
+        }
+    }}
+
 }
 
 function init(): void {
     let soundfont: SoundFont = new SoundFont("acoustic_grand_piano");
     Bayan.getInstance().soundFont = soundfont;
+    let bayan: any = document.getElementById("Bayan");
     for (let i: number = 0; i < 4; i++) {
-        let temp: any = document.getElementById("key" + i.toString());
+        let temp: any = document.createElement("div");
+        temp.setAttribute("id", "key".concat(i.toString()));
+        temp.setAttribute("class", "box");
         for (let j: number = 0; j < keyCol[i].length; j++) {
             let tempDiv: any = document.createElement("div");
             let tempSpan: any = document.createElement("span");
@@ -73,6 +85,7 @@ function init(): void {
             tempDisplay.setAttribute("class", "display");
             Bayan.getInstance().add(tempKey);
         }
+        bayan.appendChild(temp);
     }
 }
 

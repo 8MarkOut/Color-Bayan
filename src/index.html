@@ -16,76 +16,52 @@
     <body>
         <!--页眉-->
         <header>
-        <ul id="setkeybd" class="dropdown-content"></ul>
-        <ul id="selectMusic" class="dropdown-content">
-            <li><a href="#!">1</a></li>
-                <li class="divider"></li>
-            <li><a href="#!">2</a></li>
-                <li class="divider"></li>
-            <li><a href="#!">3</a></li>
-        </ul>
-        <ul id="selectInstrument" class="dropdown-content">
-            <li><a href="#!">one</a></li>
-                <li class="divider"></li>
-            <li><a href="#!">two</a></li>
-                <li class="divider"></li> 
-            <li><a href="#!">three</a></li>
-        </ul>
-        <ul id="mobile" class="side-nav">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">track_changes</i>切换键盘</div>
-                    <div class="collapsible-body"></div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">queue_music</i>选择歌曲</div>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li><a href="#!">1</a></li>
-                            <li><a href="#!">2</a></li>
-                            <li><a href="#!">3</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">swap_horiz</i>切换乐器</div>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li><a href="#!">one</a></li>
-                            <li><a href="#!">two</a></li>
-                            <li><a href="#!">three</a></li>
-                        </ul>
-                    </div>
-                </li>
+            <!--下滑元素-->
+            <ul id="setkeybd" class="dropdown-content"></ul>
+            <ul id="selectMusic" class="dropdown-content"></ul>
+            <ul id="selectInstrument" class="dropdown-content"></ul>
+
+            <!--侧滑元素-->
+            <ul id="mobile" class="side-nav">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">track_changes</i>切换键盘</div>
+                        <div class="collapsible-body"></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">queue_music</i>选择歌曲</div>
+                        <div class="collapsible-body"></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">swap_horiz</i>切换乐器</div>
+                        <div class="collapsible-body"></div>
+                    </li>
+                </ul>
             </ul>
-        </ul>
-        <nav class="nav-extended blue darken-3">
-            <div class="nav-wrapper blue">
-                <a data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                <a class="brand-logo center">Color Bayan</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a class="dropdown-button" data-activates="setkeybd">切换键盘<i class="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a class="dropdown-button" data-activates="selectMusic">选择歌曲<i class="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a class="dropdown-button" data-activates="selectInstrument">切换乐器<i class="material-icons right">arrow_drop_down</i></a></li>
-                </ul>
-            </div>
-            <div class="nav-content container">
-                <ul class="tabs tabs-transparent">
-                    <li class="tab"><a href="#Bayan">Bayan</a></li>
-                    <li class="tab"><a href="#Piano">Piano</a></li>
-                </ul>
-            </div>
-        </nav>
+
+            <!--页眉主体-->
+            <nav class="nav-extended blue darken-3">
+                <div class="nav-wrapper blue">
+                    <a data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <a class="brand-logo center">Color Bayan</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a class="dropdown-button" data-activates="setkeybd">切换键盘<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-button" data-activates="selectMusic">选择歌曲<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-button" data-activates="selectInstrument">切换乐器<i class="material-icons right">arrow_drop_down</i></a></li>
+                    </ul>
+                </div>
+                <div class="nav-content container">
+                    <ul class="tabs tabs-transparent">
+                        <li class="tab"><a href="#Bayan">Bayan</a></li>
+                        <li class="tab"><a href="#Piano">Piano</a></li>
+                    </ul>
+                </div>
+            </nav>
         </header>
 
         <!--主体部分-->
         <main class="valign-wrapper">
-            <div id="Bayan" class="col s12">
-                <div id="key0" class="box"></div>
-                <div id="key1" class="box"></div>
-                <div id="key2" class="box"></div>
-                <div id="key3" class="box"></div>
-            </div>
+            <div id="Bayan" class="col s12"></div>
             <div id="Piano" class="col s12"></div>
         </main>
 
