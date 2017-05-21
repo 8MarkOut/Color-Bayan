@@ -57,12 +57,26 @@ class Bayan {
                 return this.keys[i];
         }
     }
+    public initColor(): void {
+        this.keys.forEach(element => {
+            element.initColor();
+        });
+    }
     public setKeybd(keybdMap: string) {
         switch(keybdMap) {
-            case "keyboardMap3": this.keybdMap = keyboardMap3; break;
-            case "keyboardMap4": this.keybdMap = keyboardMap4; break;
-            default: this.keybdMap = keyboardMap3;
+            case "keyboardMap3":
+                this.keybdMap = keyboardMap3;
+                this.shift = 26;
+                break;
+            case "keyboardMap4":
+                this.keybdMap = keyboardMap4;
+                this.shift = 27;
+                break;
+            default:
+                this.keybdMap = keyboardMap3;
+                this.shift = 26;
         }
+        this.initColor();
     }
 }
 
