@@ -1,17 +1,34 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
+import * as $ from "jquery";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
 let keyBd: Array<string> = ["keyboardMap3", "keyboardMap4"];
 let Music: Array<string> = ["1", "2", "3"];
-let Instrument: Array<string> = ["One", "Two", "Three"];
-let Mobile: Array<Array<string>> = [keyBd, Music, Instrument];
+let Instrument: Array<string> = [];
+let Mobile: Array<Array<string>>;
 
 window.onload = function(){
     init();
+    initData();
     initDropdownMenu();
     initMoblie();
+}
+
+function initData(): void {
+    $.get("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/user", function(data) {
+        addData("Instrument", data.file_name);
+        console.log(Instrument);
+    });
+    Mobile = [keyBd, Music, Instrument];
+    console.log(Instrument);
+}
+
+function addData(str:string, arr: Array<string>) {
+    if (str == "keyBd") keyBd = arr;
+    if (str == "Music") Music = arr;
+    if (str == "Instrument") Instrument = arr;
 }
 
 function initDropdownMenu(): void {
