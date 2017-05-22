@@ -121,11 +121,18 @@ function keyUp(event: any): void {
             bayan.initColor();
                 break;
         case "sub":
-            // if (bayan.shift - 1 >= bayan.keybdMap.lowerBound)
-            //     bayan.shift --;
-            // bayan.initColor();
-            console.log("Start");
-            play = setInterval(Bayan.getInstance().autoPlay, 50);
+            if (bayan.shift - 1 >= bayan.keybdMap.lowerBound)
+                bayan.shift --;
+            bayan.initColor();
+                break;
+        case "play":
+            if (Bayan.getInstance().playing) {
+                Bayan.getInstance().stopPlay();
+                clearInterval(play);
+            } else {
+                console.log("Start");
+                play = setInterval(Bayan.getInstance().autoPlay, 50);
+            }
                 break;
     }
     let tempDiv: any = getTempDiv(realkey);
@@ -162,6 +169,7 @@ function getkeyValue(keycode: number): string {
         case 16: realkey = "shift"; break;
         case 37: realkey = "add"; break;
         case 39: realkey = "sub"; break;
+        case 32: realkey = "play"; break;
         default: realkey = String.fromCharCode(keycode);
     }
     return realkey;

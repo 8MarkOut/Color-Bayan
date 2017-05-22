@@ -44,6 +44,7 @@ class Bayan {
     public soundFont: SoundFont;
     public keybdMap: any;
     public shift: number;
+    public playing: boolean;
     public static getInstance() : Bayan {
         if (Bayan._instance == null){
             Bayan._instance = new Bayan();
@@ -54,6 +55,7 @@ class Bayan {
         this.soundFont = null;
         this.keybdMap = keyboardMap3;
         this.shift = 26; // 12 * 2 - 1 + 3
+        this.playing = false;
     }
     public add(key: BayanKey): void {
         this.keys.push(key);
@@ -87,6 +89,7 @@ class Bayan {
     }
 
     public autoPlay() {
+        Bayan.getInstance().playing = true;
         let timeControl = TimeController.getInstance();
         timeControl.start();
         switch(timeControl.getTime()) {
@@ -107,6 +110,10 @@ class Bayan {
                 break;
         }
 
+    }
+    public stopPlay() {
+        TimeController.getInstance().stop();
+        this.playing = false;
     }
 }
 
