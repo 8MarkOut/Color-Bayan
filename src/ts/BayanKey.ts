@@ -65,11 +65,11 @@ class BayanKey {
         this.keyElement.getElementsByClassName("display")[0].innerHTML = "";
     }
 
-    private playSound(): void {
+    public playSound(): void {
         Bayan.getInstance().soundFont.audio[this.getSoundKey()].play();
     }
 
-    private stopSound(): void {
+    public stopSound(): void {
         // delay
         let audio: any = Bayan.getInstance().soundFont.audio[this.getSoundKey()];
         audio.pause();

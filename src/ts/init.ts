@@ -7,7 +7,8 @@ let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXC
 let keyBd: Array<string>;
 let Music: Array<string>;
 let Instrument: Array<string>;
-let Mobile: Array<Array<string>> = [];
+let Mobile: Array<Array<string>>;
+let play: any;
 
 window.onload = function(){
     init();
@@ -120,9 +121,11 @@ function keyUp(event: any): void {
             bayan.initColor();
                 break;
         case "sub":
-            if (bayan.shift - 1 >= bayan.keybdMap.lowerBound)
-                bayan.shift --;
-            bayan.initColor();
+            // if (bayan.shift - 1 >= bayan.keybdMap.lowerBound)
+            //     bayan.shift --;
+            // bayan.initColor();
+            console.log("Start");
+            play = setInterval(Bayan.getInstance().autoPlay, 50);
                 break;
     }
     let tempDiv: any = getTempDiv(realkey);
@@ -157,8 +160,8 @@ function getkeyValue(keycode: number): string {
         case 222: realkey = "'"; break;
         case 13: realkey = "enter"; break;
         case 16: realkey = "shift"; break;
-        case 107: realkey = "add"; break;
-        case 109: realkey = "sub"; break;
+        case 37: realkey = "add"; break;
+        case 39: realkey = "sub"; break;
         default: realkey = String.fromCharCode(keycode);
     }
     return realkey;

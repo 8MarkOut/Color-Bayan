@@ -1,8 +1,11 @@
 {
     "files": [
-        "src/ts/bayan_key.ts",
-        "src/ts/bayan.ts",
-        "src/ts/init.ts"
+        "src/ts/BayanKey.ts",
+        "src/ts/Bayan.ts",
+        "src/ts/init.ts",
+        "src/ts/ColorMap.ts",
+        "src/ts/SoundFont.ts",
+        "src/ts/TimeController.ts"
     ],
     "compilerOptions": {
         "noImplicitAny": true,

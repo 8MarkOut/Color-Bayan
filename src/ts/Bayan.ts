@@ -1,5 +1,6 @@
 import { BayanKey } from "./BayanKey";
 import { SoundFont } from "./SoundFont";
+import { TimeController } from "./TimeController";
 
 // shift = -1 + 3, 1 = B
 // valid while shift in [0, 53]
@@ -83,6 +84,29 @@ class Bayan {
                 this.shift = 26;
         }
         this.initColor();
+    }
+
+    public autoPlay() {
+        let timeControl = TimeController.getInstance();
+        timeControl.start();
+        switch(timeControl.getTime()) {
+            case 10:
+                Bayan.getInstance().getkey(".").keyDown();
+                break;
+            case 20:
+                Bayan.getInstance().getkey(".").keyUp();
+                Bayan.getInstance().getkey(",").keyDown();
+                break;
+            case 30:
+                Bayan.getInstance().getkey(",").keyUp();
+                Bayan.getInstance().getkey("I").keyDown();
+                break;
+            case 40:
+                Bayan.getInstance().getkey("I").keyUp();
+                Bayan.getInstance().getkey("J").keyDown();
+                break;
+        }
+
     }
 }
 
