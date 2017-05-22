@@ -15,21 +15,16 @@ window.onload = function(){
     setTimeout(function() {
         initDropdownMenu();
         initMoblie();
-    }, 5000);
+    }, 500);
 }
 
 function initData(): void {
-    // let temp: boolean = true;
     $.get("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/user", function(data) {
         keyBd = data.keyBd;
         Music = data.Music;
         Instrument = data.Instrument;
         Mobile = [keyBd, Music, Instrument];
-        // temp = false;
     }); 
-    // while(temp) {}
-    // setTimeout(function(){Mobile = [keyBd, Music, Instrument];}, 1000);
-    // Mobile = [keyBd, Music, Instrument];
 }
 
 function initDropdownMenu(): void {
