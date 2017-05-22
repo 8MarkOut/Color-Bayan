@@ -11,20 +11,18 @@ let Mobile: Array<Array<string>> = [];
 
 window.onload = function(){
     init();
-    initData();
-    setTimeout(function() {
-        initDropdownMenu();
-        initMoblie();
-    }, 500);
+    init_button();
 }
 
-function initData(): void {
-    $.get("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/user", function(data) {
-        keyBd = data.keyBd;
-        Music = data.Music;
-        Instrument = data.Instrument;
-        Mobile = [keyBd, Music, Instrument];
-    }); 
+function init_button(): void {
+    $.ajax("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/user").then(function(data){
+            keyBd = data.keyBd;
+            Music = data.Music;
+            Instrument = data.Instrument;
+            Mobile = [keyBd, Music, Instrument];
+            initDropdownMenu();
+            initMoblie();
+    });
 }
 
 function initDropdownMenu(): void {
