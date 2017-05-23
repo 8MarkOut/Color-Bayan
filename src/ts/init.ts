@@ -8,7 +8,6 @@ let keyBd: Array<string>;
 let Music: Array<string>;
 let Instrument: Array<string>;
 let Mobile: Array<Array<string>>;
-let play: any;
 
 window.onload = function(){
     init();
@@ -108,12 +107,10 @@ function keyUp(event: any): void {
         case "enter":
             if (bayan.shift + 12 <= bayan.keybdMap.upperBound)
                 bayan.shift += 12;
-            // console.log("8va");
             break;
         case "shift":
             if(bayan.shift - 12 >= bayan.keybdMap.lowerBound) 
             bayan.shift -= 12;
-            // console.log("8vb");
             break;
         case "add":
             if (bayan.shift + 1 <= bayan.keybdMap.upperBound)
@@ -126,13 +123,10 @@ function keyUp(event: any): void {
             bayan.initColor();
                 break;
         case "play":
-            if (Bayan.getInstance().playing) {
+            if (Bayan.getInstance().playing)
                 Bayan.getInstance().stopPlay();
-                clearInterval(play);
-            } else {
-                console.log("Start");
-                play = setInterval(Bayan.getInstance().autoPlay, 50);
-            }
+            else
+                Bayan.getInstance().play();
                 break;
     }
     let tempDiv: any = getTempDiv(realkey);
