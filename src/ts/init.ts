@@ -23,6 +23,15 @@ function init_button(): void {
             initDropdownMenu();
             initMoblie();
     });
+    
+    // It is used for test without network.
+
+    // keyBd = ["keyboardMap3", "keyboardMap4"];
+    // Music = ["M1", "M2", "M3"];
+    // Instrument = ["In1", "In2"];
+    // Mobile = [keyBd, Music, Instrument];
+    // initDropdownMenu();
+    // initMoblie();
 }
 
 function initDropdownMenu(): void {
@@ -58,7 +67,29 @@ function initMoblie(): void {
             tempLi.appendChild(tempA);
             tempA.innerHTML = Mobile[i][j];
             tempA.setAttribute("class", "waves-effect");
-            if (i === 0) tempLi.onclick = function() { Bayan.getInstance().setKeybd(keyBd[j]); }
+            // Set keyBd
+            if (i === 0) {
+                tempLi.onclick = function() { Bayan.getInstance().setKeybd(keyBd[j]); }
+            // Get music
+            } else if(i == 1) {
+                tempLi.onclick = function() {
+                    $.get("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/query", {name: Mobile[i][j]}, function(data) {
+                        // Data is the stream of Mid file we recepted.
+                        // And here should be a function to recept the data stream and play it.
+                        console.log(data.data.name);
+                        console.log("Play Music!!!");
+                    });
+                }
+            // Get instrument
+            } else {
+                tempLi.onclick = function() {
+                    $.get("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/query", {name: Mobile[i][j]}, function(data) {
+                        // A function used to change the instrument should be here.
+                        console.log(data.data.name);
+                        console.log("Change instrument!!!");
+                    });
+                }
+            }
         }
     }}
 
