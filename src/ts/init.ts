@@ -1,6 +1,7 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
+import { keybdEvent } from "./keyBoardEvent";
 import * as $ from "jquery";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
@@ -13,6 +14,9 @@ window.onload = function(){
     init();
     init_button();
 }
+
+document.onkeydown = keybdEvent.keyDown;
+document.onkeyup = keybdEvent.keyUp;
 
 function init_button(): void {
     $.ajax("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/user").then(function(data){
@@ -129,77 +133,4 @@ function init(): void {
         }
         bayan.appendChild(temp);
     }
-}
-
-function keyUp(event: any): void {
-    let realkey = getkeyValue(event.keyCode);
-    let bayan = Bayan.getInstance();
-    switch(realkey) {
-        case "enter":
-            if (bayan.shift + 12 <= bayan.keybdMap.upperBound)
-                bayan.shift += 12;
-            break;
-        case "shift":
-            if(bayan.shift - 12 >= bayan.keybdMap.lowerBound) 
-            bayan.shift -= 12;
-            break;
-        case "add":
-            if (bayan.shift + 1 <= bayan.keybdMap.upperBound)
-                bayan.shift ++;
-            bayan.initColor();
-                break;
-        case "sub":
-            if (bayan.shift - 1 >= bayan.keybdMap.lowerBound)
-                bayan.shift --;
-            bayan.initColor();
-                break;
-        case "play":
-            if (Bayan.getInstance().playing)
-                Bayan.getInstance().stopPlay();
-            else
-                Bayan.getInstance().play();
-                break;
-    }
-    let tempDiv: any = getTempDiv(realkey);
-    if (tempDiv !== undefined) {
-        tempDiv.keyUp();
-    }
-}
-
-function keyDown(event: any): void {
-    let realkey = getkeyValue(event.keyCode);
-    let tempDiv: any = getTempDiv(realkey);
-    if (tempDiv !== undefined) {
-        tempDiv.keyDown();
-    }
-}
-
-document.onkeydown = keyDown;
-document.onkeyup = keyUp;
-
-function getkeyValue(keycode: number): string {
-    let realkey: string;
-    switch(keycode) {
-        case 186: realkey = ";"; break;
-        case 187: realkey = "="; break;
-        case 188: realkey = ","; break;
-        case 189: realkey = "-"; break;
-        case 190: realkey = "."; break;
-        case 191: realkey = "/"; break;
-        case 219: realkey = "["; break;
-        // case 220: realkey = "\\" break;
-        case 221: realkey = "]"; break;
-        case 222: realkey = "'"; break;
-        case 13: realkey = "enter"; break;
-        case 16: realkey = "shift"; break;
-        case 37: realkey = "add"; break;
-        case 39: realkey = "sub"; break;
-        case 32: realkey = "play"; break;
-        default: realkey = String.fromCharCode(keycode);
-    }
-    return realkey;
-}
-
-function getTempDiv(realkey: string): any {
-    return Bayan.getInstance().getkey(realkey);
 }

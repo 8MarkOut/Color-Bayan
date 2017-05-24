@@ -6,20 +6,17 @@ class BayanKey {
     private keyName: string;
     private keyElement: any;
 
-    private playing: boolean;
     constructor(keyName: string, keyElement: any, sf: SoundFont) {
         this.keyName = keyName;
         this.keyElement = keyElement;
-        this.playing = false;
     }
 
     public initColor(): void {
         if (this.keyElement !== undefined) {
-            if (this.isBlackKey()) {
+            if (this.isBlackKey())
                 this.keyElement.setAttribute("class", "key deep-gray");
-            } else {
+            else
                 this.keyElement.setAttribute("class", "key gray");
-            }
         }
     }
 
@@ -45,35 +42,18 @@ class BayanKey {
     private getSoundKey(): number {
         let bayan = Bayan.getInstance();
         let rVal: number = bayan.keybdMap[this.keyName] + bayan.shift;
-        return SoundFont.normalizeKey(rVal);
+        return SoundFont.normalizeKey(rVal); 
     }
 
     public keyDown(): void {
-        if (this.playing === false) {
-            this.playing = true;
-            this.changeColor();
-            this.playSound();
-            this.keyElement.getElementsByClassName("display")[0].innerHTML =
-                SoundFont.key2note(this.getSoundKey());
-        }
+        this.changeColor();
+        this.keyElement.getElementsByClassName("display")[0].innerHTML =
+            SoundFont.key2note(this.getSoundKey());
     }
 
     public keyUp(): void {
-        this.playing = false;
         this.changeBackColor();
-        this.stopSound();
         this.keyElement.getElementsByClassName("display")[0].innerHTML = "";
-    }
-
-    public playSound(): void {
-        Bayan.getInstance().soundFont.audio[this.getSoundKey()].play();
-    }
-
-    public stopSound(): void {
-        // delay
-        let audio: any = Bayan.getInstance().soundFont.audio[this.getSoundKey()];
-        audio.pause();
-        audio.currentTime = 0;
     }
 
     private isBlackKey(): boolean {
