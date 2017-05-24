@@ -16,7 +16,7 @@ let Mobile: Array<Array<string>>;
 window.onload = function(){
     init();
     init_button();
-    Piano.getInstance().initHTML();
+    init_piano();
 }
 
 document.onkeydown = keybdEvent.keyDown;
@@ -135,4 +135,37 @@ function init(): void {
         }
         bayan.appendChild(temp);
     }
+}
+
+function init_piano() {
+    let piano: any = document.getElementById("Piano");
+        let box: any = document.createElement("div");
+        box.setAttribute("class", "piano-box");
+
+        let white_box: any = document.createElement("div");
+        white_box.setAttribute("class", "white-box");
+        for (let j: number = 0; j < 52; j++) {
+            let temp: any = document.createElement("div");
+            temp.setAttribute("class", "white-key");
+            white_box.appendChild(temp);
+            Piano.getInstance().bindMouseEvent(temp, j, true);
+        }
+
+        let black_box: any = document.createElement("div");
+        black_box.setAttribute("class", "black-box");
+        let hidden = [ false, false, true, false, false, false, true];
+        for (let j: number =0; j < 51; j++) {
+            let temp: any = document.createElement("div");
+            temp.setAttribute("class", "black-key");
+            if (hidden[(j + 5) % 7]) {
+                temp.style.visibility = "hidden";
+            } else {
+                Piano.getInstance().bindMouseEvent(temp, j, false);
+            }
+            black_box.appendChild(temp);
+        }
+        
+        box.appendChild(white_box);
+        box.appendChild(black_box);
+        piano.appendChild(box);
 }
