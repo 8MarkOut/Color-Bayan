@@ -2,6 +2,7 @@ import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
 import { keybdEvent } from "./keyBoardEvent";
+import { soundEvent } from "./soundEvent";
 import * as $ from "jquery";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
@@ -121,9 +122,9 @@ function init(): void {
             // tempDiv.onmousedown = tempKey.keyDown;
             // tempDiv.onmouseup = tempKey.keyUp;
             // tempDiv.onmouseout = tempKey.keyUp;
-            tempDiv.onmousedown = () => { tempKey.keyDown(); }
-            tempDiv.onmouseup = () => { tempKey.keyUp(); }
-            tempDiv.onmouseout = () => { tempKey.keyUp(); }
+            tempDiv.onmousedown = () => { tempKey.keyDown(); soundEvent.playSound(tempKey.getKeyChar()); }
+            tempDiv.onmouseup = () => { tempKey.keyUp(); soundEvent.stopSound(tempKey.getKeyChar()); }
+            tempDiv.onmouseout = () => { tempKey.keyUp(); soundEvent.stopSound(tempKey.getKeyChar()); }
 
             tempDiv.setAttribute("name", keyCol[i][j]);
             tempSpan.innerHTML = keyCol[i][j];
