@@ -42,7 +42,7 @@ class BayanKey {
             let temp: any = document.getElementById("white-box").childNodes[elementInfo.id];
             temp.style.backgroundColor = color;
         } else {
-            let temp: any = document.getElementById("white-box").childNodes[elementInfo.id];
+            let temp: any = document.getElementById("black-box").childNodes[elementInfo.id];
             temp.style.backgroundColor = color;
         }
     }
