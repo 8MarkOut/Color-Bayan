@@ -140,10 +140,10 @@ function init(): void {
 function init_piano() {
     let piano: any = document.getElementById("Piano");
         let box: any = document.createElement("div");
-        box.setAttribute("class", "piano-box");
+        box.setAttribute("id", "piano-box");
 
         let white_box: any = document.createElement("div");
-        white_box.setAttribute("class", "white-box");
+        white_box.setAttribute("id", "white-box");
         for (let j: number = 0; j < 52; j++) {
             let temp: any = document.createElement("div");
             temp.setAttribute("class", "white-key");
@@ -152,7 +152,7 @@ function init_piano() {
         }
 
         let black_box: any = document.createElement("div");
-        black_box.setAttribute("class", "black-box");
+        black_box.setAttribute("id", "black-box");
         let hidden = [ false, false, true, false, false, false, true];
         for (let j: number =0; j < 51; j++) {
             let temp: any = document.createElement("div");

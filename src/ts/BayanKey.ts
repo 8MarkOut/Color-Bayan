@@ -1,6 +1,7 @@
 import { SoundFont } from "./SoundFont";
 import { ColorMap } from "./ColorMap";
 import { Bayan } from "./Bayan";
+import { Piano } from "./Piano";
 
 class BayanKey {
     private keyName: string;
@@ -33,12 +34,30 @@ class BayanKey {
     }
 
     private changeColor(): void {
-        let cm = ColorMap.getInstance();
-        this.keyElement.style.backgroundColor = cm.getColor(this.getSoundKey());
+        let color = ColorMap.getInstance().getColor(this.getSoundKey());
+        this.keyElement.style.backgroundColor = color;
+        let piano = Piano.getInstance();
+        let elementInfo = piano.getHTMLidByKey(this.getSoundKey());
+        if (elementInfo.white) {
+            let temp: any = document.getElementById("white-box").childNodes[elementInfo.id];
+            temp.style.backgroundColor = color;
+        } else {
+            let temp: any = document.getElementById("white-box").childNodes[elementInfo.id];
+            temp.style.backgroundColor = color;
+        }
     }
 
     private changeBackColor(): void {
         this.keyElement.style.cssText = "";
+        let piano = Piano.getInstance();
+        let elementInfo = piano.getHTMLidByKey(this.getSoundKey());
+        if (elementInfo.white) {
+            let temp: any = document.getElementById("white-box").childNodes[elementInfo.id];
+            temp.style.cssText = "";
+        } else {
+            let temp: any = document.getElementById("black-box").childNodes[elementInfo.id];
+            temp.style.cssText = "";
+        }
     }
 
     private getSoundKey(): number {

@@ -10,19 +10,19 @@
     /*position: absolute;*/
 }
 
-.piano-box {
+#piano-box {
     position: relative;
 /*    width: 100%;
     height: 100%;*/
 }
 
-.white-box {
+#white-box {
     display: flex;
     position: absolute;
     left: -47vw;
 }
 
-.black-box {
+#black-box {
     position: absolute;
     display: flex;
     margin-left: 1.2vw;
