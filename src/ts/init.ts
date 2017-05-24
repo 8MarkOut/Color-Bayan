@@ -1,5 +1,7 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
+// import { Piano } from "./Piano";
+
 import { SoundFont } from "./SoundFont";
 import * as $ from "jquery";
 
@@ -13,6 +15,7 @@ let play: any;
 window.onload = function(){
     init();
     init_button();
+    init_piano();
 }
 
 function init_button(): void {
@@ -177,4 +180,35 @@ function getkeyValue(keycode: number): string {
 
 function getTempDiv(realkey: string): any {
     return Bayan.getInstance().getkey(realkey);
+}
+
+function init_piano(): void {
+    let piano: any = document.getElementById("Piano");
+
+    let box: any = document.createElement("div");
+    box.setAttribute("class", "piano-box");
+
+    let white_box: any = document.createElement("div");
+    white_box.setAttribute("class", "white-box");
+    for (let j: number =0; j < 52; j++) {
+        let temp: any = document.createElement("div");
+        temp.setAttribute("class", "white-key");
+        white_box.appendChild(temp);
+    }
+
+    let black_box: any = document.createElement("div");
+    black_box.setAttribute("class", "black-box");
+    let hidden = [ false, false, true, false, false, false, true];
+    for (let j: number =0; j < 51; j++) {
+        let temp: any = document.createElement("div");
+        temp.setAttribute("class", "black-key");
+        if (hidden[(j + 5) % 7])
+            temp.style.visibility = "hidden";
+        black_box.appendChild(temp);
+    }
+    
+    box.appendChild(white_box);
+    box.appendChild(black_box);
+
+    piano.appendChild(box);
 }
