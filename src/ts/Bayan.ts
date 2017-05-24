@@ -41,7 +41,6 @@ let keyboardMap4: any = {
 class Bayan {
     private static _instance: Bayan = null;
     private keys = new Array<BayanKey>();
-    public soundFont: SoundFont;
     public keybdMap: any;
     public shift: number;
     public playing: boolean;
@@ -52,7 +51,6 @@ class Bayan {
         return Bayan._instance;
     }
     private constructor() {
-        this.soundFont = null;
         this.keybdMap = keyboardMap3;
         this.shift = 26; // 12 * 2 - 1 + 3
         this.playing = false;

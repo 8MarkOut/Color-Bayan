@@ -7,7 +7,7 @@ class BayanKey {
     private keyElement: any;
 
     private playing: boolean;
-    constructor(keyName: string, keyElement: any, sf: SoundFont) {
+    constructor(keyName: string, keyElement: any) {
         this.keyName = keyName;
         this.keyElement = keyElement;
         this.playing = false;
@@ -66,12 +66,12 @@ class BayanKey {
     }
 
     public playSound(): void {
-        Bayan.getInstance().soundFont.audio[this.getSoundKey()].play();
+       SoundFont.getInstance().audio[this.getSoundKey()].play();
     }
 
     public stopSound(): void {
         // delay
-        let audio: any = Bayan.getInstance().soundFont.audio[this.getSoundKey()];
+        let audio: any = SoundFont.getInstance().audio[this.getSoundKey()];
         audio.pause();
         audio.currentTime = 0;
     }

@@ -278,16 +278,18 @@ class ColorMap {
         return ColorMap._instance;
     }
     private constructor() {
-       this.scheme = 'D. D. Jameson (1844)';
-       this.update();
+       this.scheme = "";
+       this.changeScheme('D. D. Jameson (1844)');
     }
     public getColor(key: number): string {
         key = SoundFont.normalizeKey(key);
         return this.bgcolortxt[key];
     }
     public changeScheme(scheme:string): void {
-        this.scheme = scheme;
-        this.update();
+        if (this.scheme !== scheme) {
+            this.scheme = scheme;
+            this.update();
+        }
     }
     private update():void {
         for (let i = 0; i < 88; i++) {
