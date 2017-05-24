@@ -48,7 +48,7 @@ function initDropdownMenu(): void {
             tempElement.appendChild(tempLi);
             tempLi.appendChild(tempA);
             tempA.innerHTML = Mobile[i][j];
-            if (i === 0) tempLi.onclick = function() { Bayan.getInstance().setKeybd(keyBd[j]); }
+            if (i === 0) tempLi.onclick = () => { Bayan.getInstance().setKeybd(keyBd[j]); }
             if (j !== Mobile[i].length - 1) {
                 let temp: any = document.createElement("li");
                 temp.setAttribute("class", "divider");
@@ -73,10 +73,10 @@ function initMoblie(): void {
             tempA.setAttribute("class", "waves-effect");
             // Set keyBd
             if (i === 0) {
-                tempLi.onclick = function() { Bayan.getInstance().setKeybd(keyBd[j]); }
+                tempLi.onclick = () => { Bayan.getInstance().setKeybd(keyBd[j]); }
             // Get music
             } else if(i == 1) {
-                tempLi.onclick = function() {
+                tempLi.onclick = () => {
                     $.get("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/query", {name: Mobile[i][j]}, function(data) {
                         // Data is the stream of Mid file we recepted.
                         // And here should be a function to recept the data stream and play it.
@@ -121,9 +121,9 @@ function init(): void {
             // tempDiv.onmousedown = tempKey.keyDown;
             // tempDiv.onmouseup = tempKey.keyUp;
             // tempDiv.onmouseout = tempKey.keyUp;
-            tempDiv.onmousedown = function() { tempKey.keyDown(); }
-            tempDiv.onmouseup = function() { tempKey.keyUp(); }
-            tempDiv.onmouseout = function() { tempKey.keyUp(); }
+            tempDiv.onmousedown = () => { tempKey.keyDown(); }
+            tempDiv.onmouseup = () => { tempKey.keyUp(); }
+            tempDiv.onmouseout = () => { tempKey.keyUp(); }
 
             tempDiv.setAttribute("name", keyCol[i][j]);
             tempSpan.innerHTML = keyCol[i][j];
