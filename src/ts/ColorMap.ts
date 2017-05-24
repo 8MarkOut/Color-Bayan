@@ -1,3 +1,4 @@
+import { SoundFont } from "./SoundFont";
 class ColorMap {
     private data: any = {
         'Isaac Newton (1704)': { 
@@ -269,6 +270,7 @@ class ColorMap {
     };
     private scheme: string;
     private static _instance: ColorMap = null;
+    private bgcolortxt = new Array<string>();
     public static getInstance(): ColorMap {
         if (ColorMap._instance == null) {
             ColorMap._instance = new ColorMap();
@@ -276,12 +278,25 @@ class ColorMap {
         return ColorMap._instance;
     }
     private constructor() {
-       this.scheme = 'D. D. Jameson (1844)';
-    }
-    public changeScheme(scheme:string): void {
-        this.scheme = scheme;
+       this.scheme = "";
+       this.changeScheme('D. D. Jameson (1844)');
     }
     public getColor(key: number): string {
+        key = SoundFont.normalizeKey(key);
+        return this.bgcolortxt[key];
+    }
+    public changeScheme(scheme:string): void {
+        if (this.scheme !== scheme) {
+            this.scheme = scheme;
+            this.update();
+        }
+    }
+    private update():void {
+        for (let i = 0; i < 88; i++) {
+            this.bgcolortxt[i] = this.findColor(i);
+        }
+    }
+    private findColor(key: number): string {
         let select = this.data[this.scheme];
         if (select.format == "HSL") {
             key += 9;

@@ -1,5 +1,7 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
+import { Piano } from "./Piano";
+
 import { SoundFont } from "./SoundFont";
 import { keybdEvent } from "./keyBoardEvent";
 import { soundEvent } from "./soundEvent";
@@ -14,6 +16,7 @@ let Mobile: Array<Array<string>>;
 window.onload = function(){
     init();
     init_button();
+    Piano.getInstance().initHTML();
 }
 
 document.onkeydown = keybdEvent.keyDown;
@@ -101,8 +104,6 @@ function initMoblie(): void {
 }
 
 function init(): void {
-    let soundfont: SoundFont = new SoundFont("acoustic_grand_piano");
-    Bayan.getInstance().soundFont = soundfont;
     let bayan: any = document.getElementById("Bayan");
     for (let i: number = 0; i < 4; i++) {
         let temp: any = document.createElement("div");
@@ -113,7 +114,7 @@ function init(): void {
             let tempSpan: any = document.createElement("span");
             let tempDisplay: any = document.createElement("span");
             temp.appendChild(tempDiv);
-            let tempKey: BayanKey = new BayanKey(keyCol[i][j], tempDiv, soundfont);
+            let tempKey: BayanKey = new BayanKey(keyCol[i][j], tempDiv);
             tempKey.initColor();
             tempDiv.appendChild(tempSpan);
             tempDiv.appendChild(tempDisplay);
