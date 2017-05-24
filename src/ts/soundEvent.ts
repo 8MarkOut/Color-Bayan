@@ -9,13 +9,13 @@ namespace soundEvent{
 
     // play the sound of the related key
     export let playSound = function(keyName: string): void {
-        Bayan.getInstance().soundFont.audio[getSoundKey(keyName)].play();
+        SoundFont.getInstance().audio[getSoundKey(keyName)].play();
     }
 
     // stop the sound of the related key
     export let stopSound = function(keyName: string): void {
         // delay
-        let audio: any = Bayan.getInstance().soundFont.audio[getSoundKey(keyName)];
+        let audio: any = SoundFont.getInstance().audio[getSoundKey(keyName)];
         audio.pause();
         audio.currentTime = 0;
     }

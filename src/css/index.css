@@ -9,6 +9,7 @@
 #Bayan {
     display: flex;
     flex-direction: column;
+    /*position: absolute;*/
 }
 
 body {
@@ -20,6 +21,10 @@ body {
 main {
     flex: 1 0 auto;
     margin: 0 auto;
+    /*position: relative;*/
+    /*display: flex;
+    justify-content: center;
+    align-content: center;*/
 }
 
 .key {

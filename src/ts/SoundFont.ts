@@ -6,9 +6,15 @@ class SoundFont {
     private note: Array<number>;
     private loop: boolean;
     public audio : any;
-    constructor(instrument: string) {
+    private static _instance: SoundFont = null;
+    public static getInstance(): SoundFont {
+        if (SoundFont._instance === null)
+            SoundFont._instance = new SoundFont();
+        return SoundFont._instance;
+    }
+    private constructor() {
         this.audio = new Array<any>();
-        this.changeInstrument(instrument);
+        this.changeInstrument("acoustic_grand_piano");
     }
     private getSoundJson(instrument: string): any {
         switch (instrument) {
