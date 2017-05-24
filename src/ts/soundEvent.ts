@@ -8,12 +8,12 @@ import { SoundFont } from "./SoundFont";
 namespace soundEvent{
 
     // play the sound of the related key
-     export function playSound(keyName: string): void {
+    export let playSound = function(keyName: string): void {
         Bayan.getInstance().soundFont.audio[getSoundKey(keyName)].play();
     }
 
     // stop the sound of the related key
-    export function stopSound(keyName: string): void {
+    export let stopSound = function(keyName: string): void {
         // delay
         let audio: any = Bayan.getInstance().soundFont.audio[getSoundKey(keyName)];
         audio.pause();
@@ -21,7 +21,7 @@ namespace soundEvent{
     }
 
     // Get the sound key by key name
-    function getSoundKey(keyName: string): number {
+    let getSoundKey = function(keyName: string): number {
         let bayan = Bayan.getInstance();
         let rVal: number = bayan.keybdMap[keyName] + bayan.shift;
         return SoundFont.normalizeKey(rVal); 

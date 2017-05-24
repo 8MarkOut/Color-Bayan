@@ -9,7 +9,7 @@ import { soundEvent } from "./soundEvent";
 namespace keybdEvent {
     
     // The event when the key of keyboard is Up
-    export function keyUp(event: any): void {
+    export let keyUp = function(event: any): void {
         let realkey = getkeyValue(event.keyCode);
         let bayan = Bayan.getInstance();
         switch(realkey) {
@@ -46,7 +46,7 @@ namespace keybdEvent {
     }
 
     // The event when the key of keyboard is Down
-    export function keyDown(event: any): void {
+    export let keyDown = function(event: any): void {
         let realkey = getkeyValue(event.keyCode);
         let tempDiv: any = getDiv(realkey);
         if (tempDiv !== undefined) {
@@ -56,7 +56,7 @@ namespace keybdEvent {
     }
 
     // Get the real value about the key which we pressed down
-    function getkeyValue(keycode: number): string {
+    let getkeyValue = function(keycode: number): string {
         let realkey: string;
         switch(keycode) {
             case 186: realkey = ";"; break;
@@ -80,7 +80,7 @@ namespace keybdEvent {
     }
 
     // Get the div DOM by key value
-    function getDiv(realkey: string): any {
+    let getDiv = function(realkey: string): any {
         return Bayan.getInstance().getkey(realkey);
     }
 }
