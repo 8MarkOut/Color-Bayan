@@ -7,7 +7,7 @@ namespace request {
     export let Mobile: Array<Array<string>>;
 
     // To get the information of buttons and create them.
-    export let requestButton = function(init_one:any, init_two:any) {
+    export let requestButton = function(init_one: any, init_two: any) {
         loading();
         $.ajax("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/user").then(function(data){
             keyBd = data.keyBd;
@@ -30,7 +30,7 @@ namespace request {
     }
 
     // Get Mid file
-    export let requestMid = function(j:number) {
+    export let requestMid = function(j: number) {
         loading();
         $.get("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/query", {name: Music[j]}, function(data) {
                 // Data is the stream of Mid file we recepted.
@@ -47,7 +47,7 @@ namespace request {
     }
 
     //Get the source of instrument.
-    export let requestInstrument = function(j:number) {
+    export let requestInstrument = function(j: number) {
         loading();
         $.get("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/query", {name: Instrument[j]}, function(data) {
             // A function used to change the instrument should be here.

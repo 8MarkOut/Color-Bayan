@@ -15,17 +15,13 @@ let file: any;
 
 window.onload = function(){
     init();
-    init_button();
+    request.requestButton(initDropdownMenu, initMoblie);
     init_piano();
     init_drag();
 }
 
 document.onkeydown = keybdEvent.keyDown;
 document.onkeyup = keybdEvent.keyUp;
-
-function init_button(): void {
-    request.requestButton(initDropdownMenu, initMoblie);
-}
 
 function initDropdownMenu(): void {
     let dropdown_content: any = document.getElementsByClassName("dropdown-content");
@@ -127,7 +123,7 @@ function init_piano() {
         let black_box: any = document.createElement("div");
         black_box.setAttribute("id", "black-box");
         let hidden = [ false, false, true, false, false, false, true];
-        for (let j: number =0; j < 51; j++) {
+        for (let j: number = 0; j < 51; j++) {
             let temp: any = document.createElement("div");
             temp.setAttribute("class", "black-key");
             if (hidden[(j + 5) % 7]) {
@@ -144,13 +140,41 @@ function init_piano() {
 }
 
 function init_drag() {
-    let m: any = document.getElementById("main");
-    m.ondragover = function(e:any) {e.preventDefault()}
-    m.ondrop = dropHandler; 
+    let drag: any = document.getElementById("main");
+    drag.addEventListener('drop', dropHandler, false);
+    drag.addEventListener('dragover', dragOverHandler, false);
 }
-function dropHandler(e:any) {
-    // Here should be some method to extract informations from the dataTransfer.
-    file = e.dataTransfer;
+
+function dropHandler(e: any) {
+    e.stopPropagation();
     e.preventDefault();
-    console.log(file);
+
+    let files: any = e.dataTransfer.files;
+    for(var i = 0, len = files.length; i < len; i++) {
+        var f = files[i];
+        // console.log(f.name + " " + f.size + " ");
+        console.log(f);
+        readAsArrayBuffer(f);
+    }
+}
+
+// get the Data from MID file
+let fileData: any;
+
+function dragOverHandler(e: any) {
+    e.stopPropagation();
+    e.preventDefault();
+    e.dataTransfer.dragEffect = 'copy';
+}
+
+function readAsArrayBuffer(file: any) { 
+    var reader = new FileReader();    
+    reader.onload = (e) => {
+        fileData = reader.result.split('').map((v: any) => {
+            return ('0'+ v.charCodeAt(0).toString(16)).slice(-2);
+        });
+        fileData = fileData.join("");
+        console.log(fileData);
+    }
+    reader.readAsBinaryString(file);
 }
