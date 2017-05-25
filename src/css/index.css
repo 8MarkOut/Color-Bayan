@@ -12,6 +12,13 @@
     /*position: absolute;*/
 }
 
+#loading {
+    width: 50%;
+    z-index: 999;
+    position: fixed;
+    left: 25%;
+    top: 50%;
+}
 body {
     display: flex;
     min-height: 100vh;
@@ -58,4 +65,8 @@ main {
 .box {
   display: flex;
   margin: 1vw 1vw 1vw 1vw;
+}
+
+.invisible {
+    opacity: 0;
 }

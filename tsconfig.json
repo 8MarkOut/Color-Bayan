@@ -5,7 +5,8 @@
         "src/ts/init.ts",
         "src/ts/ColorMap.ts",
         "src/ts/SoundFont.ts",
-        "src/ts/TimeController.ts"
+        "src/ts/TimeController.ts",
+        "src/ts/request.ts"
     ],
     "compilerOptions": {
         "noImplicitAny": true,
