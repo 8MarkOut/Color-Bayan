@@ -11,11 +11,13 @@ import { request } from "./request";
 import * as $ from "jquery";
 
 let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
+let file: any;
 
 window.onload = function(){
     init();
     init_button();
     init_piano();
+    init_drag();
 }
 
 document.onkeydown = keybdEvent.keyDown;
@@ -139,4 +141,16 @@ function init_piano() {
         box.appendChild(white_box);
         box.appendChild(black_box);
         piano.appendChild(box);
+}
+
+function init_drag() {
+    let m: any = document.getElementById("main");
+    m.ondragover = function(e:any) {e.preventDefault()}
+    m.ondrop = dropHandler; 
+}
+function dropHandler(e:any) {
+    // Here should be some method to extract informations from the dataTransfer.
+    file = e.dataTransfer;
+    e.preventDefault();
+    console.log(file);
 }
