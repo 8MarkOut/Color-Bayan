@@ -7,7 +7,7 @@ var router = express.Router();
 app.use(express.static('../css'));
 app.use(express.static('../lib'));
 app.use(express.static('../ts'));
-app.use(express.static('..'));
+app.use(express.static('../../dist'));
 
 /*router.all('/', function(req, res, next) {
 	res.sendFile("../index.html");
@@ -71,7 +71,7 @@ app.get('/music', function(req, res) {
 var server = app.listen(8081, function () {
     var host = server.address().address
     var port = server.address().port
-    console.log("Start server", host, port)
+    console.log("Start server at ", host, port)
 
 })
 
