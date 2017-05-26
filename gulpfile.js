@@ -8,7 +8,8 @@ var buffer = require('vinyl-buffer');
 var paths = {
     pages: ['src/*.html'],
     css: ['src/css/*.css'],
-    ts: ['src/ts/*.ts']
+    ts: ['src/ts/*.ts'],
+    js: ['src/server/*.js']
 };
 
 gulp.task("tsc", function () {
@@ -30,6 +31,11 @@ gulp.task("copy-css", function () {
         .pipe(gulp.dest("dist/css"));
 });
 
+gulp.task("copy-js", function () {
+    return gulp.src(paths.js)
+        .pipe(gulp.dest("dist/server"));
+});
+
 gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
         .pipe(gulp.dest("dist"));
@@ -38,7 +44,8 @@ gulp.task("copy-html", function () {
 gulp.task("watch", function() {
     gulp.watch(paths.pages, ["copy-html"]);
     gulp.watch(paths.css, ["copy-css"]);
+    gulp.watch(paths.js, ["copy-js"]);
     gulp.watch(paths.ts, ["tsc"]);
 });
 
-gulp.task("default", ["copy-html", "copy-css", "tsc", "watch"]);
+gulp.task("default", ["copy-html", "copy-css", "copy-js", "tsc", "watch"]);
