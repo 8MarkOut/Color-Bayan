@@ -7,7 +7,7 @@ var router = express.Router();
 app.use(express.static('../css'));
 app.use(express.static('../lib'));
 app.use(express.static('../ts'));
-app.use(express.static('..'));
+app.use(express.static('../../dist'));
 
 /*router.all('/', function(req, res, next) {
 	res.sendFile("../index.html");
