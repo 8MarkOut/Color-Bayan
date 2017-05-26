@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/node": "^7.0.18",
     "browserify": "^14.3.0",
+    "express": "^4.15.3",
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-typescript": "^3.1.6",

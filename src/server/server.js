@@ -1,10 +1,25 @@
 var express = require('express');
+var path = require('path');
 var app = express();
 var fs = require('fs')
- 
-app.get('/', function (req, res) {
-	res.send('Server is running!');
-})
+var router = express.Router();
+
+app.use(express.static('../css'));
+app.use(express.static('../lib'));
+app.use(express.static('../ts'));
+app.use(express.static('..'));
+
+/*router.all('/', function(req, res, next) {
+	res.sendFile("../index.html");
+});*/
+
+/*app.get('/', function(req, res) {
+	res.sendFile("../index.html");
+});*/
+
+app.get('/', function(req, res) {
+	res.send("Server!");
+});
 
 app.get('/musicList', function (req, res) {
 	var jsonObj = {
@@ -48,3 +63,5 @@ var server = app.listen(8081, function () {
     console.log("应用实例，访问地址为 http://%s:%s", host, port)
 
 })
+
+//module.exports = router;
