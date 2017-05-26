@@ -13,6 +13,7 @@ app.use(express.static('..'));
 	res.sendFile("../index.html");
 });*/
 
+
 /*app.get('/', function(req, res) {
 	res.sendFile("../index.html");
 });*/
@@ -26,16 +27,19 @@ app.get('/musicList', function (req, res) {
 		data: []
 	}
 
-	fs.readdir('./music', function(err, files) {
+	fs.readdir('../lib/music', function(err, files) {
+
 		if (err) {
 			console.log('error:\n'+err);
 			return;
 		}
+
 		files.forEach(function(file) {
 			var fileName = file.slice(0, file.indexOf('.'));
 			jsonObj.data.push(fileName);
 
 		})
+
 		var jsonStr = JSON.stringify(jsonObj);
 		console.log(jsonStr);
 		res.json(jsonStr);
@@ -44,18 +48,25 @@ app.get('/musicList', function (req, res) {
 
 app.get('/music', function(req, res) {
 	console.log('name', req.query.name);
-	fs.readFile('./music/'+ req.query.name + '.mid', 'ascii', function(error, data) {
+	fs.readFile('../lib/music/'+ req.query.name + '.mid', 'ascii', function(error, data) {
+
 		if (error) throw error;
 
 		var jsonObj = {
 			data: null
 		};
+
 		jsonObj.data = data;
 		var jsonStr = JSON.stringify(jsonObj);
+
 		console.log(jsonStr);
+
 		res.json(jsonStr);
 	})
 });
+
+
+
 
 var server = app.listen(8081, function () {
     var host = server.address().address
