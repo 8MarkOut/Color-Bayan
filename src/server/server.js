@@ -48,7 +48,7 @@ app.get('/musicList', function (req, res) {
 
 app.get('/music', function(req, res) {
 	console.log('name', req.query.name);
-	fs.readFile('../lib/music/'+ req.query.name + '.mid', 'ascii', function(error, data) {
+	fs.readFile('src/lib/music/'+ req.query.name + '.mid', 'ascii', function(error, data) {
 
 		if (error) throw error;
 
@@ -65,14 +65,10 @@ app.get('/music', function(req, res) {
 	})
 });
 
-
-
-
 var server = app.listen(8081, function () {
-    var host = server.address().address
-    var port = server.address().port
-    console.log("Start server", host, port)
-
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Start server");
 })
 
 //module.exports = router;
