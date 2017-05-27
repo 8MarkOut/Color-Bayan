@@ -68,4 +68,4 @@ gulp.task("watch", function() {
     gulp.watch(paths.ts, ["tsc"]);
 });
 
-gulp.task("default", ["server", "watch"]);
+gulp.task("default", ["copy-html", "copy-css", "copy-js", "tsc", "watch", "server"]);

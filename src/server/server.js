@@ -7,20 +7,15 @@ var router = express.Router();
 app.use(express.static(path.join(__dirname, '../css')));
 app.use(express.static(path.join(__dirname, '../lib')));
 app.use(express.static(path.join(__dirname, '../ts')));
-app.use(express.static(path.join(__dirname, '../')));
-
-/*router.all('/', function(req, res, next) {
-	res.sendFile("../index.html");
-});*/
-
 
 app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname, '../', 'index.html'));
+	res.redirect('/Color-Bayan');
 });
 
-/*app.get('/', function(req, res) {
-	res.send("Server!Start!");
-});*/
+app.get('/Color-Bayan', function(req, res) {
+	res.sendFile(path.join(__dirname, '../', 'index.html'));
+	app.use(express.static(path.join(__dirname, '../')));
+});
 
 app.get('/musicList', function (req, res) {
 	var jsonObj = {
@@ -271,7 +266,7 @@ app.get('/drum', function(req, res) {
 var server = app.listen(8081, function () {
     var host = server.address().address;
     var port = server.address().port;
-    console.log("Server start at ", host, port);
+    console.log("Server start");
 });
 
 //module.exports = router;
