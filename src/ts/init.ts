@@ -88,10 +88,6 @@ function init(): void {
             tempDiv.appendChild(tempSpan);
             tempDiv.appendChild(tempDisplay);
 
-            // 这样写有蜜汁错误
-            // tempDiv.onmousedown = tempKey.keyDown;
-            // tempDiv.onmouseup = tempKey.keyUp;
-            // tempDiv.onmouseout = tempKey.keyUp;
             tempDiv.onmousedown = () => { tempKey.keyDown(); soundEvent.playSound(tempKey.getKeyChar()); }
             tempDiv.onmouseup = () => { tempKey.keyUp(); soundEvent.stopSound(tempKey.getKeyChar()); }
             tempDiv.onmouseout = () => { tempKey.keyUp(); soundEvent.stopSound(tempKey.getKeyChar()); }
