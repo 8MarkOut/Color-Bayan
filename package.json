@@ -32,5 +32,9 @@
     "vinyl-source-stream": "^1.1.0",
     "@types/jquery": "^2.0.45",
     "jquery": "^3.2.1"
+  },
+  "dependencies": {
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1"
   }
 }

@@ -32,7 +32,8 @@ namespace request {
     // Get Mid file
     export let requestMid = function(j: number) {
         loading();
-        $.get("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/query", {name: Music[j]}, function(data) {
+        // $.get("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/query", {name: Music[j]}, function(data) {
+        $.get("123.207.110.18:8081", {name: Music[j]}, function(data) {
                 // Data is the stream of Mid file we recepted.
                 // And here should be a function to recept the data stream and play it.
                 console.log(data.data.name);
@@ -59,12 +60,13 @@ namespace request {
 
     let loading = function() {
         let load: any = document.getElementById("loading");
-        load.setAttribute("class", "");
+        load.style.visibility = "visible";
     }
     
     let unload = function() {
         let load: any = document.getElementById("loading");
-        load.setAttribute("class", "invisible");
+        load.style.visibility = "hidden";
+
     }
 }
 
