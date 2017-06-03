@@ -6,18 +6,23 @@ import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
 
 namespace soundEvent{
-
+    let sf = SoundFont.getInstance();
     // play the sound of the related key
     export let playSound = function(keyName: string): void {
-        SoundFont.getInstance().audio[getSoundKey(keyName)].play();
+        let key = getSoundKey(keyName);
+        if (!sf.isplaying[key]) {
+            sf.isplaying[key] = true;
+            sf.audio[key].play();
+        }
     }
 
     // stop the sound of the related key
     export let stopSound = function(keyName: string): void {
-        // delay
-        let audio: any = SoundFont.getInstance().audio[getSoundKey(keyName)];
+        let key = getSoundKey(keyName);
+        let audio: any = sf.audio[key];
         audio.pause();
         audio.currentTime = 0;
+        sf.isplaying[key] = false;
     }
 
     // Get the sound key by key name

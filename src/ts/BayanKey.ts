@@ -7,9 +7,7 @@ class BayanKey {
     private keyName: string;
     private keyElement: any;
 
-    private playing: boolean;
     constructor(keyName: string, keyElement: any) {
-
         this.keyName = keyName;
         this.keyElement = keyElement;
     }
