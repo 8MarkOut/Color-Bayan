@@ -66,7 +66,7 @@ class MainController {
     public play() {
         let that = this;
         this.playing = true;
-        SoundFont.getInstance().resetlock(2);
+        SoundFont.getInstance().resetlock(3);
         this.playEvent = setInterval(that.autoPlay, 50);
     }
 
