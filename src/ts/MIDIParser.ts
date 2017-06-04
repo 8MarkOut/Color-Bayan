@@ -89,7 +89,7 @@ class MIDIParser {
         // "dd dd": the ticks of a quarter note
         let n_quarter_ticks = parseInt(read.substr(8, 4), 16);
         console.log("the ticks of a quarter note: " + n_quarter_ticks);
-        this.alpha = n_quarter_ticks / 16;
+        this.alpha = n_quarter_ticks / 12;
 
         // deal with tracks
         for (let i = 0; i < n_track; i++) {

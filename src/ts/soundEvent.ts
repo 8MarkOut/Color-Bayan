@@ -9,15 +9,12 @@ namespace soundEvent{
     let sf = SoundFont.getInstance();
     // play the sound of the related key
     export let playSound = function(keyName: string): void {
+        // stopSound(keyName);
         let key = getSoundKey(keyName);
-        if (this.isplayingmask) {
+        if (sf.isplayinglock[key] > 0) {   
+            sf.isplayinglock[key] --;
             sf.audio[key].currentTime = 0;
             sf.audio[key].play();
-        } else {
-            if (!sf.isplaying[key]) {
-                sf.audio[key].play();
-                sf.isplaying[key] = true;
-            }
         }
     }
 
@@ -27,7 +24,7 @@ namespace soundEvent{
         let audio: any = sf.audio[key];
         audio.pause();
         audio.currentTime = 0;
-        sf.isplaying[key] = false;
+        sf.isplayinglock[key] ++;
     }
 
     // Get the sound key by key name

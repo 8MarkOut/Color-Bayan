@@ -5,8 +5,7 @@ class SoundFont {
     private instrument: string;
     private note: Array<number>;
     private loop: boolean;
-    public isplaying: Array<boolean>;
-    public isplayingmask: boolean;
+    public isplayinglock: Array<number>;
     public audio : any;
     private static _instance: SoundFont = null;
     public static getInstance(): SoundFont {
@@ -16,10 +15,8 @@ class SoundFont {
     }
     private constructor() {
         this.audio = new Array<any>();
-        this.isplaying = new Array<boolean>();
-        this.isplayingmask = false;
-        for (let i = 0; i < 88; i++)
-            this.isplaying[i] = false;
+        this.isplayinglock = new Array<number>();
+        this.resetlock(1);
         this.changeInstrument("acoustic_grand_piano");
     }
     private getSoundJson(instrument: string): any {
@@ -79,6 +76,11 @@ class SoundFont {
         for (let i = 0; i < 88; i++) {
             this.audio[i] = new Audio(this.getSoundJson(this.instrument)[SoundFont.key2note(i)]);
             this.audio[i].loop = this.loop;
+        }
+    }
+    public resetlock(n: number) {
+        for (let i = 0; i < 88; i++) {
+            this.isplayinglock[i] = n;
         }
     }
 }

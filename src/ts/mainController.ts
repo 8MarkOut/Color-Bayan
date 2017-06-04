@@ -66,14 +66,14 @@ class MainController {
     public play() {
         let that = this;
         this.playing = true;
-        SoundFont.getInstance().isplayingmask = true;
+        SoundFont.getInstance().resetlock(2);
         this.playEvent = setInterval(that.autoPlay, 50);
     }
 
     public stopPlay() {
         TimeController.getInstance().stop();
         this.playing = false;
-        SoundFont.getInstance().isplayingmask = false;
+        SoundFont.getInstance().resetlock(1);
         clearInterval(this.playEvent);
     }
 }
