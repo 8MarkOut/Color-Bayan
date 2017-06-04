@@ -6,7 +6,7 @@ import { Bayan } from "./Bayan";
 
 class HexTextFileReader {
     private data: string;
-    private fp: number;
+    public fp: number;
 
     public constructor(data: string) {
         this.data = data;
@@ -54,6 +54,7 @@ class MIDIParser {
     // private trackHeader: string;
     private lastEvent: string;
     private seq: Array<KeyEvent>;
+    private alpha: number; // time ticks scaling
 
     public createKeyEvents(data: string): Array<KeyEvent> {
         this.seq = new Array<KeyEvent>();
@@ -88,6 +89,7 @@ class MIDIParser {
         // "dd dd": the ticks of a quarter note
         let n_quarter_ticks = parseInt(read.substr(8, 4), 16);
         console.log("the ticks of a quarter note: " + n_quarter_ticks);
+        this.alpha = n_quarter_ticks / 16;
 
         // deal with tracks
         for (let i = 0; i < n_track; i++) {
@@ -109,6 +111,7 @@ class MIDIParser {
     }
 
     private noteAction(time: number, note: number, on: boolean) {
+        // console.log(time + ' ' + note + ' ' + on);
         if (this.seq[time] == null) {
             this.seq[time] = new KeyEvent();
         }
@@ -124,7 +127,6 @@ class MIDIParser {
         //  note 0x00-0x7F, using previous activating basic format
 
         let timeLine = 10;
-        let alpha = 50; // time ticks scaling
         let n_byte: number;
         while (true) {
             let interval = fileReader.readInterval();
@@ -133,66 +135,67 @@ class MIDIParser {
             let note: number; // 音符
             let velocity: number // 力度
             let info: string;
+            // console.log(fileReader.fp / 2);
+            // console.log(events + " " + this.lastEvent);
             if (parseInt(events[0], 16) & 0x8) { // basic events
-                switch(events[0]) { // events[1] is channel, we ignored
-                    case "8": // 松开音符
-                    case "9": // 按下音符
-                    case "a": // 触后音符
-                        this.lastEvent = events[0];
-                        note = parseInt(fileReader.readByte(1), 16);
-                        velocity = parseInt(fileReader.readByte(1), 16);
-                        let ticks = Math.floor(timeLine / alpha);
-                        if (this.lastEvent === "8" ||
-                        this.lastEvent === "9" && velocity === 0 ) {
-                            this.noteAction(ticks, note, false);
-                        } else {
-                            this.noteAction(ticks, note, true);
-                        }
-                        break;
-                    case "b": // 控制器
-                        // 控制器号码:0x00-0x7F
-                        // 控制器参数:0x00-0x7F
-                        fileReader.readByte(2);
-                        break;
-                    case "c": // 改变乐器
-                        // 乐器号码：0x00-0x7F
-                        fileReader.readByte(1);
-                        break;
-                    case "d": // 触后通道
-                        // 值:0x00-0x7F
-                        fileReader.readByte(1);
-                        break;
-                    case "e": // 滑音
-                        // 音高(Pitch)低位:Pitch mod 128
-                        // 音高高位:Pitch div 128
-                        fileReader.readByte(2);
-                        break;
-                    case "f": 
-                        if (events[1] == "0") { // 系统码
-                            n_byte = parseInt(fileReader.readByte(1), 16);
-                            fileReader.readByte(n_byte);
-                        } else if (events[1] == "f") { // 其他格式
-                            info = fileReader.readByte(1);
-                            n_byte = parseInt(fileReader.readByte(1), 16);
-                            if (info == "2f") {
-                                return;
-                            } else {
-                                fileReader.readByte(n_byte);
-                            }
-                        } else {
-                            console.log("invalid event format: " + events);
-                        }
-                }
+                this.lastEvent = events;
             } else {
-                note = parseInt(fileReader.readByte(1), 16);
-                velocity = parseInt(fileReader.readByte(1), 16);
-                let ticks = Math.floor(timeLine / alpha);
-                if (this.lastEvent === "8" ||
-                this.lastEvent === "9" && velocity === 0 ) {
-                    this.noteAction(ticks, note, false);
-                } else {
-                    this.noteAction(ticks, note, true);
-                }
+                // set fp back
+                fileReader.fp -= 2;
+            }
+            switch(this.lastEvent[0]) { // events[1] is channel, we ignored
+                case "8": // 松开音符
+                case "9": // 按下音符
+                case "a": // 触后音符
+                    // if (isNaN(note)) {
+                    //     console.log("note is not a number");
+                    // }
+                    note = parseInt(fileReader.readByte(1), 16);
+                    velocity = parseInt(fileReader.readByte(1), 16);
+                    let ticks = Math.floor(timeLine / this.alpha);
+                    if (this.lastEvent[1] === '9')
+                        break;
+                    if (this.lastEvent[0] === "8" ||
+                    this.lastEvent[0] === "9" && velocity === 0 ) {
+                        this.noteAction(ticks, note, false);
+                    } else if (this.lastEvent[0] === "9" && velocity !== 0) {
+                        this.noteAction(ticks, note, true);
+                    }
+                    break;
+                case "b": // 控制器
+                    // 控制器号码:0x00-0x7F
+                    // 控制器参数:0x00-0x7F
+                    this.lastEvent = events;
+                    fileReader.readByte(2);
+                    break;
+                case "c": // 改变乐器
+                    // 乐器号码：0x00-0x7F
+                    fileReader.readByte(1);
+                    break;
+                case "d": // 触后通道
+                    // 值:0x00-0x7F
+                    fileReader.readByte(1);
+                    break;
+                case "e": // 滑音
+                    // 音高(Pitch)低位:Pitch mod 128
+                    // 音高高位:Pitch div 128
+                    fileReader.readByte(2);
+                    break;
+                case "f": 
+                    if (events[1] == "0") { // 系统码
+                        n_byte = parseInt(fileReader.readByte(1), 16);
+                        fileReader.readByte(n_byte);
+                    } else if (events[1] == "f") { // 其他格式
+                        info = fileReader.readByte(1);
+                        n_byte = parseInt(fileReader.readByte(1), 16);
+                        if (info == "2f") {
+                            return;
+                        } else {
+                            fileReader.readByte(n_byte);
+                        }
+                    } else {
+                        console.log("invalid event format: " + events);
+                    }
             }
         }
     }
