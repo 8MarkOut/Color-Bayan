@@ -9,7 +9,7 @@
         "src/ts/request.ts"
     ],
     "compilerOptions": {
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "target": "es5",
         "allowJs": true
     }

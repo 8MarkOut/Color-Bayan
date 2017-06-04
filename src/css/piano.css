@@ -12,14 +12,15 @@
 
 #piano-box {
     position: relative;
-/*    width: 100%;
-    height: 100%;*/
+    /*top: -15vh;*/
+    /* left: 15vw; */
 }
 
 #white-box {
     display: flex;
     position: absolute;
     left: -47vw;
+    top: -25vh;
 }
 
 #black-box {
@@ -27,6 +28,7 @@
     display: flex;
     margin-left: 1.2vw;
     left: -47vw;
+    top: -25vh;
 }
 
 .white-key {
@@ -51,4 +53,12 @@
     width: 1.2vw;
     height: 3.6vw;
     margin-right: 0.6vw;
+}
+
+canvas#piano-roll {
+    position: absolute;
+    width: 80vw;
+    height: 50vh;
+    left: 10vw;
+    top: 20vh;
 }
