@@ -14,29 +14,42 @@ namespace keybdEvent {
         let bayan = Bayan.getInstance();
         switch(realkey) {
             case "enter":
-                if (bayan.shift + 12 <= bayan.keybdMap.upperBound)
+                if (bayan.shift + 12 <= bayan.keybdMap.upperBound) {
                     bayan.shift += 12;
+                    bayan.soundfield.low += 12;
+                    bayan.soundfield.high += 12;
+                }
+                    
                 break;
             case "shift":
-                if(bayan.shift - 12 >= bayan.keybdMap.lowerBound) 
-                bayan.shift -= 12;
+                if(bayan.shift - 12 >= bayan.keybdMap.lowerBound) {
+                    bayan.shift -= 12;
+                    bayan.soundfield.low -= 12;
+                    bayan.soundfield.high -= 12;
+                }
                 break;
             case "add":
-                if (bayan.shift + 1 <= bayan.keybdMap.upperBound)
+                if (bayan.shift + 1 <= bayan.keybdMap.upperBound) {
                     bayan.shift ++;
-                bayan.initColor();
-                    break;
+                    bayan.soundfield.low ++;
+                    bayan.soundfield.high ++;
+                    bayan.initColor();
+                }
+                break;
             case "sub":
-                if (bayan.shift - 1 >= bayan.keybdMap.lowerBound)
+                if (bayan.shift - 1 >= bayan.keybdMap.lowerBound) {
                     bayan.shift --;
-                bayan.initColor();
-                    break;
-            case "play":
+                    bayan.soundfield.low --;
+                    bayan.soundfield.high --;
+                    bayan.initColor();
+                }
+                break;
+            case "space":
                 if (MainController.getInstance().playing)
                     MainController.getInstance().stopPlay();
-                else
+                else 
                     MainController.getInstance().play();
-                    break;
+                break;
         }
         let tempDiv: any = getDiv(realkey);
         if (tempDiv !== undefined) {
@@ -73,7 +86,7 @@ namespace keybdEvent {
             case 16: realkey = "shift"; break;
             case 37: realkey = "add"; break;
             case 39: realkey = "sub"; break;
-            case 32: realkey = "play"; break;
+            case 32: realkey = "space"; break;
             default: realkey = String.fromCharCode(keycode);
         }
         return realkey;

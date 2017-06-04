@@ -10,9 +10,14 @@ namespace soundEvent{
     // play the sound of the related key
     export let playSound = function(keyName: string): void {
         let key = getSoundKey(keyName);
-        if (!sf.isplaying[key]) {
-            sf.isplaying[key] = true;
+        if (this.isplayingmask) {
+            sf.audio[key].currentTime = 0;
             sf.audio[key].play();
+        } else {
+            if (!sf.isplaying[key]) {
+                sf.audio[key].play();
+                sf.isplaying[key] = true;
+            }
         }
     }
 

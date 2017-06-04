@@ -6,6 +6,10 @@ import { SoundFont } from "./SoundFont";
 import { keybdEvent } from "./keyBoardEvent";
 import { soundEvent } from "./soundEvent";
 
+import { KeyEvent } from "./mainController";
+import { MainController } from "./mainController";
+import { MIDIParser } from "./MIDIParser";
+
 import { request } from "./request";
 
 import * as $ from "jquery";
@@ -149,7 +153,7 @@ function dropHandler(e: any) {
     for(var i = 0, len = files.length; i < len; i++) {
         var f = files[i];
         // console.log(f.name + " " + f.size + " ");
-        console.log(f);
+        // console.log(f);
         readAsArrayBuffer(f);
     }
 }
@@ -170,7 +174,10 @@ function readAsArrayBuffer(file: any) {
             return ('0'+ v.charCodeAt(0).toString(16)).slice(-2);
         });
         fileData = fileData.join("");
-        console.log(fileData);
+        // console.log(fileData);
+        let midiparse = new MIDIParser();
+        let seq = midiparse.createKeyEvents(fileData);
+        MainController.getInstance().loadSequence(seq);
     }
     reader.readAsBinaryString(file);
 }
