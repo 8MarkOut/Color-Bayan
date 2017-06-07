@@ -4,6 +4,9 @@ var app = express();
 var fs = require('fs')
 var router = express.Router();
 
+
+
+
 app.use(express.static(path.join(__dirname, '../css')));
 app.use(express.static(path.join(__dirname, '../lib')));
 app.use(express.static(path.join(__dirname, '../ts')));
@@ -37,7 +40,30 @@ app.get('/musicList', function (req, res) {
 
 		var jsonStr = JSON.stringify(jsonObj);
 		console.log(jsonStr);
-		res.json(jsonStr);
+		// res.json(jsonStr);
+
+		res.set('Content-Type','text/plain');
+		var cFuncName = req.query.callbackparam;
+		res.send(cFuncName + "([ " + jsonStr + " ])");
+
+		// ontext.Response.ContentType = "text/plain";
+		// 	String callbackFunName = context.Request["callbackparam"];
+		// 	context.Response.Write(callbackFunName + "([ { name:\"John\"}])");
+
+		/*
+		var jsonString = "{success: true}";
+		var cb = req.query.callback;
+		var resString = cb+'('+jsonString+')';
+		res.json(resString);
+		*/
+
+		/*var cb = req.query.callback;
+		res.set({
+			'Content-Type':'text/html',
+			'charset':'UTF-8'
+		});
+		res.json(cb+'('+jsonStr+')');*/
+
 	})
 })
 
@@ -55,8 +81,12 @@ app.get('/music', function(req, res) {
 		var jsonStr = JSON.stringify(jsonObj);
 
 		console.log(jsonStr);
+		// res.json(jsonStr);
 
-		res.json(jsonStr);
+		res.set('Content-Type','text/plain');
+		var cFuncName = req.query.callbackparam;
+		res.send(cFuncName + "([ " + jsonStr + " ])");
+
 	})
 });
 
@@ -157,8 +187,11 @@ app.get('/piano', function(req, res) {
 	var jsonPiano = JSON.stringify(piano);
 
 	// console.log(jsonPiano);
+	// res.json(jsonPiano);
 
-	res.json(jsonPiano);
+	res.set('Content-Type','text/plain');
+	var cFuncName = req.query.callbackparam;
+	res.send(cFuncName + "([ " + jsonPiano + " ])");
 
 });
 
@@ -258,8 +291,11 @@ app.get('/drum', function(req, res) {
 	var jsonDrum = JSON.stringify(drum);
 
 	// console.log(jsonDrum);
+	// res.json(jsonDrum);
 
-	res.json(jsonDrum);
+	res.set('Content-Type','text/plain');
+	var cFuncName = req.query.callbackparam;
+	res.send(cFuncName + "([ " + jsonDrum + " ])");
 
 });
 
