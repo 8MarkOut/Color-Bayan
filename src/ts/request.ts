@@ -61,22 +61,27 @@ namespace request {
         loading();
 
         $.ajax({
-           type : "get",
-           async: false,
-           url: "http://localhost:8081/music"+"?name="+Music[j],
-           dataType: "jsonp",
-           jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
-           jsonpCallback:"success_jsonpCallback",  // callback的function名称
-           success : function(json) {
-               console.log(json[0].data);
+            type : "get",
+            async: false,
+            url: "http://localhost:8081/music"+"?name="+Music[j],
+            dataType: "jsonp",
+            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
+            jsonpCallback:"success_jsonpCallback",  // callback的function名称
+            success : function(json) {
             //    json[0].data是收到的Mid文件的字符串
-               unload();
-               play(json[0].data);
-           },
-           error:function(){
-               alert('fail');
-           }
-       });
+                unload();
+                let fileData = json[0].data.data.map((v: any)=>{
+                    let a = v.toString(16);
+                    if (a.length === 1) a = '0' + a;
+                    return a;
+                });
+                fileData = fileData.join("");
+                play(fileData);
+            },
+            error:function(){
+                alert('fail');
+            }
+        });
 
     }
 

@@ -195,6 +195,7 @@ class MIDIParser {
                         }
                     } else {
                         console.log("invalid event format: " + events);
+                        throw '';
                     }
             }
         }

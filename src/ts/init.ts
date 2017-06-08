@@ -174,7 +174,6 @@ function readAsArrayBuffer(file: any) {
             return ('0'+ v.charCodeAt(0).toString(16)).slice(-2);
         });
         fileData = fileData.join("");
-        // console.log(fileData);
         let midiparse = new MIDIParser();
         let seq = midiparse.createKeyEvents(fileData);
         MainController.getInstance().loadSequence(seq);

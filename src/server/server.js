@@ -69,7 +69,7 @@ app.get('/musicList', function (req, res) {
 
 app.get('/music', function(req, res) {
 	console.log('name', req.query.name);
-	fs.readFile('src/lib/music/'+ req.query.name + '.mid', 'ascii', function(error, data) {
+	fs.readFile('src/lib/music/'+ req.query.name + '.mid', function(error, data) {
 
 		if (error) throw error;
 
