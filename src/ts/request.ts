@@ -1,7 +1,7 @@
 import { Bayan } from "./Bayan";
 
 namespace request {
-    export let keyBd: Array<string>;
+    export let keyBd: Array<string> = ["keyboardMap3", "keyboardMap4"];
     export let Music: Array<string>;
     export let Instrument: Array<string>;
     export let Mobile: Array<Array<string>>;
@@ -18,37 +18,31 @@ namespace request {
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
            success : function(json) {
-               // alert(json);
-               // alert(json[0].name);
-               console.log(json);
-               // 自己处理
+               Music = json[0].data;
            },
            error:function(){
                alert('fail');
            }
        });
 
-        /*$.ajax({
-            dataType: 'jsonp',
-            url: 'localhost:8081/musicList'+'?callback=?',
-            processData: false,
-            type:'get',
-            success: function(data) {
-                keyBd = data.keyBd;
-                Music = data.Music;
-                Instrument = data.Instrument;
-                Mobile = [keyBd, Music, Instrument];
-                init_one();
-                init_two();
-                unload();
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert(XMLHttpRequest.status);
-                // alert(XMLHttpRequest.readyState);
-                // alert(textStatus);
-            }
-        });*/
-
+       $.ajax({
+           type : "get",
+           async: false,
+           url: "http://localhost:8081/instrument",
+           dataType: "jsonp",
+           jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
+           jsonpCallback:"success_jsonpCallback",  // callback的function名称
+           success : function(json) {
+               Instrument = json[0].data;
+               Mobile = [keyBd, Music, Instrument];
+               init_one();
+               init_two();
+               unload();
+           },
+           error:function(){
+               alert('fail');
+           }
+       });
         // The following is used for test without network.
 
         // keyBd = ["keyboardMap3", "keyboardMap4"];
@@ -62,19 +56,6 @@ namespace request {
     // Get Mid file
     export let requestMid = function(j: number) {
         loading();
-        // $.get("https://www.easy-mock.com/mock/592183d59aba4141cf29581d/example/query", {name: Music[j]}, function(data) {
-        /*$.get("localhost:8081", {name: Music[j]}, function(data) {
-                // Data is the stream of Mid file we recepted.
-                // And here should be a function to recept the data stream and play it.
-                console.log(data.data.name);
-                console.log("Play Music!!!");
-                unload();
-
-                // To test without server.
-                // setTimeout(function() {
-                //     unload();
-                // }, 1000);
-        });*/
 
         $.ajax({
            type : "get",
@@ -84,10 +65,8 @@ namespace request {
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
            success : function(json) {
-               // alert(json);
-               // alert(json[0].name);
-               console.log(json);
-               // 自己处理
+               console.log(json[0].data);
+               unload();
            },
            error:function(){
                alert('fail');
@@ -99,13 +78,6 @@ namespace request {
     //Get the source of instrument.
     export let requestInstrument = function(j: number) {
         loading();
-        /*$.get("localhost:8081", {name: Instrument[j]}, function(data) {
-            // A function used to change the instrument should be here.
-            console.log(data.data.name);
-            console.log("Change instrument!!!");
-            unload();
-        });*/
-
 
         $.ajax({
            type : "get",
@@ -115,10 +87,8 @@ namespace request {
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
            success : function(json) {
-               // alert(json);
-               // alert(json[0].name);
-               console.log(json);
-               // 自己处理
+               console.log(json[0]);
+               unload();
            },
            error:function(){
                alert('fail');

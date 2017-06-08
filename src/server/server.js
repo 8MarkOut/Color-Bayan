@@ -307,3 +307,30 @@ var server = app.listen(8081, function () {
 
 //module.exports = router;
 
+app.get('/instrument', function (req, res) {
+	var jsonObj = {
+		data: []
+	}
+
+	fs.readdir('src/lib/instrument', function(err, files) {
+
+		if (err) {
+			console.log('error:\n'+err);
+			return;
+		}
+
+		files.forEach(function(file) {
+			var fileName = file.slice(0, file.indexOf('.'));
+			if(fileName != "") jsonObj.data.push(fileName);
+
+		})
+
+		var jsonStr = JSON.stringify(jsonObj);
+		console.log(jsonStr);
+		// res.json(jsonStr);
+
+		res.set('Content-Type','text/plain');
+		var cFuncName = req.query.callbackparam;
+		res.send(cFuncName + "([ " + jsonStr + " ])");
+	})
+})
