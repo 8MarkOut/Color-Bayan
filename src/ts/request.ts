@@ -1,4 +1,7 @@
 import { Bayan } from "./Bayan";
+import { MIDIParser } from "./MIDIParser";
+import { MainController } from "./mainController";
+import { SoundFont } from "./SoundFont";
 
 namespace request {
     export let keyBd: Array<string> = ["keyboardMap3", "keyboardMap4"];
@@ -66,7 +69,9 @@ namespace request {
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
            success : function(json) {
                console.log(json[0].data);
+            //    json[0].data是收到的Mid文件的字符串
                unload();
+               play(json[0].data);
            },
            error:function(){
                alert('fail');
@@ -89,6 +94,8 @@ namespace request {
            success : function(json) {
                console.log(json[0]);
                unload();
+            // json[0]是获取乐器的音源文件字符串
+            // 需要添加更改音源文件的函数
            },
            error:function(){
                alert('fail');
@@ -107,6 +114,13 @@ namespace request {
         let load: any = document.getElementById("loading");
         load.style.visibility = "hidden";
 
+    }
+
+// 输入接收的Mid文件字符串，播放音乐文件
+    let play = function(fileData: any) {
+        let midiparse = new MIDIParser();
+        let seq = midiparse.createKeyEvents(fileData);
+        MainController.getInstance().loadSequence(seq);
     }
 }
 
