@@ -1,14 +1,34 @@
 # Color Bayan
 
+### 简介
+一个精通手风琴的程序猿，觉得只玩手风琴不舒服，想实现一个通过键盘发声的界面；通过查找相关的资料，发现有人设计出了很好的键盘和琴键的对应布局；于是召集几个人一起基于这个设计，进行改进并增添一些比较有意思的功能，完成了这个网站的设计。
+
+这个页面的主要功能是通过键盘来模拟乐器进行演奏，如果能找到相应的音色库，理论上可以模拟任何现实中的乐器。
+
 这是一个音乐页面,可以通过键盘或鼠标点击来模拟巴扬，钢琴等乐器的发声；操作难度较大，仅供学习和参考。
 
 运行方法：
+
 1. 安装node.js
-2. 切换到Color-Bayan目录 执行 npm install
+
+    [下载地址](https://nodejs.org/en/)
+
+2. 切换到Color-Bayan目录 执行 
+```
+npm install
+```
 3. 安装gulp：
-npm install --global gulp； npm install --save-dev gulp
-4. 测试gulp： gulp -v
-5. 执行gulp 命令行输入： gulp
+```
+npm install --global gulp
+```
+4. 测试
+```
+gulp： gulp -v
+```
+5. 执行gulp 命令行输入：
+ ```
+ gulp
+ ```
 6. 双击打开 /dist 目录下的 index.html 即可看到相应的网页（需要联网）。
 
 
@@ -18,3 +38,4 @@ npm install --global gulp； npm install --save-dev gulp
 3. 琴键按下可以变换到该音调对应的颜色
 4. 按回车可以切换不用的音域
 5. 提供记录和回放功能
+
