@@ -75,13 +75,14 @@ namespace request {
             //    json[0].data是收到的Mid文件的字符串
                 // console.log(json[0].data);
                 unload();
-                let fileData = json[0].data.data.map((v: any)=>{
+                /*let fileData = json[0].data.data.map((v: any)=>{
                     let a = v.toString(16);
                     if (a.length === 1) a = '0' + a;
                     return a;
                 });
                 fileData = fileData.join("");
-                play(fileData);
+                play(fileData);*/
+                console.log(json);
             },
             error:function(){
                 alert('fail');
