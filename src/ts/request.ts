@@ -16,22 +16,24 @@ namespace request {
        $.ajax({
            type : "get",
            async: false,
-           url: "http://localhost:8081/musicList",
+        //    url: "http://localhost:8081/musicList",
+           url: "http://123.207.110.18:8081/musicList",
            dataType: "jsonp",
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
-           jsonpCallback:"success_jsonpCallback",  // callback的function名称
+           jsonpCallback:"jsonpHandler",  // callback的function名称
            success : function(json) {
                Music = json[0].data;
            },
            error:function(){
-               alert('fail');
+               alert('fail!!!');
            }
        });
 
        $.ajax({
            type : "get",
            async: false,
-           url: "http://localhost:8081/instrument",
+        //    url: "http://localhost:8081/instrument",
+           url: "http://123.207.110.18:8081/instrument",
            dataType: "jsonp",
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
@@ -63,12 +65,15 @@ namespace request {
         $.ajax({
             type : "get",
             async: false,
-            url: "http://localhost:8081/music"+"?name="+Music[j],
+            // url: "http://localhost:8081/music"+"?name="+Music[j],
+            url: "http://123.207.110.18:8081/music"+"?name="+Music[j],
             dataType: "jsonp",
             jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
             jsonpCallback:"success_jsonpCallback",  // callback的function名称
+            
             success : function(json) {
             //    json[0].data是收到的Mid文件的字符串
+                // console.log(json[0].data);
                 unload();
                 let fileData = json[0].data.data.map((v: any)=>{
                     let a = v.toString(16);
@@ -87,18 +92,27 @@ namespace request {
 
     //Get the source of instrument.
     export let requestInstrument = function(j: number) {
-        loading();
+        // loading();
 
         $.ajax({
+        //    xhr: function() {
+        //     var xhr = $.ajaxSettings.xhr();
+        //     xhr.onprogress = function(e:any) {
+        //         if (e.lengthComputable) {
+        //                 console.log(e.loaded / e.total * 100);
+        //         }
+        //     }
+        //    },
            type : "get",
            async: false,
-           url: "http://localhost:8081/"+Instrument[j],
+        //    url: "http://localhost:8081/"+Instrument[j],
+           url: "http://123.207.110.18:8081/"+Instrument[j],
            dataType: "jsonp",
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
            success : function(json) {
                console.log(json[0]);
-               unload();
+            //    unload();
             // json[0]是获取乐器的音源文件字符串
             // 需要添加更改音源文件的函数
            },
@@ -121,7 +135,7 @@ namespace request {
 
     }
 
-// 输入接收的Mid文件字符串，播放音乐文件
+    // 输入接收的Mid文件字符串，播放音乐文件
     let play = function(fileData: any) {
         let midiparse = new MIDIParser();
         let seq = midiparse.createKeyEvents(fileData);

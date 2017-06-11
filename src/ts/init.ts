@@ -37,7 +37,16 @@ function initDropdownMenu(): void {
             tempElement.appendChild(tempLi);
             tempLi.appendChild(tempA);
             tempA.innerHTML = request.Mobile[i][j];
-            if (i === 0) tempLi.onclick = () => { Bayan.getInstance().setKeybd(request.keyBd[j]); }
+            // Set keyBd
+            if (i === 0) {
+                tempLi.onclick = () => { Bayan.getInstance().setKeybd(request.keyBd[j]); }
+            // Get music
+            } else if(i == 1) {
+                tempLi.onclick = () => request.requestMid(j);
+            // Get instrument
+            } else {
+                tempLi.onclick = () => request.requestInstrument(j);
+            }
             if (j !== request.Mobile[i].length - 1) {
                 let temp: any = document.createElement("li");
                 temp.setAttribute("class", "divider");
