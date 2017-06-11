@@ -3,6 +3,7 @@ var path = require('path');
 var app = express();
 var fs = require('fs')
 var router = express.Router();
+var parseMidi = require('midi-file').parseMidi;
 
 
 
@@ -11,6 +12,7 @@ app.use(express.static(path.join(__dirname, '../css')));
 app.use(express.static(path.join(__dirname, '../lib')));
 app.use(express.static(path.join(__dirname, '../ts')));
 
+// 根路由，重定向
 app.get('/', function(req, res) {
 	res.redirect('/Color-Bayan');
 });
@@ -20,6 +22,7 @@ app.get('/Color-Bayan', function(req, res) {
 	app.use(express.static(path.join(__dirname, '../')));
 });
 
+// 获取服务端音乐库
 app.get('/musicList', function (req, res) {
 	var jsonObj = {
 		data: []
@@ -67,29 +70,46 @@ app.get('/musicList', function (req, res) {
 	})
 })
 
+// 获取mid文件
 app.get('/music', function(req, res) {
-	console.log('name', req.query.name);
-	fs.readFile('src/lib/music/'+ req.query.name + '.mid', function(error, data) {
+	// console.log('name', req.query.name);
+	var input = fs.readFileSync('src/lib/music/'+ req.query.name + '.mid');
+	var parsed = parseMidi(input);
+	var jsonStr = JSON.stringify(parsed);
+	// console.log('parsed', JSON.stringify(parsed));
 
-		if (error) throw error;
 
-		var jsonObj = {
-			data: null
-		};
+	console.log("Get music file:"+req.query.name);
 
-		jsonObj.data = data;
-		var jsonStr = JSON.stringify(jsonObj);
+	res.set('Content-Type','text/plain');
+	var cFuncName = req.query.callbackparam;
+	res.send(cFuncName + "([ " + jsonStr + " ])");
 
-		console.log(jsonStr);
-		// res.json(jsonStr);
+	// fs.readFile('src/lib/music/'+ req.query.name + '.mid', function(error, data) {
 
-		res.set('Content-Type','text/plain');
-		var cFuncName = req.query.callbackparam;
-		res.send(cFuncName + "([ " + jsonStr + " ])");
+	// 	if (error) throw error;
 
-	})
+	// 	var jsonObj = {
+	// 		data: null
+	// 	};
+
+	// 	jsonObj.data = data;
+	// 	console.log('--data', data);
+	// 	var jsonStr = JSON.stringify(jsonObj);
+
+	// 	console.log("Get music file:"+req.query.name);
+	// 	// res.json(jsonStr);
+
+	// 	res.set('Content-Type','text/plain');
+	// 	var cFuncName = req.query.callbackparam;
+	// 	res.send(cFuncName + "([ " + jsonStr + " ])");
+
+	// });
+
+
 });
 
+// 获取piano乐谱
 app.get('/piano', function(req, res) {
 
 	var piano = {
@@ -186,7 +206,7 @@ app.get('/piano', function(req, res) {
 
 	var jsonPiano = JSON.stringify(piano);
 
-	// console.log(jsonPiano);
+	console.log("Piano");
 	// res.json(jsonPiano);
 
 	res.set('Content-Type','text/plain');
@@ -195,6 +215,7 @@ app.get('/piano', function(req, res) {
 
 });
 
+// 获取drum乐谱
 app.get('/drum', function(req, res) {
 	
 	var drum = {
@@ -290,7 +311,7 @@ app.get('/drum', function(req, res) {
 
 	var jsonDrum = JSON.stringify(drum);
 
-	// console.log(jsonDrum);
+	console.log("Drum");
 	// res.json(jsonDrum);
 
 	res.set('Content-Type','text/plain');
@@ -307,6 +328,7 @@ var server = app.listen(8081, function () {
 
 //module.exports = router;
 
+// 获取乐器列表
 app.get('/instrument', function (req, res) {
 	var jsonObj = {
 		data: []
