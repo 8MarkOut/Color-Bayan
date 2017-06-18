@@ -116,10 +116,6 @@ class Bayan {
     }
 
     public getKeyNameByNote(note: number): string {
-        // if (isNaN(note)) {
-        //     console.log("fuck");
-        //     note = 3;
-        // }
         while (note < this.soundfield.low) note += 12;
         while (note > this.soundfield.high) note -= 12;
         return this.keybdRmap[note - this.shift][0];

@@ -63,7 +63,7 @@ namespace request {
         $.ajax({
             type : "get",
             async: false,
-            url: "http://localhost:8081/music"+"?name="+Music[j],
+            url: "http://localhost:8081/music?name="+Music[j],
             dataType: "jsonp",
             jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
             jsonpCallback:"success_jsonpCallback",  // callback的function名称
@@ -79,6 +79,7 @@ namespace request {
                 play(fileData);
             },
             error:function(){
+                unload();
                 alert('fail');
             }
         });
@@ -92,7 +93,7 @@ namespace request {
         $.ajax({
            type : "get",
            async: false,
-           url: "http://localhost:8081/"+Instrument[j],
+           url: "http://localhost:8081/getInstrument?name="+Instrument[j],
            dataType: "jsonp",
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
@@ -103,6 +104,7 @@ namespace request {
             // 需要添加更改音源文件的函数
            },
            error:function(){
+               unload();
                alert('fail');
            }
         });
@@ -118,10 +120,9 @@ namespace request {
     let unload = function() {
         let load: any = document.getElementById("loading");
         load.style.visibility = "hidden";
-
     }
 
-// 输入接收的Mid文件字符串，播放音乐文件
+    // 输入接收的Mid文件字符串，播放音乐文件
     let play = function(fileData: any) {
         let midiparse = new MIDIParser();
         let seq = midiparse.createKeyEvents(fileData);

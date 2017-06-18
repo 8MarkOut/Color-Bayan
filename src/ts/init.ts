@@ -27,6 +27,7 @@ window.onload = function(){
 document.onkeydown = keybdEvent.keyDown;
 document.onkeyup = keybdEvent.keyUp;
 
+// 初始化下拉栏
 function initDropdownMenu(): void {
     let dropdown_content: any = document.getElementsByClassName("dropdown-content");
     for (let i: number = 0; i < request.Mobile.length; i++) {
@@ -37,7 +38,15 @@ function initDropdownMenu(): void {
             tempElement.appendChild(tempLi);
             tempLi.appendChild(tempA);
             tempA.innerHTML = request.Mobile[i][j];
-            if (i === 0) tempLi.onclick = () => { Bayan.getInstance().setKeybd(request.keyBd[j]); }
+            // Set request
+            switch(i) {
+                case 0 :
+                    tempLi.onclick = () => { Bayan.getInstance().setKeybd(request.keyBd[j]) };  break;
+                case 1 :
+                    tempLi.onclick = () => request.requestMid(j); break;
+                case 2 :
+                    tempLi.onclick = () => request.requestInstrument(j); break;
+            }
             if (j !== request.Mobile[i].length - 1) {
                 let temp: any = document.createElement("li");
                 temp.setAttribute("class", "divider");
@@ -61,15 +70,14 @@ function initMoblie(): void {
             tempA.innerHTML = request.Mobile[i][j];
             tempA.setAttribute("class", "waves-effect");
 
-            // Set keyBd
-            if (i === 0) {
-                tempLi.onclick = () => { Bayan.getInstance().setKeybd(request.keyBd[j]); }
-            // Get music
-            } else if(i == 1) {
-                tempLi.onclick = () => request.requestMid(j);
-            // Get instrument
-            } else {
-                tempLi.onclick = () => request.requestInstrument(j);
+            // Set request
+            switch(i) {
+                case 0 :
+                    tempLi.onclick = () => { Bayan.getInstance().setKeybd(request.keyBd[j]) };  break;
+                case 1 :
+                    tempLi.onclick = () => request.requestMid(j); break;
+                case 2 :
+                    tempLi.onclick = () => request.requestInstrument(j); break;
             }
         }
     }}
@@ -145,6 +153,9 @@ function init_drag() {
     drag.addEventListener('dragover', dragOverHandler, false);
 }
 
+// get the Data from MID file
+let fileData: any;
+
 function dropHandler(e: any) {
     e.stopPropagation();
     e.preventDefault();
@@ -152,14 +163,9 @@ function dropHandler(e: any) {
     let files: any = e.dataTransfer.files;
     for(var i = 0, len = files.length; i < len; i++) {
         var f = files[i];
-        // console.log(f.name + " " + f.size + " ");
-        // console.log(f);
         readAsArrayBuffer(f);
     }
 }
-
-// get the Data from MID file
-let fileData: any;
 
 function dragOverHandler(e: any) {
     e.stopPropagation();

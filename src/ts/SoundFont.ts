@@ -1,6 +1,3 @@
-import acoustic_grand_piano from "../lib/acoustic_grand_piano-mp3";
-import synth_drum from "../lib/synth_drum-mp3.js";
-
 class SoundFont {
     private instrument: string;
     private note: Array<number>;
@@ -20,14 +17,14 @@ class SoundFont {
         this.changeInstrument("acoustic_grand_piano");
     }
     private getSoundJson(instrument: string): any {
-        switch (instrument) {
-            case "acoustic_grand_piano":
-                return acoustic_grand_piano;
-            case "synth_drum":
-                return synth_drum;
-            default:
-                return acoustic_grand_piano;
-        }
+        // switch (instrument) {
+        //     case "acoustic_grand_piano":
+        //         return acoustic_grand_piano;
+        //     case "synth_drum":
+        //         return synth_drum;
+        //     default:
+        //         return acoustic_grand_piano;
+        // }
     }
     public static normalizeKey(key: number): number {
         if (key < 0) key = 0;
