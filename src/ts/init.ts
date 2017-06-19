@@ -22,8 +22,6 @@ window.onload = function(){
     request.requestButton(initDropdownMenu, initMoblie);
     init_piano();
     init_drag();
-    request.requestInstrument(0);
-    request.requestMid(5);
 }
 
 document.onkeydown = keybdEvent.keyDown;

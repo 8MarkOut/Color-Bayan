@@ -23,6 +23,7 @@ namespace request {
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
            success : function(json) {
                Music = json[0].data;
+               request.requestMid(5);
            },
            error:function(){
                alert('fail');
@@ -38,6 +39,7 @@ namespace request {
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
            success : function(json) {
                Instrument = json[0].data;
+               request.requestInstrument(0);
                Mobile = [keyBd, Music, Instrument];
                init_one();
                init_two();
