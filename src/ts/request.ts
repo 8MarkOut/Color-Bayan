@@ -8,35 +8,41 @@ namespace request {
     export let Music: Array<string>;
     export let Instrument: Array<string>;
     export let Mobile: Array<Array<string>>;
-    let URL = "http://localhost:8081/";
 
     // To get the information of buttons and create them.
     export let requestButton = function(init_one: any, init_two: any) {
-        loading();
-
        $.ajax({
            type : "get",
            async: false,
-           url: URL + "musicList",
+           url: "musicList",
            dataType: "jsonp",
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
+           beforeSend : function() {
+               loading();
+           },
            success : function(json) {
                Music = json[0].data;
                request.requestMid(5);
            },
            error:function(){
                alert('fail');
+           },
+           complete: function() {
+               unload();
            }
        });
 
        $.ajax({
            type : "get",
            async: false,
-           url: URL + "instrument",
+           url: "instrument",
            dataType: "jsonp",
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
+           beforeSend : function() {
+               loading();
+           },
            success : function(json) {
                Instrument = json[0].data;
                request.requestInstrument(0);
@@ -47,6 +53,9 @@ namespace request {
            },
            error:function(){
                alert('fail');
+           },
+           complete: function() {
+               unload();
            }
        });
         // The following is used for test without network.
@@ -62,11 +71,10 @@ namespace request {
     // Get Mid file
     export let requestMid = function(j: number) {
         loading();
-        console.log(j);
         $.ajax({
             type : "get",
             async: false,
-            url: URL + "music?name="+Music[j],
+            url: "music?name="+Music[j],
             dataType: "jsonp",
             jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
             jsonpCallback:"success_jsonpCallback",  // callback的function名称
@@ -84,7 +92,10 @@ namespace request {
             error:function(){
                 unload();
                 alert('fail');
-            }
+            },
+           complete: function() {
+               unload();
+           }
         });
 
     }
@@ -95,7 +106,7 @@ namespace request {
         $.ajax({
            type : "get",
            async: false,
-           url: URL + "getInstrument?name="+Instrument[j],
+           url: "getInstrument?name="+Instrument[j],
            dataType: "jsonp",
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
@@ -106,6 +117,9 @@ namespace request {
            error:function(){
                unload();
                alert('fail');
+           },
+           complete: function() {
+               unload();
            }
         });
     }
