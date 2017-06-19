@@ -8,6 +8,7 @@ namespace request {
     export let Music: Array<string>;
     export let Instrument: Array<string>;
     export let Mobile: Array<Array<string>>;
+    let URL = "http://localhost:8081/";
 
     // To get the information of buttons and create them.
     export let requestButton = function(init_one: any, init_two: any) {
@@ -16,7 +17,7 @@ namespace request {
        $.ajax({
            type : "get",
            async: false,
-           url: "http://localhost:8081/musicList",
+           url: URL + "musicList",
            dataType: "jsonp",
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
@@ -31,7 +32,7 @@ namespace request {
        $.ajax({
            type : "get",
            async: false,
-           url: "http://localhost:8081/instrument",
+           url: URL + "instrument",
            dataType: "jsonp",
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
@@ -63,7 +64,7 @@ namespace request {
         $.ajax({
             type : "get",
             async: false,
-            url: "http://localhost:8081/music?name="+Music[j],
+            url: URL + "music?name="+Music[j],
             dataType: "jsonp",
             jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
             jsonpCallback:"success_jsonpCallback",  // callback的function名称
@@ -92,7 +93,7 @@ namespace request {
         $.ajax({
            type : "get",
            async: false,
-           url: "http://localhost:8081/getInstrument?name="+Instrument[j],
+           url: URL + "getInstrument?name="+Instrument[j],
            dataType: "jsonp",
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称
