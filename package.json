@@ -35,6 +35,6 @@
   },
   "dependencies": {
     "gulp-livereload": "^3.8.1",
-    "gulp-nodemon": "^2.2.1"
+    "gulp-nodemon": "^2.2.1",
   }
 }

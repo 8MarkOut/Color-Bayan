@@ -1,6 +1,3 @@
-import acoustic_grand_piano from "../lib/acoustic_grand_piano-mp3";
-import synth_drum from "../lib/synth_drum-mp3.js";
-
 class SoundFont {
     private instrument: string;
     private note: Array<number>;
@@ -17,17 +14,6 @@ class SoundFont {
         this.audio = new Array<any>();
         this.isplayinglock = new Array<number>();
         this.resetlock(1);
-        this.changeInstrument("acoustic_grand_piano");
-    }
-    private getSoundJson(instrument: string): any {
-        switch (instrument) {
-            case "acoustic_grand_piano":
-                return acoustic_grand_piano;
-            case "synth_drum":
-                return synth_drum;
-            default:
-                return acoustic_grand_piano;
-        }
     }
     public static normalizeKey(key: number): number {
         if (key < 0) key = 0;
@@ -66,15 +52,8 @@ class SoundFont {
     }
     public changeInstrument(instrument: string): void {
         this.instrument = instrument;
-        switch(instrument) {
-            case "accordion":
-            case "violin":
-                this.loop = true;
-            default:
-                this.loop = false;
-        }
         for (let i = 0; i < 88; i++) {
-            this.audio[i] = new Audio(this.getSoundJson(this.instrument)[SoundFont.key2note(i)]);
+            this.audio[i] = new Audio(JSON.parse(instrument)[SoundFont.key2note(i)]);
             this.audio[i].loop = this.loop;
         }
     }
