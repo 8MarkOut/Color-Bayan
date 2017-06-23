@@ -74,7 +74,7 @@ namespace request {
         $.ajax({
             type : "get",
             async: false,
-            url: "music?name="+Music[j],
+            url: "music?name="+encodeURI(Music[j]),
             dataType: "jsonp",
             jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
             jsonpCallback:"success_jsonpCallback",  // callback的function名称
@@ -106,7 +106,7 @@ namespace request {
         $.ajax({
            type : "get",
            async: false,
-           url: "getInstrument?name="+Instrument[j],
+           url: "getInstrument?name="+encodeURI(Instrument[j]),
            dataType: "jsonp",
            jsonp: "callbackparam",  // 服务端用于接收callback调用的function名的参数
            jsonpCallback:"success_jsonpCallback",  // callback的function名称

@@ -47,7 +47,10 @@ app.get('/music', function(req, res) {
 	console.log('name', req.query.name);
 	fs.readFile('src/lib/music/'+ req.query.name + '.mid', function(error, data) {
 
-		if (error) throw error;
+		if (error) {
+			console.log('error:\n'+error);
+			return;
+		}
 
 		var jsonObj = {
 			data: null
@@ -75,7 +78,7 @@ app.get('/instrument', function (req, res) {
 		}
 
 		files.forEach(function(file) {
-			var fileName = file.toString();
+			var fileName = file.toString('utf-8');
 			if(fileName != "") jsonObj.data.push(fileName);
 		})
 
