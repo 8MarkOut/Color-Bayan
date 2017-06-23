@@ -60,7 +60,8 @@ namespace keybdEvent {
 
     // The event when the key of keyboard is Down
     export let keyDown = function(event: any): void {
-        let realkey = getkeyValue(event.keyCode);
+        let ifIE: boolean = navigator.appName == "Microsoft Internet Explorer";
+        let realkey = (ifIE) ? getkeyValue(event.keyCode) : getkeyValue(event.which);
         let tempDiv: any = getDiv(realkey);
         if (tempDiv !== undefined) {
             tempDiv.keyDown();

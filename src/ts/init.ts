@@ -24,8 +24,13 @@ window.onload = function(){
     init_drag();
 }
 
-document.onkeydown = keybdEvent.keyDown;
-document.onkeyup = keybdEvent.keyUp;
+// document.onkeydown = keybdEvent.keyDown;
+// document.onkeyup = keybdEvent.keyUp;
+
+window.addEventListener('keydown', keybdEvent.keyDown, false);
+window.addEventListener('keyup', keybdEvent.keyUp, false);
+
+
 
 // 初始化下拉栏
 function initDropdownMenu(): void {
