@@ -173,23 +173,6 @@ function init_piano_roll() {
 
 function init_drag() {
     let drag: any = document.getElementById("main");
-<<<<<<< HEAD
     drag.addEventListener('drop', dropEvent.dropHandler, false);
     drag.addEventListener('dragover', dropEvent.dragOverHandler, false);
-=======
-    drag.addEventListener('drop', dropHandler, false);
-    drag.addEventListener('dragover', dragOverHandler, false);
 }
-
-function dropHandler(e: any) {
-    e.stopPropagation();
-    e.preventDefault();
-
-    let files: any = e.dataTransfer.files;
-    for(var i = 0, len = files.length; i < len; i++) {
-        var f = files[i];
-        readAsArrayBuffer(f);
-    }
->>>>>>> PianoRoll
-}
-
