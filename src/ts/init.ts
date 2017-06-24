@@ -32,6 +32,13 @@ window.onload = function(){
 
 window.onresize = function(){  
     PianoRoll.getInstance().resize();
+    let canvas = document.getElementById("piano-roll");
+    let mainbox = document.getElementById("main");
+    let pbox = document.getElementById("piano-box");
+    let width = pbox.offsetWidth;
+    let height = mainbox.offsetHeight - pbox.offsetHeight - 10;
+    canvas.setAttribute("width", width.toString());
+    canvas.setAttribute("height", height.toString());
 } 
 
 window.addEventListener('keydown', keybdEvent.keyDown, false);
@@ -162,9 +169,21 @@ function init_piano() {
 function init_piano_roll() {
     let piano: any = document.getElementById("Piano");
     let canvas: any = document.createElement("canvas");
+
+    let mainbox = document.getElementById("main");
+    let pbox = document.getElementById("piano-box");
+    // let mainsty = window.getComputedStyle(mainbox, null);
+    // let pboxsty = window.getComputedStyle(pbox, null);
+    console.log(pbox.offsetWidth);
+    console.log(pbox.offsetHeight);
+    console.log(mainbox.offsetHeight);
+
+    let width = pbox.offsetWidth;
+    let height = mainbox.offsetHeight - pbox.offsetHeight - 10;
+    
     canvas.setAttribute("id", "piano-roll");
-    canvas.setAttribute("width", 1300);
-    canvas.setAttribute("height", 300);
+    canvas.setAttribute("width", width.toString());
+    canvas.setAttribute("height", height.toString());
     piano.appendChild(canvas);
     setInterval(function(){
         PianoRoll.getInstance().run(canvas);
