@@ -25,6 +25,7 @@ window.onload = function(){
     init_piano();
     init_drag();
     init_piano_roll();
+    init_PlayButton()
 }
 
 // document.onkeydown = keybdEvent.keyDown;
@@ -194,4 +195,18 @@ function init_drag() {
     let drag: any = document.getElementById("main");
     drag.addEventListener('drop', dropEvent.dropHandler, false);
     drag.addEventListener('dragover', dropEvent.dragOverHandler, false);
+}
+
+function init_PlayButton() {
+    let playButton = document.getElementById("playButton");
+    playButton.onclick = () => {
+        let playArrow = document.getElementById("playArrow");
+        if (playArrow.innerText == "play_arrow") {
+            MainController.getInstance().play();
+            playArrow.innerText = "pause";
+        } else {
+            MainController.getInstance().stopPlay();
+            playArrow.innerHTML = "play_arrow";
+        }
+    }
 }

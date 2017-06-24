@@ -42,10 +42,14 @@ class MainController {
         sequence = seq;
     }
     public autoPlay() {
+        let playPro = document.getElementById("playPro");
         let timeControl = TimeController.getInstance();
+        playPro.style.width = Math.floor(timeControl.getTime() / sequence.length * 100).toString() + "%";
         if (timeControl.getTime() > sequence.length) {
             timeControl.finish();
-            MainController.getInstance().stopPlay();
+            let playButton = document.getElementById("playButton");
+            playButton.click();
+            playButton.className = playButton.className.replace(" active", "");
         } else {
             timeControl.start();
             let time: number = timeControl.getTime();

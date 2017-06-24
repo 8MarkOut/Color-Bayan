@@ -45,10 +45,13 @@ namespace keybdEvent {
                 }
                 break;
             case "space":
-                if (MainController.getInstance().playing)
-                    MainController.getInstance().stopPlay();
-                else
-                    MainController.getInstance().play();
+                let playButton = document.getElementById("playButton");
+                playButton.click();
+                if (playButton.className.indexOf("active") === -1) {
+                    playButton.className += " active";
+                } else {
+                    playButton.className = playButton.className.replace(" active", "");
+                }
                 break;
         }
         let tempDiv: any = getDiv(realkey);

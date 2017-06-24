@@ -1,6 +1,8 @@
 import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
 import { midiFileProsess } from "./midiFileProsess";
+import { MainController } from "./mainController";
+import { TimeController } from "./TimeController";
 
 namespace request {
     export let keyBd: Array<string> = ["keyboardMap3", "keyboardMap4"];
@@ -87,6 +89,13 @@ namespace request {
                 });
                 fileData = fileData.join("");
                 play(fileData);
+                MainController.getInstance().stopPlay();
+                TimeController.getInstance().reset();
+                let playButton = document.getElementById("playButton");
+                if (playButton.className.indexOf("active") !== -1) {
+                    playButton.click();
+                    playButton.className = playButton.className.replace(" active", "");
+                }
             },
             error:function(){
                 unload();
