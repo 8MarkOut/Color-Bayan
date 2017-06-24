@@ -74,7 +74,9 @@ class MainController {
         TimeController.getInstance().stop();
         this.playing = false;
         SoundFont.getInstance().resetlock(1);
+        SoundFont.getInstance().stopAll();
         clearInterval(this.playEvent);
+        Bayan.getInstance().initColor();
     }
 }
 

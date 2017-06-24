@@ -62,6 +62,12 @@ class SoundFont {
             this.isplayinglock[i] = n;
         }
     }
+    public stopAll() {
+        this.audio.forEach(element => {
+            element.pause();
+            element.currentTime = 0;
+        });
+    }
 }
 
 export { SoundFont };

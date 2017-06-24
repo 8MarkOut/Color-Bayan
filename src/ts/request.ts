@@ -26,7 +26,7 @@ namespace request {
                request.requestMid(2);
            },
            error:function(){
-               alert('fail');
+               alert('Fail to get music list');
            },
            complete: function() {
                unload();
@@ -52,7 +52,7 @@ namespace request {
                unload();
            },
            error:function(){
-               alert('fail');
+               alert('Fail to get instrument list');
            },
            complete: function() {
                unload();
@@ -91,7 +91,7 @@ namespace request {
             },
             error:function(){
                 unload();
-                alert('fail');
+                alert('Fail to get ' + Music[j]);
             },
            complete: function() {
                unload();
@@ -116,7 +116,7 @@ namespace request {
            },
            error:function(){
                unload();
-               alert('fail');
+               alert('Fail to get ' + Instrument[j]);
            },
            complete: function() {
                unload();

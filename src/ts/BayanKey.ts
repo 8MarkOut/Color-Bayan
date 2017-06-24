@@ -14,10 +14,13 @@ class BayanKey {
 
     public initColor(): void {
         if (this.keyElement !== undefined) {
+            this.keyElement.style.cssText = "";
             if (this.isBlackKey())
                 this.keyElement.setAttribute("class", "key deep-gray");
             else
                 this.keyElement.setAttribute("class", "key gray");
+            if (this.keyElement.getElementsByClassName("display")[0] !== undefined)
+                this.keyElement.getElementsByClassName("display")[0].innerHTML = "";
         }
     }
 
