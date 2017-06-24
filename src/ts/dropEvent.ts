@@ -1,5 +1,4 @@
-import { MainController } from "./mainController";
-import { MIDIParser } from "./MIDIParser";
+import { midiFileProsess } from "./midiFileProsess";
 
 namespace dropEvent {
     // get the Data from MID file
@@ -29,9 +28,8 @@ namespace dropEvent {
                 return ('0'+ v.charCodeAt(0).toString(16)).slice(-2);
             });
             fileData = fileData.join("");
-            let midiparse = new MIDIParser();
-            let seq = midiparse.createKeyEvents(fileData);
-            MainController.getInstance().loadSequence(seq);
+            midiFileProsess.setFileData(fileData);
+            midiFileProsess.loadMidiFile();
         }
         reader.readAsBinaryString(file);
     }

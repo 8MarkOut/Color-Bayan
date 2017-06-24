@@ -1,6 +1,7 @@
 import { BayanKey } from "./BayanKey";
 import { SoundFont } from "./SoundFont";
 import { TimeController } from "./TimeController";
+import { midiFileProsess } from "./midiFileProsess";
 
 // shift = -1 + 3, 1 = B
 // valid while shift in [0, 53]
@@ -75,20 +76,24 @@ class Bayan {
         this.shift = 26; // 12 * 2 - 1 + 3
         this.soundfield = { low: 26, high: 60 };
     }
+
     public add(key: BayanKey): void {
         this.keys.push(key);
     }
+
     public getkey(keyCode: string): BayanKey {
         for (let i:number = 0; i < this.keys.length; i++) {
             if (this.keys[i].identify(keyCode))
                 return this.keys[i];
         }
     }
+
     public initColor(): void {
         this.keys.forEach(element => {
             element.initColor();
         });
     }
+
     public setKeybd(keybdMap: string) {
         switch(keybdMap) {
             case "keyboardMap3":
@@ -113,6 +118,7 @@ class Bayan {
                 this.soundfield.high = 60;
         }
         this.initColor();
+        midiFileProsess.loadMidiFile();
     }
 
     public getKeyNameByNote(note: number): string {

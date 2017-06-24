@@ -22,7 +22,8 @@ class KeyEvent {
     }
 }
 
-let sequence = MIDIParser.test();
+// let sequence = MIDIParser.test();
+let sequence = null;
 
 class MainController {
     private playEvent: any;

@@ -1,7 +1,6 @@
 import { Bayan } from "./Bayan";
-import { MIDIParser } from "./MIDIParser";
-import { MainController } from "./mainController";
 import { SoundFont } from "./SoundFont";
+import { midiFileProsess } from "./midiFileProsess";
 
 namespace request {
     export let keyBd: Array<string> = ["keyboardMap3", "keyboardMap4"];
@@ -136,9 +135,8 @@ namespace request {
 
     // 输入接收的Mid文件字符串，播放音乐文件
     let play = function(fileData: any) {
-        let midiparse = new MIDIParser();
-        let seq = midiparse.createKeyEvents(fileData);
-        MainController.getInstance().loadSequence(seq);
+        midiFileProsess.setFileData(fileData);
+        midiFileProsess.loadMidiFile();
     }
 }
 
