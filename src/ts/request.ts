@@ -23,7 +23,7 @@ namespace request {
            },
            success : function(json) {
                Music = json[0].data;
-               request.requestMid(5);
+               request.requestMid(2);
            },
            error:function(){
                alert('fail');
