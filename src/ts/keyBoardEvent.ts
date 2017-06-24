@@ -47,7 +47,7 @@ namespace keybdEvent {
             case "space":
                 if (MainController.getInstance().playing)
                     MainController.getInstance().stopPlay();
-                else 
+                else
                     MainController.getInstance().play();
                 break;
         }

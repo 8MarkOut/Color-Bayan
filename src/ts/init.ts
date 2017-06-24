@@ -11,6 +11,7 @@ import { MainController } from "./mainController";
 import { MIDIParser } from "./MIDIParser";
 
 import { request } from "./request";
+import { dropEvent } from "./dropEvent";
 
 import * as $ from "jquery";
 
@@ -154,40 +155,7 @@ function init_piano() {
 
 function init_drag() {
     let drag: any = document.getElementById("main");
-    drag.addEventListener('drop', dropHandler, false);
-    drag.addEventListener('dragover', dragOverHandler, false);
+    drag.addEventListener('drop', dropEvent.dropHandler, false);
+    drag.addEventListener('dragover', dropEvent.dragOverHandler, false);
 }
 
-// get the Data from MID file
-let fileData: any;
-
-function dropHandler(e: any) {
-    e.stopPropagation();
-    e.preventDefault();
-
-    let files: any = e.dataTransfer.files;
-    for(var i = 0, len = files.length; i < len; i++) {
-        var f = files[i];
-        readAsArrayBuffer(f);
-    }
-}
-
-function dragOverHandler(e: any) {
-    e.stopPropagation();
-    e.preventDefault();
-    e.dataTransfer.dragEffect = 'copy';
-}
-
-function readAsArrayBuffer(file: any) { 
-    var reader = new FileReader();    
-    reader.onload = (e) => {
-        fileData = reader.result.split('').map((v: any) => {
-            return ('0'+ v.charCodeAt(0).toString(16)).slice(-2);
-        });
-        fileData = fileData.join("");
-        let midiparse = new MIDIParser();
-        let seq = midiparse.createKeyEvents(fileData);
-        MainController.getInstance().loadSequence(seq);
-    }
-    reader.readAsBinaryString(file);
-}
