@@ -2,7 +2,7 @@ import { SoundFont } from "./SoundFont";
 import { ColorMap } from "./ColorMap";
 import { Bayan } from "./Bayan";
 import { Piano } from "./Piano";
-import { PianoRoll } from "./Piano";
+import { PianoRoll } from "./PianoRoll";
 
 class BayanKey {
     private keyName: string;
@@ -80,11 +80,18 @@ class BayanKey {
 
     private isBlackKey(): boolean {
         let blackkey = [
-            false, true, false, true, false,
-            false, true, false, true, false,
-            true, false
+            false, true, false, true, false, false,
+            true, false, true, false, true, false
         ];
         return blackkey[(this.getSoundKey() + 9) % 12];
+    }
+
+    public static isWhiteKey(notekey: number): boolean {
+        let blackkey = [
+            false, true, false, true, false, false,
+            true, false, true, false, true, false
+        ];
+        return !blackkey[(notekey + 9) % 12];
     }
 }
 

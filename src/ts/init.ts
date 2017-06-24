@@ -1,7 +1,7 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
 import { Piano } from "./Piano";
-import { PianoRoll } from "./Piano";
+import { PianoRoll } from "./PianoRoll";
 
 import { SoundFont } from "./SoundFont";
 import { keybdEvent } from "./keyBoardEvent";
@@ -136,15 +136,13 @@ function init_piano() {
         black_box.appendChild(temp);
     }
     
-    box.appendChild(white_box);
     box.appendChild(black_box);
+    box.appendChild(white_box);
     piano.appendChild(box);
 }
 
 function init_piano_roll() {
     let piano: any = document.getElementById("Piano");
-    // let box:any = document.createElement("div");
-    // box.setAttribute("id", "piano-roll-container");
     let canvas: any = document.createElement("canvas");
     canvas.setAttribute("id", "piano-roll");
     piano.appendChild(canvas);
@@ -166,8 +164,6 @@ function dropHandler(e: any) {
     let files: any = e.dataTransfer.files;
     for(var i = 0, len = files.length; i < len; i++) {
         var f = files[i];
-        // console.log(f.name + " " + f.size + " ");
-        // console.log(f);
         readAsArrayBuffer(f);
     }
 }

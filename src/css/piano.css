@@ -11,24 +11,23 @@
 }
 
 #piano-box {
-    position: relative;
+    /*position: relative;*/
     /*top: -15vh;*/
     /* left: 15vw; */
 }
 
 #white-box {
     display: flex;
-    position: absolute;
+    /*position: absolute;
     left: -47vw;
-    top: -25vh;
+    top: -29vh;*/
 }
 
 #black-box {
-    position: absolute;
     display: flex;
     margin-left: 1.2vw;
-    left: -47vw;
-    top: -25vh;
+    position: relative;
+    top: 3.6vw;
 }
 
 .white-key {
@@ -56,9 +55,23 @@
 }
 
 canvas#piano-roll {
-    position: absolute;
-    width: 80vw;
+    /*position: absolute;*/
+    width: 95vw;
     height: 50vh;
-    left: 10vw;
-    top: 20vh;
+    /*left: 2vw;
+    top: 30vh;*/
+    /*background-color: blueviolet;
+    opacity: 0.5;*/
 }
+
+/*.rollBar {
+    position: relative;
+}
+
+.rollBar .black {
+    z-index: 1;
+}
+
+.rollBar .white {
+    z-index: 0;
+}*/

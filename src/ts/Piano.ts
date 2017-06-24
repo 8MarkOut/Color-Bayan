@@ -1,5 +1,6 @@
 import { SoundFont } from "./SoundFont";
 import { ColorMap } from "./ColorMap";
+import { PianoRoll } from "./PianoRoll";
 
 class Piano {
     public key2HTMLid: any = {
@@ -42,12 +43,16 @@ class Piano {
     }
     public bindMouseEvent(div: any, id: number, whiteKey: boolean) {
         div.onmousedown = () => {
-            SoundFont.getInstance().audio[this.getKeyById(id, whiteKey)].play();
+            let keynote = this.getKeyById(id, whiteKey);
+            PianoRoll.getInstance().setHold(keynote, true);
+            SoundFont.getInstance().audio[keynote].play();
             let cm = ColorMap.getInstance();
             div.style.backgroundColor = cm.getColor(this.getKeyById(id, whiteKey));
         }
         div.onmouseup = div.onmouseout = () => {
-            let audio = SoundFont.getInstance().audio[this.getKeyById(id, whiteKey)];
+            let keynote = this.getKeyById(id, whiteKey);
+            PianoRoll.getInstance().setHold(keynote, false);
+            let audio = SoundFont.getInstance().audio[keynote];
             audio.pause();
             audio.currentTime = 0;
             div.style.cssText = "";
@@ -55,58 +60,4 @@ class Piano {
     }
 };
 
-class PianoRoll {
-    public static _instance: PianoRoll = null;
-    private rectangles: any;
-    private speed: number;
-    public static getInstance(): PianoRoll {
-        if (PianoRoll._instance === null)
-            PianoRoll._instance = new PianoRoll();
-        return PianoRoll._instance;
-    }
-    private constructor() {
-        this.speed = 1;
-        this.rectangles = new Array<any>();
-        for (let i = 0; i < 88; i++) {
-            this.rectangles[i] = {};
-            this.rectangles[i].notekey = i;
-            this.rectangles[i].box = new Array<any>();
-            this.rectangles[i].hold = false;
-            this.rectangles[i].x_axis = 4 * i;
-            this.rectangles[i].width = 3;
-        }
-    };
-    public setHold(notekey: number, hold: boolean):void {
-        if (this.rectangles[notekey].hold === hold)
-            return;
-        this.rectangles[notekey].hold = hold;
-        if (hold) {
-            let pair = { begin: 0, end: -1 };
-            this.rectangles[notekey].box.push(pair);
-        } else {
-            let arr = this.rectangles[notekey].box;
-            arr[arr.length - 1].end = 0;
-        }
-    }
-    public run(canvas: any): void {
-        let cxt = canvas.getContext('2d');
-        cxt.clearRect(0, 0, canvas.width, canvas.height);
-        this.rectangles.forEach(element => {
-            while (element.box.length > 0 && element.box[0].end > canvas.height)
-                element.box.splice(0, 1);
-            element.box.forEach(e => {
-                e.begin += this.speed;
-                cxt.fillStyle = ColorMap.getInstance().getColor(element.notekey);
-                if (e.end === -1) {
-                    cxt.fillRect(element.x_axis, e.end, element.width, e.begin); 
-                } else {
-                    e.end += this.speed;
-                    cxt.fillRect(element.x_axis, e.end, element.width, e.begin - e.end); 
-                }
-            });
-        });
-    };
-}
-
 export { Piano };
-export { PianoRoll };
