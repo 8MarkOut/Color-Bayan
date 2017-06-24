@@ -25,10 +25,7 @@
 2. 本网页使用了gulp进行热编译。需要先安装gulp。安装命令如下：
 
 ```
-
 npm install --global gulp
-npm install --save-dev gulp
-
 ```
 
 3. 如果gulp安装完成，输入`gulp -v`可查看gulp的版本。
@@ -38,3 +35,5 @@ npm install --save-dev gulp
 5. 在命令行输入`gulp`进行热编译，等待服务器启动
 
 6. 服务器启动后在8081端口启动
+
+7. 如果有兴趣，可以访问网站http://123.207.110.18:8081
