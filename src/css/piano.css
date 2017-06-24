@@ -1,11 +1,18 @@
-.gray { background-color:  #bdc3c7; }
-.deep-gray { background-color:  #2c3e50; }
-.green { background-color: green; }
+.gray {
+    background-color:  #bdc3c7;
+}
+.deep-gray {
+    background-color:  #2c3e50;
+}
+.green {
+    background-color: green;
+}
 
 #Piano {
-    display: block;
+    /*display: flex;*/
+    /*display: block;*/
     margin: 0 auto;
-    /*display: flex;
+    /*
     justify-content: center;
     align-content: center;*/
     /*position: absolute;*/
@@ -15,6 +22,7 @@
     /*position: relative;*/
     /*top: -15vh;*/
     /* left: 15vw; */
+    margin: 0 auto;
 }
 
 #white-box {
