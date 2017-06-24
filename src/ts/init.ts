@@ -145,6 +145,8 @@ function init_piano_roll() {
     let piano: any = document.getElementById("Piano");
     let canvas: any = document.createElement("canvas");
     canvas.setAttribute("id", "piano-roll");
+    canvas.setAttribute("width", "95vw");
+    canvas.setAttribute("height", "50vh");
     piano.appendChild(canvas);
     setInterval(function(){
         PianoRoll.getInstance().run(canvas);

@@ -25,7 +25,7 @@ class PianoRoll {
 
     public resize(): void {
         // if reize the browser window size, call this function
-        let alpha = 2.7;
+        // let alpha = 2.7;
         let wk = document.getElementsByClassName("white-key");
         let wsty = window.getComputedStyle(wk[0], null);
         let bk = document.getElementsByClassName("black-key");
@@ -36,10 +36,10 @@ class PianoRoll {
         let bShift = parseFloat(bbsty.marginLeft);
         let bMaxWidth = bMinWidth + bShift;
 
-        wWidth /= alpha;
-        bMinWidth /= alpha;
-        bMaxWidth /= alpha;
-        bShift /= alpha;
+        // wWidth /= alpha;
+        // bMinWidth /= alpha;
+        // bMaxWidth /= alpha;
+        // bShift /= alpha;
 
         // console.log(wWidth);
         // console.log(bMinWidth);
@@ -54,7 +54,7 @@ class PianoRoll {
                 wCount++;
             } else {
                 this.rollBar[i].width = bMinWidth;
-                this.rollBar[i].x_axis = bShift + bMaxWidth * bCount;
+                this.rollBar[i].x_axis = bShift + wWidth * bCount;
                 bCount++;
                 if (bCount == 1 || bCount == 4) {
                     bCount++;

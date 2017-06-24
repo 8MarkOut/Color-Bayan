@@ -55,13 +55,8 @@
 }
 
 canvas#piano-roll {
-    /*position: absolute;*/
-    width: 95vw;
-    height: 50vh;
-    /*left: 2vw;
-    top: 30vh;*/
-    /*background-color: blueviolet;
-    opacity: 0.5;*/
+    background-color: blueviolet;
+    opacity: 0.5;
 }
 
 /*.rollBar {
