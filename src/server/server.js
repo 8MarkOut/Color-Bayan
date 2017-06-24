@@ -6,7 +6,6 @@ var router = express.Router();
 
 app.use(express.static(path.join(__dirname, '../css')));
 app.use(express.static(path.join(__dirname, '../lib')));
-// app.use(express.static(path.join(__dirname, '../ts')));
 
 app.get('/', function(req, res) {
 	res.redirect('/Color-Bayan');

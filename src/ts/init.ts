@@ -1,6 +1,7 @@
 import { BayanKey } from "./BayanKey";
 import { Bayan } from "./Bayan";
 import { Piano } from "./Piano";
+import { PianoRoll } from "./PianoRoll";
 
 import { SoundFont } from "./SoundFont";
 import { keybdEvent } from "./keyBoardEvent";
@@ -23,10 +24,15 @@ window.onload = function(){
     request.requestButton(initDropdownMenu, initMoblie);
     init_piano();
     init_drag();
+    init_piano_roll();
 }
 
 // document.onkeydown = keybdEvent.keyDown;
 // document.onkeyup = keybdEvent.keyUp;
+
+window.onresize = function(){  
+    PianoRoll.getInstance().resize();
+} 
 
 window.addEventListener('keydown', keybdEvent.keyDown, false);
 window.addEventListener('keyup', keybdEvent.keyUp, false);
@@ -122,40 +128,68 @@ function init(): void {
 
 function init_piano() {
     let piano: any = document.getElementById("Piano");
-        let box: any = document.createElement("div");
-        box.setAttribute("id", "piano-box");
+    let box: any = document.createElement("div");
+    box.setAttribute("id", "piano-box");
 
-        let white_box: any = document.createElement("div");
-        white_box.setAttribute("id", "white-box");
-        for (let j: number = 0; j < 52; j++) {
-            let temp: any = document.createElement("div");
-            temp.setAttribute("class", "white-key");
-            white_box.appendChild(temp);
-            Piano.getInstance().bindMouseEvent(temp, j, true);
-        }
+    let white_box: any = document.createElement("div");
+    white_box.setAttribute("id", "white-box");
+    for (let j: number = 0; j < 52; j++) {
+        let temp: any = document.createElement("div");
+        temp.setAttribute("class", "white-key");
+        white_box.appendChild(temp);
+        Piano.getInstance().bindMouseEvent(temp, j, true);
+    }
 
-        let black_box: any = document.createElement("div");
-        black_box.setAttribute("id", "black-box");
-        let hidden = [ false, false, true, false, false, false, true];
-        for (let j: number = 0; j < 51; j++) {
-            let temp: any = document.createElement("div");
-            temp.setAttribute("class", "black-key");
-            if (hidden[(j + 5) % 7]) {
-                temp.style.visibility = "hidden";
-            } else {
-                Piano.getInstance().bindMouseEvent(temp, j, false);
-            }
-            black_box.appendChild(temp);
+    let black_box: any = document.createElement("div");
+    black_box.setAttribute("id", "black-box");
+    let hidden = [ false, false, true, false, false, false, true];
+    for (let j: number = 0; j < 51; j++) {
+        let temp: any = document.createElement("div");
+        temp.setAttribute("class", "black-key");
+        if (hidden[(j + 5) % 7]) {
+            temp.style.visibility = "hidden";
+        } else {
+            Piano.getInstance().bindMouseEvent(temp, j, false);
         }
-        
-        box.appendChild(white_box);
-        box.appendChild(black_box);
-        piano.appendChild(box);
+        black_box.appendChild(temp);
+    }
+    
+    box.appendChild(black_box);
+    box.appendChild(white_box);
+    piano.appendChild(box);
+}
+
+function init_piano_roll() {
+    let piano: any = document.getElementById("Piano");
+    let canvas: any = document.createElement("canvas");
+    canvas.setAttribute("id", "piano-roll");
+    canvas.setAttribute("width", 1300);
+    canvas.setAttribute("height", 300);
+    piano.appendChild(canvas);
+    setInterval(function(){
+        PianoRoll.getInstance().run(canvas);
+    }, 50);
 }
 
 function init_drag() {
     let drag: any = document.getElementById("main");
+<<<<<<< HEAD
     drag.addEventListener('drop', dropEvent.dropHandler, false);
     drag.addEventListener('dragover', dropEvent.dragOverHandler, false);
+=======
+    drag.addEventListener('drop', dropHandler, false);
+    drag.addEventListener('dragover', dragOverHandler, false);
+}
+
+function dropHandler(e: any) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    let files: any = e.dataTransfer.files;
+    for(var i = 0, len = files.length; i < len; i++) {
+        var f = files[i];
+        readAsArrayBuffer(f);
+    }
+>>>>>>> PianoRoll
 }
 

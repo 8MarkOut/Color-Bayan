@@ -1,5 +1,6 @@
 import { SoundFont } from "./SoundFont";
 import { ColorMap } from "./ColorMap";
+import { PianoRoll } from "./PianoRoll";
 
 class Piano {
     public key2HTMLid: any = {
@@ -42,12 +43,16 @@ class Piano {
     }
     public bindMouseEvent(div: any, id: number, whiteKey: boolean) {
         div.onmousedown = () => {
-            SoundFont.getInstance().audio[this.getKeyById(id, whiteKey)].play();
+            let keynote = this.getKeyById(id, whiteKey);
+            PianoRoll.getInstance().setHold(keynote, true);
+            SoundFont.getInstance().audio[keynote].play();
             let cm = ColorMap.getInstance();
             div.style.backgroundColor = cm.getColor(this.getKeyById(id, whiteKey));
         }
         div.onmouseup = div.onmouseout = () => {
-            let audio = SoundFont.getInstance().audio[this.getKeyById(id, whiteKey)];
+            let keynote = this.getKeyById(id, whiteKey);
+            PianoRoll.getInstance().setHold(keynote, false);
+            let audio = SoundFont.getInstance().audio[keynote];
             audio.pause();
             audio.currentTime = 0;
             div.style.cssText = "";
