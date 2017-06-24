@@ -26,6 +26,10 @@ window.onload = function(){
     init_piano_roll();
 }
 
+window.onresize = function(){  
+    PianoRoll.getInstance().resize();
+} 
+
 document.onkeydown = keybdEvent.keyDown;
 document.onkeyup = keybdEvent.keyUp;
 

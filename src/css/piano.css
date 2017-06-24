@@ -54,10 +54,10 @@
     margin-right: 0.6vw;
 }
 
-canvas#piano-roll {
+/*canvas#piano-roll {
     background-color: blueviolet;
     opacity: 0.5;
-}
+}*/
 
 /*.rollBar {
     position: relative;

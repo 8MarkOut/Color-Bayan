@@ -11,7 +11,7 @@ class PianoRoll {
         return PianoRoll._instance;
     }
     private constructor() {
-        this.speed = 2;
+        this.speed = 3;
         this.rollBar = new Array<any>();
         for (let i = 0; i < 88; i++) {
             this.rollBar[i] = {};
@@ -24,7 +24,7 @@ class PianoRoll {
     };
 
     public resize(): void {
-        // if reize the browser window size, call this function
+        // if reize the browser window, call this function
         // let alpha = 2.7;
         let wk = document.getElementsByClassName("white-key");
         let wsty = window.getComputedStyle(wk[0], null);
@@ -56,7 +56,7 @@ class PianoRoll {
                 this.rollBar[i].width = bMinWidth;
                 this.rollBar[i].x_axis = bShift + wWidth * bCount;
                 bCount++;
-                if (bCount % 12 == 1 || bCount % 12 == 4) {
+                if (bCount % 7 == 1 || bCount % 7 == 4) {
                     bCount++;
                 }
             }
