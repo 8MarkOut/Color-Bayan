@@ -31,21 +31,27 @@ window.onload = function(){
 // document.onkeydown = keybdEvent.keyDown;
 // document.onkeyup = keybdEvent.keyUp;
 
-window.onresize = function(){  
+window.onresize = function() {
     PianoRoll.getInstance().resize();
-    let canvas = document.getElementById("piano-roll");
+    let piano = document.getElementById("Piano");
     let mainbox = document.getElementById("main");
     let pbox = document.getElementById("piano-box");
+    let canvas = document.getElementById("piano-roll");
+    let displayStatus = piano.style.display;
+    piano.style.display = "none";
+    let height = mainbox.offsetHeight;
+    console.log(height);
+    piano.style.display = "flex";
     let width = pbox.offsetWidth;
-    let height = mainbox.offsetHeight - pbox.offsetHeight - 10;
+    height -= pbox.offsetHeight + 10;
+    piano.style.display = displayStatus;
     canvas.setAttribute("width", width.toString());
     canvas.setAttribute("height", height.toString());
+    
 } 
 
 window.addEventListener('keydown', keybdEvent.keyDown, false);
 window.addEventListener('keyup', keybdEvent.keyUp, false);
-
-
 
 // 初始化下拉栏
 function initDropdownMenu(): void {
@@ -170,14 +176,13 @@ function init_piano() {
 function init_piano_roll() {
     let piano: any = document.getElementById("Piano");
     let canvas: any = document.createElement("canvas");
-
+    piano.style.display = "flex";
     let mainbox = document.getElementById("main");
     let pbox = document.getElementById("piano-box");
-    // let mainsty = window.getComputedStyle(mainbox, null);
-    // let pboxsty = window.getComputedStyle(pbox, null);
-    console.log(pbox.offsetWidth);
-    console.log(pbox.offsetHeight);
+    
     console.log(mainbox.offsetHeight);
+    // console.log(pbox.offsetWidth);
+    console.log(pbox.offsetHeight);
 
     let width = pbox.offsetWidth;
     let height = mainbox.offsetHeight - pbox.offsetHeight - 10;
@@ -186,6 +191,7 @@ function init_piano_roll() {
     canvas.setAttribute("width", width.toString());
     canvas.setAttribute("height", height.toString());
     piano.appendChild(canvas);
+    piano.style.display = "none";
     setInterval(function(){
         PianoRoll.getInstance().run(canvas);
     }, 50);
