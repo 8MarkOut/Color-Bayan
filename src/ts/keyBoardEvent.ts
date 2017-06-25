@@ -10,11 +10,17 @@ namespace keybdEvent {
     
     // The event when the key of keyboard is Up
     export let keyUp = function(event: any): void {
-        if (MainController.getInstance().playing) {
-            alert("请暂时播放后再尝试。")
-            return;
-        }
         let realkey = getkeyValue(event.keyCode);
+        switch(realkey) {
+            case "enter":
+            case "shift":
+            case "add":
+            case "sub":
+                if (MainController.getInstance().playing) {
+                    alert("请暂时播放后再尝试。")
+                    return;
+                }
+        }
         let bayan = Bayan.getInstance();
         switch(realkey) {
             case "enter":
@@ -23,7 +29,6 @@ namespace keybdEvent {
                     bayan.soundfield.low += 12;
                     bayan.soundfield.high += 12;
                 }
-                    
                 break;
             case "shift":
                 if(bayan.shift - 12 >= bayan.keybdMap.lowerBound) {
@@ -49,7 +54,6 @@ namespace keybdEvent {
                 }
                 break;
             case "space":
-                let playButton = document.getElementById("playButton");
                 document.getElementById("realButton").click();
                 break;
         }

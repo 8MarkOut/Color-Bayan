@@ -11,7 +11,7 @@ class PianoRoll {
         return PianoRoll._instance;
     }
     private constructor() {
-        this.speed = 4;
+        this.speed = 6;
         this.rollBar = new Array<any>();
         for (let i = 0; i < 88; i++) {
             this.rollBar[i] = {};
@@ -25,7 +25,6 @@ class PianoRoll {
 
     public resize(): void {
         // if reize the browser window, call this function
-        // let alpha = 2.7;
         let wk = document.getElementsByClassName("white-key");
         let wsty = window.getComputedStyle(wk[0], null);
         let bk = document.getElementsByClassName("black-key");
@@ -36,15 +35,6 @@ class PianoRoll {
         let bShift = parseFloat(bbsty.marginLeft);
         let bMaxWidth = bMinWidth + bShift;
 
-        // wWidth /= alpha;
-        // bMinWidth /= alpha;
-        // bMaxWidth /= alpha;
-        // bShift /= alpha;
-
-        // console.log(wWidth);
-        // console.log(bMinWidth);
-        // console.log(bMaxWidth);
-        // console.log(bShift);
         let wCount = 0;
         let bCount = 0;
         for (let i = 0; i < 88; i++) {

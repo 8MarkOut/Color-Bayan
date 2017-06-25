@@ -1,5 +1,6 @@
 import { SoundFont } from "./SoundFont";
 import { ColorMap } from "./ColorMap";
+import { BayanKey } from "./BayanKey";
 import { PianoRoll } from "./PianoRoll";
 
 class Piano {
@@ -39,6 +40,21 @@ class Piano {
             return this.white2key[id % 7] + Math.floor(id / 7) * 12;
         } else {
             return this.black2key[id % 7] + Math.floor(id / 7) * 12;
+        }
+    }
+    public releaseAllKey(): void {
+        let whiteKeys:any = document.getElementsByClassName("white-key");
+        for (let i = 0; i < whiteKeys.length; i++) {
+            whiteKeys[i].style.cssText = "";
+        }
+        let blackKeys:any = document.getElementsByClassName("black-key");
+        for (let i = 0; i < blackKeys.length; i++) {
+            if (blackKeys[i].style.cssText !== "visibility: hidden;") {
+                blackKeys[i].style.cssText = "";
+            }
+        }
+        for (let i = 0; i < 88; i++) {
+            PianoRoll.getInstance().setHold(i, false);
         }
     }
     public bindMouseEvent(div: any, id: number, whiteKey: boolean) {

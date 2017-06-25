@@ -1,5 +1,6 @@
 import { TimeController } from "./TimeController";
 import { Bayan } from "./Bayan";
+import { Piano } from "./Piano";
 import { SoundFont } from "./SoundFont";
 import { soundEvent } from "./soundEvent";
 import { MIDIParser } from "./MIDIParser";
@@ -80,6 +81,7 @@ class MainController {
         SoundFont.getInstance().stopAll();
         clearInterval(this.playEvent);
         Bayan.getInstance().initColor();
+        Piano.getInstance().releaseAllKey();
     }
 }
 
