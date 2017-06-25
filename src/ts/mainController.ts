@@ -47,9 +47,7 @@ class MainController {
         playPro.style.width = Math.floor(timeControl.getTime() / sequence.length * 100).toString() + "%";
         if (timeControl.getTime() > sequence.length) {
             timeControl.finish();
-            let playButton = document.getElementById("playButton");
-            playButton.click();
-            playButton.className = playButton.className.replace(" active", "");
+            document.getElementById("realButton").click();
         } else {
             timeControl.start();
             let time: number = timeControl.getTime();

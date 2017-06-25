@@ -46,12 +46,7 @@ namespace keybdEvent {
                 break;
             case "space":
                 let playButton = document.getElementById("playButton");
-                playButton.click();
-                if (playButton.className.indexOf("active") === -1) {
-                    playButton.className += " active";
-                } else {
-                    playButton.className = playButton.className.replace(" active", "");
-                }
+                document.getElementById("realButton").click();
                 break;
         }
         let tempDiv: any = getDiv(realkey);

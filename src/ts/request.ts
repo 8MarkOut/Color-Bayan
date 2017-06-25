@@ -92,10 +92,8 @@ namespace request {
                 MainController.getInstance().stopPlay();
                 TimeController.getInstance().reset();
                 let playButton = document.getElementById("playButton");
-                if (playButton.className.indexOf("active") !== -1) {
-                    playButton.click();
-                    playButton.className = playButton.className.replace(" active", "");
-                }
+                if (playButton.className.indexOf("active") !== -1)
+                    document.getElementById("realButton").click();
             },
             error:function(){
                 unload();
