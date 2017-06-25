@@ -34,12 +34,14 @@
 }
 
 #loading {
-    width: 50%;
     z-index: 999;
     position: fixed;
-    left: 25%;
-    top: 50%;
+    background-color: rgba(255,255,255,0.8);
+    width: 90%;
+    height: 50%;
+    left: 5%;
 }
+
 body {
     display: flex;
     min-height: 100vh;
@@ -54,6 +56,10 @@ main {
     align-content: center;*/
 }
 
+.progress {
+    top: 50%;
+}
+
 .key {
     width: 6vw;
     height: 6vw;
@@ -62,6 +68,15 @@ main {
     position: relative;
     border-radius: 0.5vw;
         -moz-border-radius: 1vw; /* Old Firefox */
+}
+
+.playProgress {
+    width: 25%;
+    height: 35px;
+    background-color: white;
+    border: 2px;
+    border-radius: 25px;
+    box-shadow: 1px 1px 5px #888888;
 }
 
 .keyNum {

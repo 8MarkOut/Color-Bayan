@@ -62,23 +62,16 @@
         </header>
         <!--主体部分-->
         <main id="main" class="valign-wrapper">
+            <!--载入动画-->
             <div id="loading" class="invisible">
-                <div class="col s12 m4 center">
-                    <div class="preloader-wrapper big active">
-                        <div class="spinner-layer spinner-blue-only">
-                            <div class="circle-clipper left">
-                                <div class="circle"></div>
-                            </div><div class="gap-patch">
-                                <div class="circle"></div>
-                            </div><div class="circle-clipper right">
-                            <div class="circle"></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="progress">
+                    <div class="indeterminate"></div>
                 </div>
             </div>
+
             <div id="Bayan" class="col s12"></div>
             <div id="Piano" class="col s12"></div>
+
         </main>
 
         <!--页脚-->
@@ -97,6 +90,18 @@
             </div>
           </div>
         </footer>
+
+        <!--播放键-->
+        <div id="playButton" class="fixed-action-btn horizontal click-to-toggle">
+            <a id="realButton" class="btn-floating btn-large waves-effect waves-light red"><i id="playArrow" class="material-icons">play_arrow</i></a>
+            <ul>
+                <li class="playProgress" style="margin: 0">
+                    <div class="progress" style="margin: 0 auto">
+                        <div id="playPro" class="determinate" style="width: 70%"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
         
         
         <script>

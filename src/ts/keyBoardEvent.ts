@@ -45,10 +45,8 @@ namespace keybdEvent {
                 }
                 break;
             case "space":
-                if (MainController.getInstance().playing)
-                    MainController.getInstance().stopPlay();
-                else
-                    MainController.getInstance().play();
+                let playButton = document.getElementById("playButton");
+                document.getElementById("realButton").click();
                 break;
         }
         let tempDiv: any = getDiv(realkey);

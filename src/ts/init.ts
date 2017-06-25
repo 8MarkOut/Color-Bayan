@@ -31,6 +31,7 @@ window.onload = function(){
     init_piano();
     init_drag();
     init_piano_roll();
+    init_PlayButton()
 }
 
 // document.onkeydown = keybdEvent.keyDown;
@@ -145,14 +146,26 @@ function init(): void {
                 tempKey.keyDown();
                 soundEvent.playSound(tempKey.getKeyChar());
             }
+
             tempDiv.onmouseup = () => {
                 tempKey.keyUp();
                 soundEvent.stopSound(tempKey.getKeyChar());
             }
+
             tempDiv.onmouseout = () => {
                 tempKey.keyUp();
                 soundEvent.stopSound(tempKey.getKeyChar());
             }
+
+            $(tempDiv).on('touchstart', () => {
+                tempKey.keyDown();
+                soundEvent.playSound(tempKey.getKeyChar())
+            });
+
+            $(tempDiv).on('touchend', () => {
+                tempKey.keyUp();
+                soundEvent.stopSound(tempKey.getKeyChar());
+            });
 
             tempDiv.setAttribute("name", keyCol[i][j]);
             tempSpan.innerHTML = keyCol[i][j];
@@ -221,4 +234,18 @@ function init_drag() {
     let drag: any = document.getElementById("main");
     drag.addEventListener('drop', dropEvent.dropHandler, false);
     drag.addEventListener('dragover', dropEvent.dragOverHandler, false);
+}
+
+function init_PlayButton() {
+    let playButton = document.getElementById("realButton");
+    playButton.onclick = () => {
+        let playArrow = document.getElementById("playArrow");
+        if (playArrow.innerText == "play_arrow") {
+            MainController.getInstance().play();
+            playArrow.innerText = "pause";
+        } else {
+            MainController.getInstance().stopPlay();
+            playArrow.innerHTML = "play_arrow";
+        }
+    }
 }
