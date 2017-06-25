@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLHierarchy</id>
+    <coordinates>
+      <x>170</x>
+      <y>140</y>
+      <w>220</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>type=Package
+src
+	server
+	assets
+		instrument
+		music
+	css
+	ts
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
