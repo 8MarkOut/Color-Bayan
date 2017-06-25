@@ -2,7 +2,7 @@
     This is a namespace about keybdEvent
 */
 
-import { MainController } from "./mainController";
+import { MainController } from "./MainController";
 import { Bayan } from "./Bayan";
 import { soundEvent } from "./soundEvent";
 

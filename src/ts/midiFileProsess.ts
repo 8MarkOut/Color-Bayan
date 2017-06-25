@@ -1,5 +1,5 @@
 import { MIDIParser } from "./MIDIParser";
-import { MainController } from "./mainController";
+import { MainController } from "./MainController";
 
 namespace midiFileProsess {
     let fileData: string;

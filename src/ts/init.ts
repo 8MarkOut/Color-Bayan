@@ -8,7 +8,7 @@ import { keybdEvent } from "./keyBoardEvent";
 import { soundEvent } from "./soundEvent";
 
 import { KeyEvent } from "./mainController";
-import { MainController } from "./mainController";
+import { MainController } from "./MainController";
 import { MIDIParser } from "./MIDIParser";
 
 import { request } from "./request";
