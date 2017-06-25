@@ -11,7 +11,7 @@ class PianoRoll {
         return PianoRoll._instance;
     }
     private constructor() {
-        this.speed = 3;
+        this.speed = 4;
         this.rollBar = new Array<any>();
         for (let i = 0; i < 88; i++) {
             this.rollBar[i] = {};

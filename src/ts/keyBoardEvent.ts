@@ -10,6 +10,10 @@ namespace keybdEvent {
     
     // The event when the key of keyboard is Up
     export let keyUp = function(event: any): void {
+        if (MainController.getInstance().playing) {
+            alert("请暂时播放后再尝试。")
+            return;
+        }
         let realkey = getkeyValue(event.keyCode);
         let bayan = Bayan.getInstance();
         switch(realkey) {
