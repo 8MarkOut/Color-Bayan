@@ -1,4 +1,6 @@
 import { midiFileProsess } from "./midiFileProsess";
+import { MainController } from "./mainController";
+import { TimeController } from "./TimeController";
 
 namespace dropEvent {
     // get the Data from MID file
@@ -30,6 +32,7 @@ namespace dropEvent {
             fileData = fileData.join("");
             midiFileProsess.setFileData(fileData);
             midiFileProsess.loadMidiFile();
+            MainController.getInstance().finishPlay();
         }
         reader.readAsBinaryString(file);
     }

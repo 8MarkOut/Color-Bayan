@@ -89,11 +89,7 @@ namespace request {
                 });
                 fileData = fileData.join("");
                 play(fileData);
-                MainController.getInstance().stopPlay();
-                TimeController.getInstance().reset();
-                let playButton = document.getElementById("playButton");
-                if (playButton.className.indexOf("active") !== -1)
-                    document.getElementById("realButton").click();
+                MainController.getInstance().finishPlay();
             },
             error:function(){
                 unload();

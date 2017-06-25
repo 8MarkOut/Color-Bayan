@@ -47,8 +47,7 @@ class MainController {
         let timeControl = TimeController.getInstance();
         playPro.style.width = Math.floor(timeControl.getTime() / sequence.length * 100).toString() + "%";
         if (timeControl.getTime() > sequence.length) {
-            timeControl.finish();
-            document.getElementById("realButton").click();
+            MainController.getInstance().finishPlay();
         } else {
             timeControl.start();
             let time: number = timeControl.getTime();
@@ -82,6 +81,13 @@ class MainController {
         clearInterval(this.playEvent);
         Bayan.getInstance().initColor();
         Piano.getInstance().releaseAllKey();
+    }
+
+    public finishPlay() {
+        TimeController.getInstance().finish();
+        let playButton = document.getElementById("playButton");
+        if (playButton.className.indexOf("active") !== -1)
+            document.getElementById("realButton").click();
     }
 }
 
