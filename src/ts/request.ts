@@ -112,6 +112,7 @@ namespace request {
            success : function(json) {
                unload();
                SoundFont.getInstance().changeInstrument(JSON.stringify(json[0].data));
+               SoundFont.getInstance().instrumentName = Instrument[j];
            },
            error:function(){
                unload();

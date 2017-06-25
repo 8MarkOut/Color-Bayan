@@ -16,7 +16,13 @@ import { dropEvent } from "./dropEvent";
 
 import * as $ from "jquery";
 
-let keyCol: Array<string> = ["1234567890-=", "QWERTYUIOP[]", "ASDFGHJKL;'", "ZXCVBNM,./"];
+let keyCol: Array<string> = [
+    "1234567890-=",
+    "QWERTYUIOP[]",
+    "ASDFGHJKL;'",
+    "ZXCVBNM,./"
+];
+
 let file: any;
 
 window.onload = function(){
@@ -66,11 +72,16 @@ function initDropdownMenu(): void {
             // Set request
             switch(i) {
                 case 0 :
-                    tempLi.onclick = () => { Bayan.getInstance().setKeybd(request.keyBd[j]) };  break;
+                    tempLi.onclick = () => {
+                        Bayan.getInstance().setKeybd(request.keyBd[j])
+                    };
+                    break;
                 case 1 :
-                    tempLi.onclick = () => request.requestMid(j); break;
+                    tempLi.onclick = () => request.requestMid(j);
+                    break;
                 case 2 :
-                    tempLi.onclick = () => request.requestInstrument(j); break;
+                    tempLi.onclick = () => request.requestInstrument(j);
+                    break;
             }
             if (j !== request.Mobile[i].length - 1) {
                 let temp: any = document.createElement("li");
@@ -98,11 +109,16 @@ function initMoblie(): void {
             // Set request
             switch(i) {
                 case 0 :
-                    tempLi.onclick = () => { Bayan.getInstance().setKeybd(request.keyBd[j]) };  break;
+                    tempLi.onclick = () => {
+                        Bayan.getInstance().setKeybd(request.keyBd[j])
+                    };
+                    break;
                 case 1 :
-                    tempLi.onclick = () => request.requestMid(j); break;
+                    tempLi.onclick = () => request.requestMid(j);
+                    break;
                 case 2 :
-                    tempLi.onclick = () => request.requestInstrument(j); break;
+                    tempLi.onclick = () => request.requestInstrument(j);
+                    break;
             }
         }
     }}
@@ -125,9 +141,18 @@ function init(): void {
             tempDiv.appendChild(tempSpan);
             tempDiv.appendChild(tempDisplay);
 
-            tempDiv.onmousedown = () => { tempKey.keyDown(); soundEvent.playSound(tempKey.getKeyChar()); }
-            tempDiv.onmouseup = () => { tempKey.keyUp(); soundEvent.stopSound(tempKey.getKeyChar()); }
-            tempDiv.onmouseout = () => { tempKey.keyUp(); soundEvent.stopSound(tempKey.getKeyChar()); }
+            tempDiv.onmousedown = () => {
+                tempKey.keyDown();
+                soundEvent.playSound(tempKey.getKeyChar());
+            }
+            tempDiv.onmouseup = () => {
+                tempKey.keyUp();
+                soundEvent.stopSound(tempKey.getKeyChar());
+            }
+            tempDiv.onmouseout = () => {
+                tempKey.keyUp();
+                soundEvent.stopSound(tempKey.getKeyChar());
+            }
 
             tempDiv.setAttribute("name", keyCol[i][j]);
             tempSpan.innerHTML = keyCol[i][j];
@@ -178,10 +203,6 @@ function init_piano_roll() {
     piano.style.display = "flex";
     let mainbox = document.getElementById("main");
     let pbox = document.getElementById("piano-box");
-    
-    console.log(mainbox.offsetHeight);
-    // console.log(pbox.offsetWidth);
-    console.log(pbox.offsetHeight);
 
     let width = pbox.offsetWidth;
     let height = mainbox.offsetHeight - pbox.offsetHeight - 10;

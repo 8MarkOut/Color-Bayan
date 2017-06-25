@@ -1,31 +1,38 @@
 class SoundFont {
-    private instrument: string;
+    private instrumentFont: string;
+    public instrumentName: string;
     private note: Array<number>;
     private loop: boolean;
     public isplayinglock: Array<number>;
     public audio : any;
     private static _instance: SoundFont = null;
+
     public static getInstance(): SoundFont {
         if (SoundFont._instance === null)
             SoundFont._instance = new SoundFont();
         return SoundFont._instance;
     }
+
     private constructor() {
         this.audio = new Array<any>();
         this.isplayinglock = new Array<number>();
         this.resetlock(1);
+        this.loop = false;
     }
+
     public static normalizeKey(key: number): number {
         if (key < 0) key = 0;
         if (key > 87) key = 87;
         return key;
     }
+
     public static key2note(key: number): string {
         key = SoundFont.normalizeKey(key);
         key += 9;
         let number2key: Array<string> = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
         return number2key[key % 12] + Math.floor(key / 12);
     }
+
     public static note2key(note: string): number {
         let re = /[A-G](b?)/;
         let result = re.exec(note);
@@ -50,18 +57,34 @@ class SoundFont {
         }
         return SoundFont.normalizeKey(group * 12 + scale - 9);
     }
-    public changeInstrument(instrument: string): void {
-        this.instrument = instrument;
+
+    public static isSustainInstrument(instrument: string): boolean {
+        let res: boolean;
+        console.log(instrument)
+        switch(instrument) {
+            case "accordion":
+            case "violin":
+                res = true;
+            default: res = false;
+        }
+        return res;
+    }
+
+    public changeInstrument(instrumentFont: string): void {
+        this.instrumentFont = instrumentFont;
+        this.loop = SoundFont.isSustainInstrument(this.instrumentName);
         for (let i = 0; i < 88; i++) {
-            this.audio[i] = new Audio(JSON.parse(instrument)[SoundFont.key2note(i)]);
+            this.audio[i] = new Audio(JSON.parse(instrumentFont)[SoundFont.key2note(i)]);
             this.audio[i].loop = this.loop;
         }
     }
+
     public resetlock(n: number) {
         for (let i = 0; i < 88; i++) {
             this.isplayinglock[i] = n;
         }
     }
+
     public stopAll() {
         this.audio.forEach(element => {
             element.pause();
