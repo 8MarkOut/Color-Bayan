@@ -5,7 +5,7 @@ var fs = require('fs');
 var router = express.Router();
 
 app.use(express.static(path.join(__dirname, '../css')));
-app.use(express.static(path.join(__dirname, '../lib')));
+app.use(express.static(path.join(__dirname, '../assets')));
 
 app.get('/', function(req, res) {
 	res.redirect('/Color-Bayan');
@@ -21,7 +21,7 @@ app.get('/musicList', function (req, res) {
 		data: []
 	}
 
-	fs.readdir('src/lib/music', function(err, files) {
+	fs.readdir('src/assets/music', function(err, files) {
 
 		if (err) {
 			console.log('error:\n'+err);
@@ -44,7 +44,7 @@ app.get('/musicList', function (req, res) {
 
 app.get('/music', function(req, res) {
 	console.log('name', req.query.name);
-	fs.readFile('src/lib/music/'+ req.query.name + '.mid', function(error, data) {
+	fs.readFile('src/assets/music/'+ req.query.name + '.mid', function(error, data) {
 
 		if (error) {
 			console.log('error:\n'+error);
@@ -69,7 +69,7 @@ app.get('/instrument', function (req, res) {
 		data: []
 	}
 
-	fs.readdir('src/lib/instrument/', function(err, files) {
+	fs.readdir('src/assets/instrument/', function(err, files) {
 
 		if (err) {
 			console.log('error:\n'+err);
@@ -89,7 +89,7 @@ app.get('/instrument', function (req, res) {
 })
 
 app.get('/getInstrument', (req, res)=>{
-	var fileDir = 'src/lib/instrument/' + req.query.name;
+	var fileDir = 'src/assets/instrument/' + req.query.name;
 	
 	var jsonObj = {
 		data: {}
