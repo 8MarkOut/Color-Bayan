@@ -1,7 +1,7 @@
 import { Bayan } from "./Bayan";
 import { SoundFont } from "./SoundFont";
 import { midiFileProsess } from "./midiFileProsess";
-import { MainController } from "./mainController";
+import { MainController } from "./MainController";
 import { TimeController } from "./TimeController";
 
 namespace request {

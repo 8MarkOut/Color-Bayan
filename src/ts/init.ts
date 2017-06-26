@@ -7,7 +7,7 @@ import { SoundFont } from "./SoundFont";
 import { keybdEvent } from "./keyBoardEvent";
 import { soundEvent } from "./soundEvent";
 
-import { KeyEvent } from "./mainController";
+import { KeyEvent } from "./MainController";
 import { MainController } from "./MainController";
 import { MIDIParser } from "./MIDIParser";
 
