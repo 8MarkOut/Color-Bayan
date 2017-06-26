@@ -54,7 +54,7 @@ halign=left</panel_attributes>
       <w>120</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>select music</panel_attributes>
+    <panel_attributes>select instrument</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -65,7 +65,7 @@ halign=left</panel_attributes>
       <w>120</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>select instument</panel_attributes>
+    <panel_attributes>select music</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
