@@ -1,5 +1,5 @@
 import { midiFileProsess } from "./midiFileProsess";
-import { MainController } from "./mainController";
+import { MainController } from "./MainController";
 import { TimeController } from "./TimeController";
 
 namespace dropEvent {

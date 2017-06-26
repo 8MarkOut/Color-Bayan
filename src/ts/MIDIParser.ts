@@ -1,6 +1,6 @@
-import { KeyEvent } from "./mainController";
-import { MainController } from "./mainController";
-import { KeyBoardStatus} from "./mainController";
+import { KeyEvent } from "./MainController";
+import { MainController } from "./MainController";
+import { KeyBoardStatus} from "./MainController";
 
 import { Bayan } from "./Bayan";
 
