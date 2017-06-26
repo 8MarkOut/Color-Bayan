@@ -318,4 +318,27 @@ PinaoRoll</panel_attributes>
     <panel_attributes/>
     <additional_attributes>10.0;10.0;90.0;150.0</additional_attributes>
   </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>190</y>
+      <w>110</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+&lt;&lt;includes&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;32.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>480</x>
+      <y>210</y>
+      <w>110</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>transposition</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>
