@@ -32,4 +32,4 @@ npm install --global gulp
 
 6. 服务器启动后在8081端口启动
 
-7. 如果有兴趣，可以访问网站http://123.207.110.18:8081
+7. 如果有兴趣，可以访问网站http://bayan.ferrets.me
