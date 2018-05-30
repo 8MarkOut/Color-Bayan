@@ -5,7 +5,6 @@ class Pitch {
     public name: string;
     public index: number;
     public audio: any;
-    public isplaying: boolean;
 };
 
 class Sound {
@@ -26,30 +25,24 @@ class Sound {
             p.index = i;
             p.name = utility.pitch2name(i);
             p.audio = new Audio(sfdata[p.name]);
-            p.isplaying = false;
         }
     }
 
     public playSound(index:number) {
         let p = this.pitches[index];
-        if (!p.isplaying) {
-            p.audio.play();
-        }
-        p.isplaying = true;
+        p.audio.currentTime = 0;
+        p.audio.play();
     }
 
     public stopSound(index:number) {
         let p = this.pitches[index];
         p.audio.pause();
-        p.audio.currentTime = 0;
-        p.isplaying = false;
     }
 
     public stopAll() {
         this.pitches.forEach(element => {
             element.audio.pause();
             element.audio.currentTime = 0;
-            element.isplaying = false;
         });
     }
 };

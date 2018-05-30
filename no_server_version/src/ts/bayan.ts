@@ -7,6 +7,7 @@ class BayanKey {
     private keydiv: any;
     private name: string;
     private pitch_: number;
+    private bpressed: boolean;
 
     constructor(keydiv: any, name: string) {
         this.keydiv = keydiv;

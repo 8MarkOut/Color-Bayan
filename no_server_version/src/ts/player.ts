@@ -30,6 +30,8 @@ class TimeController {
 // let sequence = MIDIParser.test();
 let sequence = null;
 
+let instrument:any = Bayan.getInstance();
+
 class Player {
     private playEvent: any;
     public playing: boolean;
@@ -38,6 +40,10 @@ class Player {
         let playButton = document.getElementById("realButton");
         playButton.onclick = () => {
             let playArrow = document.getElementById("playArrow");
+            if (!sequence) {
+                alert('Please drag a midi file into this page.');
+                return;
+            }
             if (!this.playing) {
                 this.play();
                 playArrow.innerText = "pause";
@@ -45,6 +51,15 @@ class Player {
                 this.stopPlay();
                 playArrow.innerHTML = "play_arrow";
             }
+        }
+        let tab = document.getElementsByClassName('tab');
+        let bayantab: any = tab[0];
+        bayantab.onclick = () => {
+            instrument = Bayan.getInstance();
+        }
+        let pianotab: any = tab[1];
+        pianotab.onclick = () => {
+            instrument = Piano.getInstance();
         }
     }
     
@@ -72,9 +87,9 @@ class Player {
             if (sequence[time] !== undefined) {
                 for (let i: number = 0; i < sequence[time].notes.length; i++) {
                     if (sequence[time].ons[i]) {
-                        Bayan.getInstance().press(sequence[time].notes[i]);
+                        instrument.press(sequence[time].notes[i]);
                     } else {
-                        Bayan.getInstance().release(sequence[time].notes[i]);
+                        instrument.release(sequence[time].notes[i]);
                     }
                 }
             }

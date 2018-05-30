@@ -7,7 +7,7 @@ import { BayanKey, Bayan } from "./bayan";
 import { PianoRoll } from "./piano";
 
 namespace keyboardevent {
-    
+    let bpressed = new Array();
     // The event when the key of keyboard is Up
     export let keyUp = function(event: any): void {
         let keyval = getkeyValue(event.keyCode);
@@ -53,12 +53,15 @@ namespace keyboardevent {
             bayankey.release();
             Sound.getInstance().stopSound(bayankey.getPitch());
         }
+        bpressed[keyval] = false;
     }
 
     // The event when the key of keyboard is Down
     export let keyDown = function(event: any): void {
         let ifIE: boolean = navigator.appName == "Microsoft Internet Explorer";
         let keyval = (ifIE) ? getkeyValue(event.keyCode) : getkeyValue(event.which);
+        if (bpressed[keyval]) return;
+        bpressed[keyval] = true;
         let bayankey: BayanKey = getDiv(keyval);
         if (bayankey !== undefined) {
             bayankey.press();
