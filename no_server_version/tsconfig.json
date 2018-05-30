@@ -1,0 +1,16 @@
+{
+    "files": [
+        "src/ts/BayanKey.ts",
+        "src/ts/Bayan.ts",
+        "src/ts/init.ts",
+        "src/ts/ColorMap.ts",
+        "src/ts/SoundFont.ts",
+        "src/ts/TimeController.ts",
+        "src/ts/request.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": false,
+        "target": "es5",
+        "allowJs": true
+    }
+}
