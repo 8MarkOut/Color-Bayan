@@ -37,7 +37,6 @@ namespace keyboardevent {
                     bayan.update();
                 }
                 break;
-            
             case "enter":
                 PianoRoll.getInstance().play();
                 break;

@@ -29,8 +29,8 @@ class TimeController {
 
 // let sequence = MIDIParser.test();
 let sequence = null;
-
 let instrument:any = Bayan.getInstance();
+let alertmark = false;
 
 class Player {
     private playEvent: any;
@@ -41,7 +41,12 @@ class Player {
         playButton.onclick = () => {
             let playArrow = document.getElementById("playArrow");
             if (!sequence) {
-                alert('Please drag a midi file into this page.');
+                if (!alertmark) {
+                    alert('Please drag a midi file into this page.');
+                    alertmark = true;
+                }
+                playButton.click();
+                alertmark = false;
                 return;
             }
             if (!this.playing) {

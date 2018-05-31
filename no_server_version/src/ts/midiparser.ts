@@ -95,7 +95,7 @@ class MIDIParser {
         let n_track = parseInt(read.substr(4, 4), 16);
         // "dd dd": the ticks of a quarter note
         let n_quarter_ticks = parseInt(read.substr(8, 4), 16);
-        this.t_scale = n_quarter_ticks / 12;
+        this.t_scale = n_quarter_ticks / 13;
 
         // deal with tracks
         for (let i = 0; i < n_track; i++) {
@@ -117,7 +117,7 @@ class MIDIParser {
         if (this.seq[time] == null) {
             this.seq[time] = new NoteAction();
         }
-        this.seq[time].push(note-9, on);
+        this.seq[time].push(note, on);
     }
 
     private addTrack(trInfo: string):void {
@@ -151,9 +151,9 @@ class MIDIParser {
                         break;
                     if (this.lastEvent[0] === "8" ||
                     this.lastEvent[0] === "9" && velocity === 0 ) {
-                        this.noteAction(ticks, note, false);
+                        this.noteAction(ticks, note - 21, false);
                     } else if (this.lastEvent[0] === "9" && velocity !== 0) {
-                        this.noteAction(ticks, note, true);
+                        this.noteAction(ticks, note - 21, true);
                     }
                     break;
                 case "b": // 控制器
